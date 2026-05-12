@@ -83,6 +83,11 @@ h1 {
   gap: 8px;
 }
 
+.mobile-controls-toggle {
+  display: none;
+  margin-top: 10px;
+}
+
 .server-datasets {
   margin-top: 10px;
   display: flex;
@@ -368,6 +373,7 @@ input[type="file"] {
   bottom: 12px;
   width: min(500px, calc(100vw - 24px));
   max-height: 62vh;
+  z-index: 60;
   background: #fffcf7;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -424,7 +430,48 @@ input[type="file"] {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 760px), (hover: none) and (pointer: coarse) {
+  .btn {
+    padding: 7px 9px;
+    font-size: 0.83rem;
+    border-radius: 8px;
+  }
+
+  .btn.small {
+    padding: 6px 8px;
+    font-size: 0.79rem;
+  }
+
+  #navigatorToggle {
+    min-height: 36px;
+    min-width: 118px;
+    font-weight: 700;
+  }
+
+  .mobile-controls-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero.mobile-collapsed {
+    padding: 10px 12px;
+  }
+
+  .hero.mobile-collapsed .subtitle,
+  .hero.mobile-collapsed .toolbar,
+  .hero.mobile-collapsed .server-datasets,
+  .hero.mobile-collapsed .sim-controls,
+  .hero.mobile-collapsed .dataset-row,
+  .hero.mobile-collapsed .status {
+    display: none;
+  }
+
+  .hero.mobile-collapsed h1 {
+    margin: 4px 0;
+    font-size: 1.2rem;
+  }
+
   .metrics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -435,6 +482,16 @@ input[type="file"] {
 
   .navigator-grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .navigator.mobile-open {
+    left: 8px;
+    right: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: auto;
+    max-height: none;
+    padding: 12px;
   }
 
   body.quiz-mobile-active {
@@ -501,9 +558,9 @@ input[type="file"] {
 
   .quiz.mobile-docked .quiz-nav .btn {
     flex: 1;
-    min-height: 38px;
+    min-height: 34px;
     padding: 7px 8px;
-    font-size: 0.86rem;
+    font-size: 0.8rem;
   }
 
   .quiz.mobile-docked .quiz-nav .btn.mobile-icon-btn {
@@ -550,6 +607,14 @@ input[type="file"] {
     right: 8px;
     bottom: 8px;
     width: calc(100vw - 16px);
+    max-height: 70vh;
+  }
+
+  .navigator.mobile-open {
+    left: 6px;
+    right: 6px;
+    top: 6px;
+    bottom: 6px;
   }
 
   .navigator-grid {

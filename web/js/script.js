@@ -16,13 +16,15 @@ const state = {
   examEndsAt: 0,
   pointsCorrect: 1,
   penaltyWrong: 0.33,
-  timerId: null
+  timerId: null,
+  mobileControlsExpanded: false
 };
 
-const mobileQuery = window.matchMedia("(max-width: 760px)");
+const mobileQuery = window.matchMedia("(max-width: 900px), (hover: none) and (pointer: coarse)");
 
 const el = {
   statusLine: document.getElementById("statusLine"),
+  mobileControlsToggle: document.getElementById("mobileControlsToggle"),
   filesInput: document.getElementById("jsonFilesInput"),
   loadProgressInput: document.getElementById("loadProgressInput"),
   saveProgressBtn: document.getElementById("saveProgressBtn"),
@@ -85,6 +87,49 @@ function updateMobileQuizLayout() {
 
   el.prevBtn.setAttribute("aria-label", "Pregunta anterior");
   el.nextBtn.setAttribute("aria-label", "Pregunta siguiente");
+}
+
+function updateMobileControlsState() {
+  const hero = document.querySelector(".hero");
+  if (!hero || !el.mobileControlsToggle) return;
+
+  const isMobile = mobileQuery.matches;
+  const shouldCollapse = isMobile && !state.mobileControlsExpanded;
+  hero.classList.toggle("mobile-collapsed", shouldCollapse);
+
+  if (!isMobile) {
+    el.mobileControlsToggle.setAttribute("aria-expanded", "true");
+    el.mobileControlsToggle.textContent = "Mostrar controles";
+    return;
+  }
+
+  el.mobileControlsToggle.setAttribute("aria-expanded", String(!shouldCollapse));
+  el.mobileControlsToggle.textContent = shouldCollapse ? "Mostrar controles" : "Ocultar controles";
+}
+
+function updateNavigatorUi() {
+  const isOpen = !el.navigator.hidden;
+  el.navigator.classList.toggle("mobile-open", isOpen && mobileQuery.matches);
+  el.navigatorToggle.setAttribute("aria-expanded", String(isOpen));
+  el.navigatorToggle.textContent = isOpen ? "Ocultar navegador" : "Ver navegador";
+}
+
+function openNavigator() {
+  el.navigator.hidden = false;
+  updateNavigatorUi();
+}
+
+function closeNavigator() {
+  el.navigator.hidden = true;
+  updateNavigatorUi();
+}
+
+function toggleNavigator() {
+  if (el.navigator.hidden) {
+    openNavigator();
+    return;
+  }
+  closeNavigator();
 }
 
 function isSelectedValue(value) {
@@ -543,6 +588,8 @@ function renderAll() {
   renderNavigator();
   renderStats();
   updateMobileQuizLayout();
+  updateMobileControlsState();
+  updateNavigatorUi();
 }
 
 function questionFingerprint(question) {
@@ -792,6 +839,13 @@ function wireEvents() {
     el.filesInput.title = "Deshabilitado: la app solo carga JSON de datasets/.";
   }
 
+  if (el.mobileControlsToggle) {
+    el.mobileControlsToggle.addEventListener("click", () => {
+      state.mobileControlsExpanded = !state.mobileControlsExpanded;
+      updateMobileControlsState();
+    });
+  }
+
   el.prevBtn.addEventListener("click", () => {
     if (state.currentIndex > 0) {
       state.currentIndex -= 1;
@@ -828,11 +882,11 @@ function wireEvents() {
   });
 
   el.navigatorToggle.addEventListener("click", () => {
-    el.navigator.hidden = !el.navigator.hidden;
+    toggleNavigator();
   });
 
   el.closeNavigator.addEventListener("click", () => {
-    el.navigator.hidden = true;
+    closeNavigator();
   });
 
   if (el.refreshServerDatasetsBtn) {
@@ -876,9 +930,23 @@ function wireEvents() {
   });
 
   if (typeof mobileQuery.addEventListener === "function") {
-    mobileQuery.addEventListener("change", updateMobileQuizLayout);
+    mobileQuery.addEventListener("change", () => {
+      if (!mobileQuery.matches) {
+        state.mobileControlsExpanded = false;
+      }
+      updateMobileQuizLayout();
+      updateMobileControlsState();
+      updateNavigatorUi();
+    });
   } else if (typeof mobileQuery.addListener === "function") {
-    mobileQuery.addListener(updateMobileQuizLayout);
+    mobileQuery.addListener(() => {
+      if (!mobileQuery.matches) {
+        state.mobileControlsExpanded = false;
+      }
+      updateMobileQuizLayout();
+      updateMobileControlsState();
+      updateNavigatorUi();
+    });
   }
 }
 
