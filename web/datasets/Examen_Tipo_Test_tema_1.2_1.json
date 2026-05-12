@@ -1,0 +1,685 @@
+{
+  "sourcePdf": "C:\\Users\\david\\Downloads\\Examen Tipo Test_tema 1.2 (1).pdf",
+  "exportedAt": "2026-05-12T18:02:13.055082+00:00",
+  "totalQuestions": 29,
+  "items": [
+    {
+      "page": 1,
+      "questionNumber": 1,
+      "question": "¿Cuál es la función principal de los dispositivos de interconexión en una red?",
+      "answers": [
+        {
+          "text": "Almacenar datos de los usuarios",
+          "selected": false
+        },
+        {
+          "text": "Permitir la comunicación entre diferentes dispositivos y redes",
+          "selected": true
+        },
+        {
+          "text": "Ejecutar aplicaciones en los servidores",
+          "selected": false
+        },
+        {
+          "text": "Gestionar el sistema operativo de los equipos",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 2,
+      "question": "¿En qué capa del modelo OSI trabajan los repetidores?",
+      "answers": [
+        {
+          "text": "Capa de enlace de datos",
+          "selected": false
+        },
+        {
+          "text": "Capa de red",
+          "selected": false
+        },
+        {
+          "text": "Capa física",
+          "selected": true
+        },
+        {
+          "text": "Capa de aplicación",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 3,
+      "question": "¿Qué característica distingue principalmente a un hub frente a un switch?",
+      "answers": [
+        {
+          "text": "El hub filtra tráfico por direcciones MAC",
+          "selected": false
+        },
+        {
+          "text": "El hub envía los datos a todos los puertos",
+          "selected": true
+        },
+        {
+          "text": "El hub utiliza direcciones IP",
+          "selected": false
+        },
+        {
+          "text": "El hub trabaja en la capa de red",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 4,
+      "question": "¿Cuál es una desventaja importante de los hubs?",
+      "answers": [
+        {
+          "text": "No permiten conectar dispositivos",
+          "selected": false
+        },
+        {
+          "text": "Generan colisiones frecuentes en la red",
+          "selected": true
+        },
+        {
+          "text": "Son demasiado complejos de configurar",
+          "selected": false
+        },
+        {
+          "text": "Solo funcionan con redes inalámbricas",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 5,
+      "question": "¿Qué función realiza un repetidor en una red?",
+      "answers": [
+        {
+          "text": "Almacenar paquetes",
+          "selected": false
+        },
+        {
+          "text": "Amplificar la señal para extender la distancia de transmisión",
+          "selected": true
+        },
+        {
+          "text": "Asignar direcciones IP",
+          "selected": false
+        },
+        {
+          "text": "Cifrar el tráfico de red",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 6,
+      "question": "¿Qué tipo de dirección utiliza un switch para reenviar paquetes dentro de una red local?",
+      "answers": [
+        {
+          "text": "Dirección IP",
+          "selected": false
+        },
+        {
+          "text": "Dirección MAC",
+          "selected": true
+        },
+        {
+          "text": "Dirección DNS",
+          "selected": false
+        },
+        {
+          "text": "Dirección URL",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 7,
+      "question": "¿Cuál es una característica de los switches modernos frente a los hubs?",
+      "answers": [
+        {
+          "text": "Todos los dispositivos comparten el mismo ancho de banda",
+          "selected": false
+        },
+        {
+          "text": "Cada puerto puede tener su propio ancho de banda",
+          "selected": true
+        },
+        {
+          "text": "Funcionan únicamente en redes inalámbricas",
+          "selected": false
+        },
+        {
+          "text": "No permiten segmentar redes",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 8,
+      "question": "¿Cuál es la principal función de un puente o bridge?",
+      "answers": [
+        {
+          "text": "Conectar redes inalámbricas",
+          "selected": false
+        },
+        {
+          "text": "Filtrar tráfico basándose en direcciones MAC",
+          "selected": true
+        },
+        {
+          "text": "Asignar direcciones IP automáticamente",
+          "selected": false
+        },
+        {
+          "text": "Gestionar servidores de red",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 9,
+      "question": "¿Cuál de los siguientes dispositivos opera en la capa de red del modelo OSI?",
+      "answers": [
+        {
+          "text": "Hub",
+          "selected": false
+        },
+        {
+          "text": "Switch",
+          "selected": false
+        },
+        {
+          "text": "Router",
+          "selected": true
+        },
+        {
+          "text": "Repetidor",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 10,
+      "question": "¿Qué dispositivo permite la comunicación entre diferentes redes?",
+      "answers": [
+        {
+          "text": "Switch",
+          "selected": false
+        },
+        {
+          "text": "Hub",
+          "selected": false
+        },
+        {
+          "text": "Router",
+          "selected": true
+        },
+        {
+          "text": "Bridge",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 11,
+      "question": "¿Qué información utiliza un router para tomar decisiones de enrutamiento?",
+      "answers": [
+        {
+          "text": "Direcciones MAC",
+          "selected": false
+        },
+        {
+          "text": "Direcciones IP",
+          "selected": true
+        },
+        {
+          "text": "Direcciones físicas de hardware",
+          "selected": false
+        },
+        {
+          "text": "Direcciones DNS",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 12,
+      "question": "¿Qué elemento contiene las rutas que utiliza un router para enviar paquetes?",
+      "answers": [
+        {
+          "text": "Tabla ARP",
+          "selected": false
+        },
+        {
+          "text": "Tabla de enrutamiento",
+          "selected": true
+        },
+        {
+          "text": "Tabla NAT",
+          "selected": false
+        },
+        {
+          "text": "Tabla de VLAN",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 13,
+      "question": "¿Qué protocolo de enrutamiento utiliza el número de saltos como métrica?",
+      "answers": [
+        {
+          "text": "OSPF",
+          "selected": false
+        },
+        {
+          "text": "BGP",
+          "selected": false
+        },
+        {
+          "text": "RIP",
+          "selected": true
+        },
+        {
+          "text": "MPLS",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 14,
+      "question": "¿Cuál de los siguientes protocolos es utilizado para el enrutamiento entre sistemas autónomos en Internet?",
+      "answers": [
+        {
+          "text": "RIP",
+          "selected": false
+        },
+        {
+          "text": "OSPF",
+          "selected": false
+        },
+        {
+          "text": "BGP",
+          "selected": true
+        },
+        {
+          "text": "ICMP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 15,
+      "question": "¿Qué característica distingue a OSPF frente a RIP?",
+      "answers": [
+        {
+          "text": "Utiliza direcciones MAC",
+          "selected": false
+        },
+        {
+          "text": "Utiliza información del estado de los enlaces",
+          "selected": true
+        },
+        {
+          "text": "Solo funciona en redes pequeñas",
+          "selected": false
+        },
+        {
+          "text": "Utiliza únicamente rutas estáticas",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 16,
+      "question": "¿Cuál es la función principal de un firewall?",
+      "answers": [
+        {
+          "text": "Conectar redes inalámbricas",
+          "selected": false
+        },
+        {
+          "text": "Controlar el tráfico que entra y sale de la red",
+          "selected": true
+        },
+        {
+          "text": "Gestionar el almacenamiento de datos",
+          "selected": false
+        },
+        {
+          "text": "Asignar direcciones IP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 17,
+      "question": "¿Qué tecnología permite establecer conexiones seguras a través de Internet?",
+      "answers": [
+        {
+          "text": "VPN",
+          "selected": true
+        },
+        {
+          "text": "FTP",
+          "selected": false
+        },
+        {
+          "text": "HTTP",
+          "selected": false
+        },
+        {
+          "text": "DNS",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 18,
+      "question": "¿Cuál es la función de un IDS?",
+      "answers": [
+        {
+          "text": "Bloquear automáticamente ataques",
+          "selected": false
+        },
+        {
+          "text": "Detectar actividades sospechosas en la red",
+          "selected": true
+        },
+        {
+          "text": "Encriptar el tráfico",
+          "selected": false
+        },
+        {
+          "text": "Configurar direcciones IP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 19,
+      "question": "¿Qué diferencia principal existe entre IDS e IPS?",
+      "answers": [
+        {
+          "text": "IPS solo detecta ataques",
+          "selected": false
+        },
+        {
+          "text": "IDS bloquea automáticamente ataques",
+          "selected": false
+        },
+        {
+          "text": "IPS puede detectar y bloquear ataques",
+          "selected": true
+        },
+        {
+          "text": "IDS funciona únicamente en redes inalámbricas",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 20,
+      "question": "¿Qué significa QoS en redes?",
+      "answers": [
+        {
+          "text": "Quality of Software",
+          "selected": false
+        },
+        {
+          "text": "Quality of Security",
+          "selected": false
+        },
+        {
+          "text": "Quality of Service",
+          "selected": true
+        },
+        {
+          "text": "Quantity of Service",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 21,
+      "question": "¿Cuál es el objetivo de QoS?",
+      "answers": [
+        {
+          "text": "Reducir la velocidad de la red",
+          "selected": false
+        },
+        {
+          "text": "Priorizar determinados tipos de tráfico",
+          "selected": true
+        },
+        {
+          "text": "Eliminar dispositivos de la red",
+          "selected": false
+        },
+        {
+          "text": "Configurar direcciones MAC",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 22,
+      "question": "¿Qué permite una VLAN en una red?",
+      "answers": [
+        {
+          "text": "Crear redes físicas separadas",
+          "selected": false
+        },
+        {
+          "text": "Crear redes lógicas dentro de la misma red física",
+          "selected": true
+        },
+        {
+          "text": "Aumentar la velocidad de Internet",
+          "selected": false
+        },
+        {
+          "text": "Convertir redes cableadas en inalámbricas",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 23,
+      "question": "¿Cuál es uno de los beneficios de utilizar VLANs?",
+      "answers": [
+        {
+          "text": "Eliminar routers",
+          "selected": false
+        },
+        {
+          "text": "Reducir el tráfico de difusión",
+          "selected": true
+        },
+        {
+          "text": "Aumentar el consumo de red",
+          "selected": false
+        },
+        {
+          "text": "Sustituir switches",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 24,
+      "question": "¿Qué dispositivo proporciona conectividad inalámbrica a una red?",
+      "answers": [
+        {
+          "text": "Router",
+          "selected": false
+        },
+        {
+          "text": "Hub",
+          "selected": false
+        },
+        {
+          "text": "Punto de acceso",
+          "selected": true
+        },
+        {
+          "text": "Bridge",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 25,
+      "question": "¿Qué estándar pertenece a las redes WiFi?",
+      "answers": [
+        {
+          "text": "IEEE 802.3",
+          "selected": false
+        },
+        {
+          "text": "IEEE 802.1Q",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 26,
+      "question": "¿Cuál es el protocolo de seguridad inalámbrica más avanzado actualmente?",
+      "answers": [
+        {
+          "text": "WEP",
+          "selected": false
+        },
+        {
+          "text": "WPA",
+          "selected": false
+        },
+        {
+          "text": "WPA2",
+          "selected": false
+        },
+        {
+          "text": "WPA3",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 27,
+      "question": "¿Cuál es la principal ventaja de IPv6 frente a IPv4?",
+      "answers": [
+        {
+          "text": "Menor consumo energético",
+          "selected": false
+        },
+        {
+          "text": "Mayor espacio de direcciones",
+          "selected": true
+        },
+        {
+          "text": "Mayor velocidad de Internet",
+          "selected": false
+        },
+        {
+          "text": "Menor latencia de red",
+          "selected": false
+        },
+        {
+          "text": "NAT",
+          "selected": false
+        },
+        {
+          "text": "VLAN",
+          "selected": false
+        },
+        {
+          "text": "Dual Stack",
+          "selected": false
+        },
+        {
+          "text": "DNS",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 29,
+      "question": "¿Qué significa SDN en redes?",
+      "answers": [
+        {
+          "text": "Secure Digital Network",
+          "selected": false
+        },
+        {
+          "text": "Software Defined Networking",
+          "selected": true
+        },
+        {
+          "text": "System Data Network",
+          "selected": false
+        },
+        {
+          "text": "Server Data Node",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 30,
+      "question": "¿Qué tecnología emergente se está utilizando para optimizar el rendimiento de las redes?",
+      "answers": [
+        {
+          "text": "Blockchain",
+          "selected": false
+        },
+        {
+          "text": "Inteligencia Artificial",
+          "selected": true
+        },
+        {
+          "text": "Realidad Virtual",
+          "selected": false
+        },
+        {
+          "text": "Computación Cuántica",
+          "selected": false
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    "Se detectaron 1 pagina(s) sin texto extraible. Si el PDF es escaneado, usa OCR antes de extraer."
+  ]
+}

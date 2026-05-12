@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Test Studio</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="ambient"></div>
+  <main class="layout">
+    <section class="panel hero">
+      <p class="eyebrow">Preparacion de asignatura</p>
+      <h1>Campus Test Studio</h1>
+      <p class="subtitle">Carga uno o varios JSON generados desde PDF y repasa en modo dinamico desde movil u ordenador.</p>
+
+      <div class="toolbar">
+        <label class="btn primary" for="jsonFilesInput">Cargar 1..n JSON</label>
+        <input id="jsonFilesInput" type="file" accept="application/json" multiple>
+        <label class="btn" for="loadProgressInput">Cargar progreso</label>
+        <input id="loadProgressInput" type="file" accept="application/json">
+        <button id="saveProgressBtn" class="btn" type="button">Guardar progreso JSON</button>
+        <button id="resetBtn" class="btn" type="button">Reiniciar progreso</button>
+        <button id="shuffleBtn" class="btn" type="button">Mezclar preguntas: OFF</button>
+      </div>
+
+      <div class="server-datasets">
+        <label for="serverDatasetSelect">JSON disponibles en carpeta datasets</label>
+        <select id="serverDatasetSelect"></select>
+        <button id="loadServerDatasetBtn" class="btn" type="button">Cargar JSON seleccionado</button>
+        <button id="refreshServerDatasetsBtn" class="btn" type="button">Actualizar lista</button>
+      </div>
+
+      <div class="sim-controls">
+        <label>
+          Minutos simulacro
+          <input id="simMinutes" type="number" min="1" value="30">
+        </label>
+        <label>
+          Puntos acierto
+          <input id="scoreOk" type="number" min="0" step="0.1" value="1">
+        </label>
+        <label>
+          Penalizacion fallo
+          <input id="scoreFail" type="number" min="0" step="0.01" value="0.33">
+        </label>
+        <button id="presetOfficialBtn" class="btn" type="button">Preset oficial +1/-0.33</button>
+        <button id="startSimBtn" class="btn" type="button">Iniciar simulacro</button>
+        <span id="timerChip" class="timer-chip">Sin simulacro</span>
+      </div>
+
+      <div class="dataset-row">
+        <strong>Bancos activos</strong>
+        <div id="datasetTabs" class="dataset-tabs"></div>
+      </div>
+
+      <p id="statusLine" class="status" role="status" aria-live="polite">Listo para cargar preguntas.</p>
+    </section>
+
+    <section class="panel metrics">
+      <article>
+        <span>Contestadas</span>
+        <strong id="metricAnswered">0/0</strong>
+      </article>
+      <article>
+        <span>Aciertos</span>
+        <strong id="metricCorrect">0</strong>
+      </article>
+      <article>
+        <span>Fallos</span>
+        <strong id="metricWrong">0</strong>
+      </article>
+      <article>
+        <span>Acierto %</span>
+        <strong id="metricPercent">0%</strong>
+      </article>
+      <article>
+        <span>Nota oficial /10</span>
+        <strong id="metricOfficial">0.00</strong>
+      </article>
+    </section>
+
+    <section id="quizPanel" class="panel quiz" hidden>
+      <header class="quiz-head">
+        <div class="pills">
+          <span id="questionCounter" class="pill">Pregunta 0 de 0</span>
+          <span id="questionPage" class="pill">Pagina original: -</span>
+          <span id="questionSource" class="pill">Fuente: -</span>
+        </div>
+        <button id="navigatorToggle" class="btn small" type="button">Ver navegador</button>
+      </header>
+
+      <div class="progress-wrap" aria-label="Progreso">
+        <span id="progressLabel">0% completado</span>
+        <div class="progress-track" aria-hidden="true">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+      </div>
+
+      <h2 id="questionText" class="question"></h2>
+      <div id="optionsBox" class="options" role="radiogroup" aria-label="Respuestas"></div>
+      <div id="feedbackBox" class="feedback" hidden></div>
+
+      <footer class="quiz-nav">
+        <button id="prevBtn" class="btn" type="button">Anterior</button>
+        <button id="nextBtn" class="btn" type="button">Siguiente</button>
+      </footer>
+    </section>
+
+    <section id="summaryPanel" class="panel summary" hidden>
+      <h3>Resumen final</h3>
+      <p id="summaryText"></p>
+    </section>
+  </main>
+
+  <aside id="navigator" class="navigator" hidden>
+    <div class="navigator-head">
+      <h3>Navegador</h3>
+      <button id="closeNavigator" class="btn small" type="button">Cerrar</button>
+    </div>
+    <div id="navigatorGrid" class="navigator-grid"></div>
+  </aside>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
