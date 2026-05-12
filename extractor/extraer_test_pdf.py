@@ -19,12 +19,16 @@ from typing import Dict, List, Optional, Tuple
 import pdfplumber
 
 
+
+# Adaptar patrones para formato "Pregunta N" y opciones "a)", "b)", ...
 QUESTION_PATTERNS = [
+    re.compile(r"^\s*Pregunta\s+(\d{1,4})\s*$", re.IGNORECASE),  # "Pregunta 1"
     re.compile(r"^\s*(?:pregunta\s+)?(\d{1,4})\s*[\)\].:\-]+\s*(.+)$", re.IGNORECASE),
     re.compile(r"^\s*(\d{1,4})\s*[-]\s*(.+)$"),
 ]
 
 OPTION_PATTERNS = [
+    re.compile(r"^\s*([a-hA-H])\)\s*(.+)$"),  # "a) texto"
     re.compile(r"^\s*[\(\[]?([A-Ha-h]|[1-8])[\)\].:\-]+\s*(.+)$"),
     re.compile(r"^\s*([A-Ha-h])\s+[\-]\s*(.+)$"),
 ]
@@ -58,12 +62,17 @@ def looks_like_answer_key_line(line: str) -> bool:
     return len(ANSWER_KEY_TOKEN_RE.findall(line)) >= 2
 
 
+
+# Modificar para soportar "Pregunta N" en una línea y el enunciado en la siguiente
 def match_question_line(line: str) -> Optional[Tuple[int, str]]:
     for pattern in QUESTION_PATTERNS:
         m = pattern.match(line)
         if not m:
             continue
         number = int(m.group(1))
+        # Si el patrón solo captura el número ("Pregunta N"), el texto va en la siguiente línea
+        if m.lastindex == 1:
+            return number, None
         text = normalize_spaces(m.group(2))
         if text:
             return number, text
@@ -244,12 +253,16 @@ def parse_pdf_questions(pdf_path: Path) -> dict:
     current: Optional[QuestionDraft] = None
     empty_pages = 0
 
+
     for page_index, page_text in enumerate(pages_text, start=1):
         if not normalize_spaces(page_text):
             empty_pages += 1
         lines = [normalize_spaces(line) for line in page_text.splitlines()]
 
-        for line in lines:
+        prev_question_pending = False
+        pending_question_number = None
+
+        for idx, line in enumerate(lines):
             if not line:
                 continue
 
@@ -257,15 +270,29 @@ def parse_pdf_questions(pdf_path: Path) -> dict:
                 continue
 
             if looks_like_answer_key_line(line):
-                # Evita tratar bloque de soluciones como preguntas.
                 continue
 
             q_data = match_question_line(line)
             if q_data:
                 finalize_question(current, items, answer_key, warnings)
                 number, q_text = q_data
+                if q_text is None:
+                    # "Pregunta N" en una línea, enunciado en la siguiente
+                    prev_question_pending = True
+                    pending_question_number = number
+                    continue
                 current = QuestionDraft(number=number, page=page_index)
                 current.append_question(q_text)
+                prev_question_pending = False
+                pending_question_number = None
+                continue
+
+            if prev_question_pending and pending_question_number is not None:
+                # La línea actual es el enunciado de la pregunta
+                current = QuestionDraft(number=pending_question_number, page=page_index)
+                current.append_question(line)
+                prev_question_pending = False
+                pending_question_number = None
                 continue
 
             o_data = match_option_line(line)

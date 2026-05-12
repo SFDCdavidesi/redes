@@ -1,0 +1,698 @@
+{
+  "sourcePdf": "C:\\Users\\david\\Downloads\\Tema 1.3.-Examen tipo test (1).pdf",
+  "exportedAt": "2026-05-12T18:12:12.535302+00:00",
+  "totalQuestions": 30,
+  "items": [
+    {
+      "page": 1,
+      "questionNumber": 1,
+      "question": "¿Cuál es la función principal de una pasarela (gateway) en una red?",
+      "answers": [
+        {
+          "text": "Conectar dispositivos dentro de la misma red",
+          "selected": false
+        },
+        {
+          "text": "Traducir protocolos entre redes diferentes",
+          "selected": true
+        },
+        {
+          "text": "Almacenar datos de red",
+          "selected": false
+        },
+        {
+          "text": "Aumentar la velocidad de transmisión",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 2,
+      "question": "¿En qué capas del modelo OSI pueden operar las pasarelas?",
+      "answers": [
+        {
+          "text": "Solo en la capa física",
+          "selected": false
+        },
+        {
+          "text": "Solo en la capa de red",
+          "selected": false
+        },
+        {
+          "text": "En múltiples capas del modelo OSI",
+          "selected": true
+        },
+        {
+          "text": "Solo en la capa de transporte",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 3,
+      "question": "¿Qué tecnología permite que varios dispositivos de una red privada utilicen una sola IP pública?",
+      "answers": [
+        {
+          "text": "DNS",
+          "selected": false
+        },
+        {
+          "text": "DHCP",
+          "selected": false
+        },
+        {
+          "text": "NAT",
+          "selected": true
+        },
+        {
+          "text": "ARP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 4,
+      "question": "¿Qué significa QoS en redes?",
+      "answers": [
+        {
+          "text": "Quantity of Service",
+          "selected": false
+        },
+        {
+          "text": "Quality of Security",
+          "selected": false
+        },
+        {
+          "text": "Quality of Service",
+          "selected": true
+        },
+        {
+          "text": "Query of System",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 5,
+      "question": "¿Qué parámetro de QoS mide el tiempo que tarda un paquete en llegar al destino?",
+      "answers": [
+        {
+          "text": "Jitter",
+          "selected": false
+        },
+        {
+          "text": "Latencia",
+          "selected": true
+        },
+        {
+          "text": "Throughput",
+          "selected": false
+        },
+        {
+          "text": "Segmentación",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 6,
+      "question": "¿Qué parámetro de red representa la variación en el tiempo de llegada de los paquetes?",
+      "answers": [
+        {
+          "text": "Latencia",
+          "selected": false
+        },
+        {
+          "text": "Jitter",
+          "selected": true
+        },
+        {
+          "text": "Ancho de banda",
+          "selected": false
+        },
+        {
+          "text": "Routing",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 7,
+      "question": "¿Qué mide el ancho de banda en una red?",
+      "answers": [
+        {
+          "text": "El número de dispositivos conectados",
+          "selected": false
+        },
+        {
+          "text": "La velocidad de procesamiento del router",
+          "selected": false
+        },
+        {
+          "text": "La cantidad de datos transmitidos por unidad de tiempo",
+          "selected": true
+        },
+        {
+          "text": "La distancia entre nodos",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 8,
+      "question": "¿Cuál de las siguientes aplicaciones requiere baja latencia?",
+      "answers": [
+        {
+          "text": "Descarga de archivos",
+          "selected": false
+        },
+        {
+          "text": "Videoconferencia",
+          "selected": true
+        },
+        {
+          "text": "Correo electrónico",
+          "selected": false
+        },
+        {
+          "text": "Copia de seguridad",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 9,
+      "question": "¿Qué protocolo se utiliza para asignar automáticamente direcciones IP?",
+      "answers": [
+        {
+          "text": "DHCP",
+          "selected": true
+        },
+        {
+          "text": "DNS",
+          "selected": false
+        },
+        {
+          "text": "TCP",
+          "selected": false
+        },
+        {
+          "text": "FTP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 10,
+      "question": "¿Cuál es la función de la puerta de enlace en una red?",
+      "answers": [
+        {
+          "text": "Almacenar información de red",
+          "selected": false
+        },
+        {
+          "text": "Conectar la red local con otras redes",
+          "selected": true
+        },
+        {
+          "text": "Controlar el tráfico interno",
+          "selected": false
+        },
+        {
+          "text": "Asignar direcciones IP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 11,
+      "question": "¿Qué función tiene el DNS?",
+      "answers": [
+        {
+          "text": "Convertir direcciones IP en protocolos",
+          "selected": false
+        },
+        {
+          "text": "Convertir nombres de dominio en direcciones IP",
+          "selected": true
+        },
+        {
+          "text": "Controlar el tráfico de red",
+          "selected": false
+        },
+        {
+          "text": "Asignar puertos",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 12,
+      "question": "¿Cuál es el comando utilizado para comprobar la conectividad entre dos dispositivos?",
+      "answers": [
+        {
+          "text": "ipconfig",
+          "selected": false
+        },
+        {
+          "text": "ping",
+          "selected": true
+        },
+        {
+          "text": "netstat",
+          "selected": false
+        },
+        {
+          "text": "route",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 13,
+      "question": "¿Qué comando permite visualizar la configuración IP de un dispositivo en Windows?",
+      "answers": [
+        {
+          "text": "tracert",
+          "selected": false
+        },
+        {
+          "text": "ipconfig",
+          "selected": true
+        },
+        {
+          "text": "ping",
+          "selected": false
+        },
+        {
+          "text": "nslookup",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 14,
+      "question": "¿Qué comando permite identificar la ruta que siguen los paquetes en la red?",
+      "answers": [
+        {
+          "text": "ping",
+          "selected": false
+        },
+        {
+          "text": "tracert",
+          "selected": true
+        },
+        {
+          "text": "ipconfig",
+          "selected": false
+        },
+        {
+          "text": "arp",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 15,
+      "question": "¿Qué tipo de dirección IP se asigna manualmente a un dispositivo?",
+      "answers": [
+        {
+          "text": "IP dinámica",
+          "selected": false
+        },
+        {
+          "text": "IP privada",
+          "selected": false
+        },
+        {
+          "text": "IP pública",
+          "selected": false
+        },
+        {
+          "text": "IP estática",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 16,
+      "question": "¿Cuál es el tamaño de una dirección IPv4?",
+      "answers": [
+        {
+          "text": "16 bits",
+          "selected": false
+        },
+        {
+          "text": "32 bits",
+          "selected": true
+        },
+        {
+          "text": "64 bits",
+          "selected": false
+        },
+        {
+          "text": "128 bits",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 17,
+      "question": "¿Cuál es el tamaño de una dirección IPv6?",
+      "answers": [
+        {
+          "text": "32 bits",
+          "selected": false
+        },
+        {
+          "text": "64 bits",
+          "selected": false
+        },
+        {
+          "text": "128 bits",
+          "selected": true
+        },
+        {
+          "text": "256 bits",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 18,
+      "question": "¿Cuál de los siguientes protocolos es orientado a conexión?",
+      "answers": [
+        {
+          "text": "UDP",
+          "selected": false
+        },
+        {
+          "text": "TCP",
+          "selected": true
+        },
+        {
+          "text": "IP",
+          "selected": false
+        },
+        {
+          "text": "ICMP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 19,
+      "question": "¿Cuál de los siguientes protocolos es sin conexión?",
+      "answers": [
+        {
+          "text": "TCP",
+          "selected": false
+        },
+        {
+          "text": "UDP",
+          "selected": true
+        },
+        {
+          "text": "FTP",
+          "selected": false
+        },
+        {
+          "text": "HTTP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 20,
+      "question": "¿Qué protocolo de enrutamiento se utiliza principalmente en Internet entre sistemas autónomos?",
+      "answers": [
+        {
+          "text": "RIP",
+          "selected": false
+        },
+        {
+          "text": "OSPF",
+          "selected": false
+        },
+        {
+          "text": "BGP",
+          "selected": true
+        },
+        {
+          "text": "ARP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 21,
+      "question": "¿Qué protocolo de enrutamiento utiliza el algoritmo de vector de distancia?",
+      "answers": [
+        {
+          "text": "BGP",
+          "selected": false
+        },
+        {
+          "text": "OSPF",
+          "selected": false
+        },
+        {
+          "text": "RIP",
+          "selected": true
+        },
+        {
+          "text": "MPLS",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 22,
+      "question": "¿Qué protocolo de enrutamiento utiliza el algoritmo de estado de enlace?",
+      "answers": [
+        {
+          "text": "OSPF",
+          "selected": true
+        },
+        {
+          "text": "RIP",
+          "selected": false
+        },
+        {
+          "text": "BGP",
+          "selected": false
+        },
+        {
+          "text": "ARP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 23,
+      "question": "¿Qué es una subred?",
+      "answers": [
+        {
+          "text": "Una red virtual sin direcciones IP",
+          "selected": false
+        },
+        {
+          "text": "Una división lógica de una red más grande",
+          "selected": true
+        },
+        {
+          "text": "Un protocolo de comunicación",
+          "selected": false
+        },
+        {
+          "text": "Un servidor de red",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 24,
+      "question": "¿Qué función cumple la máscara de subred?",
+      "answers": [
+        {
+          "text": "Cifrar paquetes",
+          "selected": false
+        },
+        {
+          "text": "Determinar la parte de red y host de una IP",
+          "selected": true
+        },
+        {
+          "text": "Aumentar la velocidad de red",
+          "selected": false
+        },
+        {
+          "text": "Convertir direcciones IP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 25,
+      "question": "¿Qué tecnología permite crear redes virtuales dentro de una red física?",
+      "answers": [
+        {
+          "text": "VPN",
+          "selected": false
+        },
+        {
+          "text": "VLAN",
+          "selected": true
+        },
+        {
+          "text": "DHCP",
+          "selected": false
+        },
+        {
+          "text": "NAT",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 26,
+      "question": "¿Cuál es la función principal de un firewall?",
+      "answers": [
+        {
+          "text": "Aumentar el ancho de banda",
+          "selected": false
+        },
+        {
+          "text": "Traducir direcciones IP",
+          "selected": false
+        },
+        {
+          "text": "Filtrar el tráfico de red",
+          "selected": true
+        },
+        {
+          "text": "Asignar direcciones IP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 27,
+      "question": "¿Qué sistema detecta actividades sospechosas dentro de una red?",
+      "answers": [
+        {
+          "text": "IDS",
+          "selected": true
+        },
+        {
+          "text": "DHCP",
+          "selected": false
+        },
+        {
+          "text": "DNS",
+          "selected": false
+        },
+        {
+          "text": "FTP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 28,
+      "question": "¿Qué tecnología permite establecer conexiones seguras a través de Internet?",
+      "answers": [
+        {
+          "text": "VLAN",
+          "selected": false
+        },
+        {
+          "text": "VPN",
+          "selected": true
+        },
+        {
+          "text": "DHCP",
+          "selected": false
+        },
+        {
+          "text": "NAT",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 29,
+      "question": "¿Qué tecnología permite distribuir el tráfico entre varios servidores?",
+      "answers": [
+        {
+          "text": "NAT",
+          "selected": false
+        },
+        {
+          "text": "Balanceo de carga",
+          "selected": true
+        },
+        {
+          "text": "DHCP",
+          "selected": false
+        },
+        {
+          "text": "ARP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 30,
+      "question": "¿Qué tecnología permite controlar la red mediante software separando el plano de control del plano de datos?",
+      "answers": [
+        {
+          "text": "NFV",
+          "selected": false
+        },
+        {
+          "text": "SDN",
+          "selected": true
+        },
+        {
+          "text": "MPLS",
+          "selected": false
+        },
+        {
+          "text": "VLAN 1 B 2 C 3 C 4 C 5 B 6 B 7 C 8 B 9 A 10 B 11 B 12 B 13 B 14 B 15 D 16 B 17 C 18 B 19 B 20 C 21 C 22 A 23 B 24 B 25 B 26 C 27 A 28 B 29 B 30 B",
+          "selected": false
+        }
+      ]
+    }
+  ],
+  "warnings": []
+}
