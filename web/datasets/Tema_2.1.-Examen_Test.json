@@ -1,61 +1,15 @@
 {
-  "sourcePdf": "C:\\Users\\david\\python\\redes\\web\\examenes\\Tema 2.3. -Examen Test (1).pdf",
-  "exportedAt": "2026-05-12T19:13:05.455831+00:00",
+  "sourcePdf": "C:\\Users\\david\\python\\redes\\web\\examenes\\Tema 2.1.-Examen Test.pdf",
+  "exportedAt": "2026-05-12T19:13:03.186122+00:00",
   "totalQuestions": 30,
   "items": [
     {
       "page": 1,
       "questionNumber": 1,
-      "question": "¿Qué es una red backbone?",
+      "question": "¿Cuál es la principal característica de una red LAN?",
       "answers": [
         {
-          "text": "Una red local de usuarios",
-          "selected": false
-        },
-        {
-          "text": "Una red inalámbrica",
-          "selected": false
-        },
-        {
-          "text": "Una red troncal de alta velocidad",
-          "selected": true
-        },
-        {
-          "text": "Una red doméstica",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 1,
-      "questionNumber": 2,
-      "question": "¿Qué medio se utiliza principalmente en redes backbone?",
-      "answers": [
-        {
-          "text": "Par trenzado",
-          "selected": false
-        },
-        {
-          "text": "Coaxial",
-          "selected": false
-        },
-        {
-          "text": "Fibra óptica",
-          "selected": true
-        },
-        {
-          "text": "Bluetooth",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 1,
-      "questionNumber": 3,
-      "question": "¿Cuál es una característica clave del backbone?",
-      "answers": [
-        {
-          "text": "Baja capacidad",
+          "text": "Cobertura global",
           "selected": false
         },
         {
@@ -63,330 +17,31 @@
           "selected": false
         },
         {
-          "text": "Alta velocidad",
+          "text": "Área geográfica limitada",
           "selected": true
         },
         {
-          "text": "Baja seguridad",
+          "text": "Uso exclusivo de satélite",
           "selected": false
         }
       ]
     },
     {
       "page": 1,
-      "questionNumber": 4,
-      "question": "¿Qué protocolo se utiliza en redes backbone para enrutamiento?",
+      "questionNumber": 2,
+      "question": "¿Qué elemento permite segmentar una red en múltiples redes lógicas?",
       "answers": [
-        {
-          "text": "HTTP",
-          "selected": false
-        },
-        {
-          "text": "FTP",
-          "selected": false
-        },
-        {
-          "text": "OSPF",
-          "selected": true
-        },
-        {
-          "text": "SMTP",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 1,
-      "questionNumber": 5,
-      "question": "¿Qué problema introduce la distancia en redes?",
-      "answers": [
-        {
-          "text": "Mayor seguridad",
-          "selected": false
-        },
-        {
-          "text": "Mayor latencia",
-          "selected": true
-        },
-        {
-          "text": "Mayor ancho de banda",
-          "selected": false
-        },
-        {
-          "text": "Menor coste",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 2,
-      "questionNumber": 6,
-      "question": "¿Cuál es la principal desventaja de los enlaces dedicados?",
-      "answers": [
-        {
-          "text": "Baja velocidad",
-          "selected": false
-        },
-        {
-          "text": "Alto coste",
-          "selected": true
-        },
-        {
-          "text": "Baja seguridad",
-          "selected": false
-        },
-        {
-          "text": "Baja disponibilidad",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 2,
-      "questionNumber": 7,
-      "question": "¿Qué tecnología permite multiplexar señales en fibra?",
-      "answers": [
-        {
-          "text": "VLAN",
-          "selected": false
-        },
-        {
-          "text": "MPLS",
-          "selected": false
-        },
-        {
-          "text": "DWDM",
-          "selected": true
-        },
-        {
-          "text": "NAT",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 2,
-      "questionNumber": 8,
-      "question": "¿Qué significa VPN?",
-      "answers": [
-        {
-          "text": "Virtual Public Network",
-          "selected": false
-        },
-        {
-          "text": "Very Private Network",
-          "selected": false
-        },
-        {
-          "text": "Virtual Private Network",
-          "selected": true
-        },
-        {
-          "text": "Variable Private Network",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 2,
-      "questionNumber": 9,
-      "question": "¿Qué hace una VPN?",
-      "answers": [
-        {
-          "text": "Reduce velocidad",
-          "selected": false
-        },
-        {
-          "text": "Cifra y encapsula datos",
-          "selected": true
-        },
-        {
-          "text": "Elimina paquetes",
-          "selected": false
-        },
-        {
-          "text": "Aumenta latencia",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 2,
-      "questionNumber": 10,
-      "question": "¿Qué protocolo VPN opera en capa de red?",
-      "answers": [
-        {
-          "text": "SSL",
-          "selected": false
-        },
-        {
-          "text": "HTTP",
-          "selected": false
-        },
-        {
-          "text": "IPsec",
-          "selected": true
-        },
-        {
-          "text": "FTP",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 2,
-      "questionNumber": 11,
-      "question": "¿Qué protocolo VPN es más moderno?",
-      "answers": [
-        {
-          "text": "PPTP",
-          "selected": false
-        },
-        {
-          "text": "L2TP",
-          "selected": false
-        },
-        {
-          "text": "WireGuard",
-          "selected": true
-        },
-        {
-          "text": "SMTP",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 3,
-      "questionNumber": 12,
-      "question": "¿Qué tipo de VPN conecta redes completas?",
-      "answers": [
-        {
-          "text": "Acceso remoto",
-          "selected": false
-        },
-        {
-          "text": "Sitio a sitio",
-          "selected": true
-        },
-        {
-          "text": "SSL",
-          "selected": false
-        },
-        {
-          "text": "Móvil",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 3,
-      "questionNumber": 13,
-      "question": "¿Qué tipo de VPN permite acceso individual?",
-      "answers": [
-        {
-          "text": "Sitio a sitio",
-          "selected": false
-        },
-        {
-          "text": "Backbone",
-          "selected": false
-        },
-        {
-          "text": "Acceso remoto",
-          "selected": true
-        },
-        {
-          "text": "MPLS",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 3,
-      "questionNumber": 14,
-      "question": "¿Qué es el túnel VPN?",
-      "answers": [
-        {
-          "text": "Un cable físico",
-          "selected": false
-        },
-        {
-          "text": "Un canal cifrado lógico",
-          "selected": true
-        },
-        {
-          "text": "Un router",
-          "selected": false
-        },
-        {
-          "text": "Un switch",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 3,
-      "questionNumber": 15,
-      "question": "¿Qué significa MFA?",
-      "answers": [
-        {
-          "text": "Multiple File Access",
-          "selected": false
-        },
-        {
-          "text": "Multi Factor Authentication",
-          "selected": true
-        },
-        {
-          "text": "Main Frame Access",
-          "selected": false
-        },
-        {
-          "text": "Manual Firewall Access",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 3,
-      "questionNumber": 16,
-      "question": "¿Cuál es un beneficio de las VPN?",
-      "answers": [
-        {
-          "text": "Mayor coste",
-          "selected": false
-        },
-        {
-          "text": "Menor seguridad",
-          "selected": false
-        },
-        {
-          "text": "Flexibilidad",
-          "selected": true
-        },
-        {
-          "text": "Menor escalabilidad",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 4,
-      "questionNumber": 17,
-      "question": "¿Qué es una VLAN?",
-      "answers": [
-        {
-          "text": "Red física",
-          "selected": false
-        },
-        {
-          "text": "Red virtual lógica",
-          "selected": true
-        },
         {
           "text": "Router",
           "selected": false
+        },
+        {
+          "text": "Switch",
+          "selected": false
+        },
+        {
+          "text": "VLAN",
+          "selected": true
         },
         {
           "text": "Firewall",
@@ -395,90 +50,67 @@
       ]
     },
     {
-      "page": 4,
-      "questionNumber": 18,
-      "question": "¿Qué problema soluciona una VLAN?",
+      "page": 1,
+      "questionNumber": 3,
+      "question": "¿Qué topología es la más utilizada actualmente en redes LAN?",
       "answers": [
         {
-          "text": "Latencia",
+          "text": "Bus",
           "selected": false
         },
         {
-          "text": "Segmentación de red",
+          "text": "Anillo",
+          "selected": false
+        },
+        {
+          "text": "Estrella",
           "selected": true
         },
         {
-          "text": "Cableado",
-          "selected": false
-        },
-        {
-          "text": "Energía",
+          "text": "Malla completa",
           "selected": false
         }
       ]
     },
     {
-      "page": 4,
-      "questionNumber": 19,
-      "question": "¿Qué reduce una VLAN?",
+      "page": 1,
+      "questionNumber": 4,
+      "question": "¿Qué dispositivo opera principalmente en capa 2 del modelo OSI?",
       "answers": [
         {
-          "text": "Broadcast",
+          "text": "Router",
+          "selected": false
+        },
+        {
+          "text": "Switch",
           "selected": true
         },
         {
-          "text": "Latencia",
+          "text": "Firewall",
           "selected": false
         },
         {
-          "text": "Seguridad",
-          "selected": false
-        },
-        {
-          "text": "Hardware",
+          "text": "Servidor",
           "selected": false
         }
       ]
     },
     {
-      "page": 4,
-      "questionNumber": 20,
-      "question": "¿Cuál es el método más común de VLAN?",
+      "page": 1,
+      "questionNumber": 5,
+      "question": "¿Qué ventaja principal tienen las redes cableadas?",
       "answers": [
         {
-          "text": "Por IP",
+          "text": "Mayor movilidad",
           "selected": false
         },
         {
-          "text": "Por MAC",
+          "text": "Mayor latencia",
           "selected": false
         },
         {
-          "text": "Por puerto",
+          "text": "Mayor estabilidad",
           "selected": true
-        },
-        {
-          "text": "Por DNS",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 4,
-      "questionNumber": 21,
-      "question": "¿Qué ventaja tiene VLAN por MAC?",
-      "answers": [
-        {
-          "text": "Menor coste",
-          "selected": false
-        },
-        {
-          "text": "Movilidad",
-          "selected": true
-        },
-        {
-          "text": "Mayor velocidad",
-          "selected": false
         },
         {
           "text": "Menor seguridad",
@@ -487,200 +119,380 @@
       ]
     },
     {
+      "page": 2,
+      "questionNumber": 6,
+      "question": "¿Qué protocolo se utilizaba en Ethernet tradicional para gestionar colisiones?",
+      "answers": [
+        {
+          "text": "CSMA/CA",
+          "selected": false
+        },
+        {
+          "text": "Token Passing",
+          "selected": false
+        },
+        {
+          "text": "CSMA/CD",
+          "selected": true
+        },
+        {
+          "text": "ALOHA",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 7,
+      "question": "¿Qué tecnología es típica de redes PAN?",
+      "answers": [
+        {
+          "text": "Ethernet",
+          "selected": false
+        },
+        {
+          "text": "MPLS",
+          "selected": false
+        },
+        {
+          "text": "Bluetooth",
+          "selected": true
+        },
+        {
+          "text": "BGP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 8,
+      "question": "¿Qué red tiene un alcance de ciudad?",
+      "answers": [
+        {
+          "text": "LAN",
+          "selected": false
+        },
+        {
+          "text": "WAN",
+          "selected": false
+        },
+        {
+          "text": "PAN",
+          "selected": false
+        },
+        {
+          "text": "MAN",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 9,
+      "question": "¿Qué significa QoS?",
+      "answers": [
+        {
+          "text": "Quality of Service",
+          "selected": true
+        },
+        {
+          "text": "Quantity of Signals",
+          "selected": false
+        },
+        {
+          "text": "Query of Systems",
+          "selected": false
+        },
+        {
+          "text": "Queue of Services",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 10,
+      "question": "¿Qué problema resuelve el protocolo CSMA/CA?",
+      "answers": [
+        {
+          "text": "Detectar colisiones",
+          "selected": false
+        },
+        {
+          "text": "Evitar colisiones",
+          "selected": true
+        },
+        {
+          "text": "Aumentar velocidad",
+          "selected": false
+        },
+        {
+          "text": "Reducir latencia",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 11,
+      "question": "¿Cuál es una característica de WiFi frente a Ethernet?",
+      "answers": [
+        {
+          "text": "Menor latencia",
+          "selected": false
+        },
+        {
+          "text": "Mayor estabilidad",
+          "selected": false
+        },
+        {
+          "text": "Mayor movilidad",
+          "selected": true
+        },
+        {
+          "text": "Mayor seguridad",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 12,
+      "question": "¿Qué tecnología permite alimentar dispositivos a través del cable de red?",
+      "answers": [
+        {
+          "text": "VLAN",
+          "selected": false
+        },
+        {
+          "text": "PoE",
+          "selected": true
+        },
+        {
+          "text": "NAT",
+          "selected": false
+        },
+        {
+          "text": "DNS",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 13,
+      "question": "¿Qué tipo de red conecta dispositivos personales cercanos?",
+      "answers": [
+        {
+          "text": "WAN",
+          "selected": false
+        },
+        {
+          "text": "LAN",
+          "selected": false
+        },
+        {
+          "text": "MAN",
+          "selected": false
+        },
+        {
+          "text": "PAN",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 14,
+      "question": "¿Qué estándar define WiFi?",
+      "answers": [
+        {
+          "text": "IEEE 802.3",
+          "selected": false
+        },
+        {
+          "text": "IEEE 802.11",
+          "selected": true
+        },
+        {
+          "text": "IEEE 802.1Q",
+          "selected": false
+        },
+        {
+          "text": "IEEE 802.15",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 15,
+      "question": "¿Qué ocurre en una colisión de red?",
+      "answers": [
+        {
+          "text": "Se mejora el rendimiento",
+          "selected": false
+        },
+        {
+          "text": "Se pierden datos",
+          "selected": true
+        },
+        {
+          "text": "Se aumenta el ancho de banda",
+          "selected": false
+        },
+        {
+          "text": "Se mejora la seguridad",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 16,
+      "question": "¿Qué tecnología permite redes en malla en IoT?",
+      "answers": [
+        {
+          "text": "Ethernet",
+          "selected": false
+        },
+        {
+          "text": "Zigbee",
+          "selected": true
+        },
+        {
+          "text": "MPLS",
+          "selected": false
+        },
+        {
+          "text": "FTP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 17,
+      "question": "¿Qué capa del modelo OSI trabaja con direcciones MAC?",
+      "answers": [
+        {
+          "text": "Capa 1",
+          "selected": false
+        },
+        {
+          "text": "Capa 2",
+          "selected": true
+        },
+        {
+          "text": "Capa 3",
+          "selected": false
+        },
+        {
+          "text": "Capa 4",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 18,
+      "question": "¿Qué es una VLAN?",
+      "answers": [
+        {
+          "text": "Una red física",
+          "selected": false
+        },
+        {
+          "text": "Una red lógica",
+          "selected": true
+        },
+        {
+          "text": "Un protocolo",
+          "selected": false
+        },
+        {
+          "text": "Un dispositivo",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 19,
+      "question": "¿Qué tipo de red es Internet?",
+      "answers": [
+        {
+          "text": "LAN",
+          "selected": false
+        },
+        {
+          "text": "PAN",
+          "selected": false
+        },
+        {
+          "text": "WAN",
+          "selected": true
+        },
+        {
+          "text": "MAN",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 20,
+      "question": "¿Qué dispositivo conecta diferentes redes?",
+      "answers": [
+        {
+          "text": "Switch",
+          "selected": false
+        },
+        {
+          "text": "Router",
+          "selected": true
+        },
+        {
+          "text": "Hub",
+          "selected": false
+        },
+        {
+          "text": "Access Point",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 21,
+      "question": "¿Qué problema presenta WiFi respecto a Ethernet?",
+      "answers": [
+        {
+          "text": "Mayor velocidad",
+          "selected": false
+        },
+        {
+          "text": "Interferencias",
+          "selected": true
+        },
+        {
+          "text": "Mejor seguridad",
+          "selected": false
+        },
+        {
+          "text": "Menor coste",
+          "selected": false
+        }
+      ]
+    },
+    {
       "page": 4,
       "questionNumber": 22,
-      "question": "¿Qué tipo de switch se necesita para VLAN por IP?",
+      "question": "¿Qué modelo de seguridad moderno se utiliza en redes?",
       "answers": [
         {
-          "text": "L1",
-          "selected": false
-        },
-        {
-          "text": "L2",
-          "selected": false
-        },
-        {
-          "text": "L3",
-          "selected": true
-        },
-        {
-          "text": "Hub",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 5,
-      "questionNumber": 23,
-      "question": "¿Qué es un enlace troncal?",
-      "answers": [
-        {
-          "text": "Conecta usuarios",
-          "selected": false
-        },
-        {
-          "text": "Conecta routers",
-          "selected": false
-        },
-        {
-          "text": "Transporta múltiples VLANs",
-          "selected": true
-        },
-        {
-          "text": "Reduce tráfico",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 5,
-      "questionNumber": 24,
-      "question": "¿Qué estándar se usa en VLAN tagging?",
-      "answers": [
-        {
-          "text": "802.11",
-          "selected": false
-        },
-        {
-          "text": "802.3",
-          "selected": false
-        },
-        {
-          "text": "802.1Q",
-          "selected": true
-        },
-        {
-          "text": "802.15",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 5,
-      "questionNumber": 25,
-      "question": "¿Qué tamaño tiene la etiqueta 802.1Q?",
-      "answers": [
-        {
-          "text": "2 bytes",
-          "selected": false
-        },
-        {
-          "text": "4 bytes",
-          "selected": true
-        },
-        {
-          "text": "8 bytes",
-          "selected": false
-        },
-        {
-          "text": "16 bytes",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 5,
-      "questionNumber": 26,
-      "question": "¿Qué es la VLAN nativa?",
-      "answers": [
-        {
-          "text": "VLAN sin tráfico",
-          "selected": false
-        },
-        {
-          "text": "VLAN sin etiquetar",
-          "selected": true
-        },
-        {
-          "text": "VLAN de backup",
-          "selected": false
-        },
-        {
-          "text": "VLAN externa",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 5,
-      "questionNumber": 27,
-      "question": "¿Qué riesgo tiene la VLAN nativa?",
-      "answers": [
-        {
-          "text": "Latencia",
-          "selected": false
-        },
-        {
-          "text": "VLAN hopping",
-          "selected": true
-        },
-        {
-          "text": "Pérdida de datos",
-          "selected": false
-        },
-        {
-          "text": "Redundancia",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 6,
-      "questionNumber": 28,
-      "question": "¿Qué permite el inter-VLAN routing?",
-      "answers": [
-        {
-          "text": "Aislar redes",
-          "selected": false
-        },
-        {
-          "text": "Conectar VLANs",
-          "selected": true
-        },
-        {
-          "text": "Reducir tráfico",
-          "selected": false
-        },
-        {
-          "text": "Crear VLAN",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 6,
-      "questionNumber": 29,
-      "question": "¿Qué dispositivo permite routing entre VLANs?",
-      "answers": [
-        {
-          "text": "Hub",
-          "selected": false
-        },
-        {
-          "text": "Switch L3",
-          "selected": true
-        },
-        {
-          "text": "Repetidor",
-          "selected": false
-        },
-        {
-          "text": "Patch panel",
-          "selected": false
-        }
-      ]
-    },
-    {
-      "page": 6,
-      "questionNumber": 30,
-      "question": "¿Qué modelo propone “no confiar nunca”?",
-      "answers": [
-        {
-          "text": "OSI",
-          "selected": false
-        },
-        {
-          "text": "TCP/IP",
+          "text": "Perimetral clásico",
           "selected": false
         },
         {
@@ -688,7 +500,195 @@
           "selected": true
         },
         {
-          "text": "VLAN",
+          "text": "Firewall básico",
+          "selected": false
+        },
+        {
+          "text": "NAT",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 23,
+      "question": "¿Qué arquitectura divide la red en acceso, distribución y núcleo?",
+      "answers": [
+        {
+          "text": "Modelo plano",
+          "selected": false
+        },
+        {
+          "text": "Modelo jerárquico",
+          "selected": true
+        },
+        {
+          "text": "Modelo mesh",
+          "selected": false
+        },
+        {
+          "text": "Modelo cloud",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 24,
+      "question": "¿Qué protocolo permite reservar el medio en WiFi?",
+      "answers": [
+        {
+          "text": "ARP",
+          "selected": false
+        },
+        {
+          "text": "DNS",
+          "selected": false
+        },
+        {
+          "text": "RTS/CTS",
+          "selected": true
+        },
+        {
+          "text": "DHCP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 25,
+      "question": "¿Qué tecnología mejora WiFi en entornos con muchos dispositivos?",
+      "answers": [
+        {
+          "text": "FTP",
+          "selected": false
+        },
+        {
+          "text": "OFDMA",
+          "selected": true
+        },
+        {
+          "text": "HTTP",
+          "selected": false
+        },
+        {
+          "text": "SMTP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 26,
+      "question": "¿Qué significa SDN?",
+      "answers": [
+        {
+          "text": "Software Defined Network",
+          "selected": true
+        },
+        {
+          "text": "System Data Network",
+          "selected": false
+        },
+        {
+          "text": "Secure Data Node",
+          "selected": false
+        },
+        {
+          "text": "Signal Data Network",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 27,
+      "question": "¿Qué tipo de topología ofrece mayor redundancia?",
+      "answers": [
+        {
+          "text": "Bus",
+          "selected": false
+        },
+        {
+          "text": "Estrella",
+          "selected": false
+        },
+        {
+          "text": "Malla",
+          "selected": true
+        },
+        {
+          "text": "Anillo",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 28,
+      "question": "¿Qué protocolo es determinístico?",
+      "answers": [
+        {
+          "text": "CSMA/CD",
+          "selected": false
+        },
+        {
+          "text": "ALOHA",
+          "selected": false
+        },
+        {
+          "text": "Token Ring",
+          "selected": true
+        },
+        {
+          "text": "CSMA/CA",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 29,
+      "question": "¿Qué red tiene menor latencia normalmente?",
+      "answers": [
+        {
+          "text": "WAN",
+          "selected": false
+        },
+        {
+          "text": "MAN",
+          "selected": false
+        },
+        {
+          "text": "LAN",
+          "selected": true
+        },
+        {
+          "text": "Internet",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 30,
+      "question": "¿Qué tecnología sustituye a los hubs para mejorar rendimiento?",
+      "answers": [
+        {
+          "text": "Routers",
+          "selected": false
+        },
+        {
+          "text": "Switches",
+          "selected": true
+        },
+        {
+          "text": "Firewalls",
+          "selected": false
+        },
+        {
+          "text": "Access Points",
           "selected": false
         }
       ]

@@ -1,7 +1,7 @@
 {
   "sourcePdf": "C:\\Users\\david\\python\\redes\\web\\examenes\\Tema 2.2.-Examen tipo test.pdf",
-  "exportedAt": "2026-05-12T18:35:22.570752+00:00",
-  "totalQuestions": 28,
+  "exportedAt": "2026-05-12T19:13:04.699590+00:00",
+  "totalQuestions": 30,
   "items": [
     {
       "page": 1,
@@ -9,12 +9,20 @@
       "question": "¿Qué estándar define Ethernet?",
       "answers": [
         {
-          "text": "IEEE 802.3",
+          "text": "IEEE 802.11",
           "selected": false
         },
         {
-          "text": "IEEE 802.1",
+          "text": "IEEE 802.3",
           "selected": true
+        },
+        {
+          "text": "IEEE 802.1",
+          "selected": false
+        },
+        {
+          "text": "IEEE 802.15",
+          "selected": false
         }
       ]
     },
@@ -289,6 +297,29 @@
     },
     {
       "page": 3,
+      "questionNumber": 13,
+      "question": "¿Qué estándar corresponde a WiFi?",
+      "answers": [
+        {
+          "text": "IEEE 802.3",
+          "selected": false
+        },
+        {
+          "text": "IEEE 802.11",
+          "selected": true
+        },
+        {
+          "text": "IEEE 802.15",
+          "selected": false
+        },
+        {
+          "text": "IEEE 802.16",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
       "questionNumber": 14,
       "question": "¿Qué banda tiene mayor alcance pero más interferencias?",
       "answers": [
@@ -306,6 +337,29 @@
         },
         {
           "text": "60 GHz",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 15,
+      "question": "¿Qué tecnología introduce MIMO?",
+      "answers": [
+        {
+          "text": "802.11b",
+          "selected": false
+        },
+        {
+          "text": "802.11n",
+          "selected": true
+        },
+        {
+          "text": "802.11a",
+          "selected": false
+        },
+        {
+          "text": "802.11g",
           "selected": false
         }
       ]

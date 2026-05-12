@@ -1,6 +1,6 @@
 {
   "sourcePdf": "C:\\Users\\david\\python\\redes\\web\\examenes\\Tema 2.1.-Examen Test (1).pdf",
-  "exportedAt": "2026-05-12T18:34:58.643863+00:00",
+  "exportedAt": "2026-05-12T19:13:02.459656+00:00",
   "totalQuestions": 30,
   "items": [
     {
@@ -312,8 +312,16 @@
           "selected": false
         },
         {
-          "text": "IEEE 802.1Q",
+          "text": "IEEE 802.11",
           "selected": true
+        },
+        {
+          "text": "IEEE 802.1Q",
+          "selected": false
+        },
+        {
+          "text": "IEEE 802.15",
+          "selected": false
         }
       ]
     },

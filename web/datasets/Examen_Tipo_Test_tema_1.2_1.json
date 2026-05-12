@@ -1,7 +1,7 @@
 {
   "sourcePdf": "C:\\Users\\david\\python\\redes\\web\\examenes\\Examen Tipo Test_tema 1.2 (1).pdf",
-  "exportedAt": "2026-05-12T18:34:33.774055+00:00",
-  "totalQuestions": 29,
+  "exportedAt": "2026-05-12T19:13:00.306539+00:00",
+  "totalQuestions": 30,
   "items": [
     {
       "page": 1,
@@ -565,8 +565,16 @@
           "selected": false
         },
         {
-          "text": "IEEE 802.1Q",
+          "text": "IEEE 802.11",
           "selected": true
+        },
+        {
+          "text": "IEEE 802.1Q",
+          "selected": false
+        },
+        {
+          "text": "IEEE 802.15",
+          "selected": false
         }
       ]
     },
@@ -613,7 +621,14 @@
         {
           "text": "Menor latencia de red",
           "selected": false
-        },
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 28,
+      "question": "¿Qué técnica permite usar IPv4 e IPv6 simultáneamente?",
+      "answers": [
         {
           "text": "NAT",
           "selected": false
@@ -624,7 +639,7 @@
         },
         {
           "text": "Dual Stack",
-          "selected": false
+          "selected": true
         },
         {
           "text": "DNS",
