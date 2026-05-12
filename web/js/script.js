@@ -1,4 +1,5 @@
 const DATASET_INDEX_PATH = "datasets/index.json";
+const DATASET_API_PATH = "/api/datasets";
 
 const state = {
   banks: [],
@@ -187,6 +188,11 @@ function stopTimer() {
     window.clearInterval(state.timerId);
     state.timerId = null;
   }
+}
+
+function buildGoogleSearchUrl(questionText, correctText) {
+  const query = `${questionText} ${correctText}`.trim();
+  return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
 }
 
 function lockExam(message) {
@@ -405,7 +411,17 @@ function renderQuestion() {
     } else if (selected === correct) {
       el.feedbackBox.textContent = "Respuesta correcta.";
     } else {
-      el.feedbackBox.textContent = `Respuesta incorrecta. Correcta: ${question.answers[correct].text}`;
+      const correctText = question.answers[correct].text;
+      const googleUrl = buildGoogleSearchUrl(question.question, correctText);
+
+      el.feedbackBox.textContent = `Respuesta incorrecta. Correcta: ${correctText} `;
+      const link = document.createElement("a");
+      link.href = googleUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.className = "feedback-link";
+      link.textContent = "Buscar concepto en Google";
+      el.feedbackBox.appendChild(link);
     }
   }
 
@@ -566,13 +582,30 @@ function parseDatasetsFromDirectoryHtml(htmlText) {
 async function refreshServerDatasets() {
   if (!el.serverDatasetSelect) return;
   try {
-    const resp = await fetch(DATASET_INDEX_PATH, { cache: "no-store" });
+    let apiNames = [];
+    try {
+      const apiResp = await fetch(DATASET_API_PATH, { cache: "no-store" });
+      if (apiResp.ok) {
+        const payload = await apiResp.json();
+        apiNames = Array.isArray(payload?.files)
+          ? payload.files.filter((item) => typeof item === "string" && item.toLowerCase().endsWith(".json"))
+          : [];
+      }
+    } catch (_err) {
+      // En local sin backend de Vercel, seguimos con fallback.
+    }
+
     let indexNames = [];
-    if (resp.ok) {
-      const payload = await resp.json();
-      indexNames = Array.isArray(payload?.files)
-        ? payload.files.filter((item) => typeof item === "string" && item.toLowerCase().endsWith(".json"))
-        : [];
+    try {
+      const resp = await fetch(DATASET_INDEX_PATH, { cache: "no-store" });
+      if (resp.ok) {
+        const payload = await resp.json();
+        indexNames = Array.isArray(payload?.files)
+          ? payload.files.filter((item) => typeof item === "string" && item.toLowerCase().endsWith(".json"))
+          : [];
+      }
+    } catch (_err) {
+      // Si no existe index.json en un entorno concreto, seguimos con el resto.
     }
 
     let directoryNames = [];
@@ -587,7 +620,7 @@ async function refreshServerDatasets() {
     }
 
     const unique = [];
-    [...indexNames, ...directoryNames].forEach((name) => {
+    [...apiNames, ...indexNames, ...directoryNames].forEach((name) => {
       if (!unique.includes(name)) unique.push(name);
     });
     setServerDatasetOptions(unique);
