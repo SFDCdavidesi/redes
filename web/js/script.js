@@ -457,15 +457,74 @@ function renderAll() {
   renderStats();
 }
 
+function questionFingerprint(question) {
+  if (!question || typeof question !== "object") return "";
+  const qText = String(question.question || "").trim().toLowerCase();
+  const answers = Array.isArray(question.answers)
+    ? question.answers.map((ans) => String(ans?.text || "").trim().toLowerCase()).join("||")
+    : "";
+  const correctIdx = getCorrectIndex(question);
+  return `${qText}__${answers}__${correctIdx}`;
+}
+
+function collectLoadedFingerprints() {
+  const fingerprints = new Set();
+  state.banks.forEach((bank) => {
+    bank.questions.forEach((question) => {
+      const fp = questionFingerprint(question);
+      if (fp) fingerprints.add(fp);
+    });
+  });
+  return fingerprints;
+}
+
 function addBank(name, questions) {
-  if (!questions.length) return;
+  if (!questions.length) {
+    return { addedBank: false, addedQuestions: 0, skippedDuplicates: 0, alreadyLoaded: false };
+  }
+
+  if (state.banks.some((bank) => bank.name === name)) {
+    return {
+      addedBank: false,
+      addedQuestions: 0,
+      skippedDuplicates: questions.length,
+      alreadyLoaded: true
+    };
+  }
+
+  const fingerprints = collectLoadedFingerprints();
+  const uniqueQuestions = [];
+  let skippedDuplicates = 0;
+
+  questions.forEach((question) => {
+    const fp = questionFingerprint(question);
+    if (!fp) return;
+    if (fingerprints.has(fp)) {
+      skippedDuplicates += 1;
+      return;
+    }
+    fingerprints.add(fp);
+    uniqueQuestions.push(question);
+  });
+
+  if (!uniqueQuestions.length) {
+    return { addedBank: false, addedQuestions: 0, skippedDuplicates, alreadyLoaded: false };
+  }
+
   state.banks = state.banks.concat([
     {
       id: `${name}_${Date.now()}_${Math.random().toString(16).slice(2)}`,
       name,
-      questions
+      questions: uniqueQuestions
     }
   ]);
+
+  return {
+    addedBank: true,
+    addedQuestions: uniqueQuestions.length,
+    skippedDuplicates,
+    alreadyLoaded: false
+  };
 }
 
 function setServerDatasetOptions(names) {
@@ -560,9 +619,21 @@ async function loadSelectedServerDataset() {
       return;
     }
 
-    addBank(selected, questions);
+    const result = addBank(selected, questions);
+    if (result.alreadyLoaded) {
+      el.statusLine.textContent = `${selected} ya estaba cargado. No se anadieron preguntas duplicadas.`;
+      return;
+    }
+    if (!result.addedBank) {
+      el.statusLine.textContent = `${selected} no se cargo porque todas sus preguntas ya estaban en memoria.`;
+      return;
+    }
+
     state.activeBankId = "all";
-    el.statusLine.textContent = `Cargado ${selected} desde datasets con ${questions.length} preguntas.`;
+    const dupText = result.skippedDuplicates > 0
+      ? ` (${result.skippedDuplicates} duplicadas omitidas)`
+      : "";
+    el.statusLine.textContent = `Cargado ${selected} desde datasets con ${result.addedQuestions} preguntas nuevas${dupText}.`;
     recomputeQuestions();
   } catch (_err) {
     el.statusLine.textContent = `Error leyendo ${selected} desde datasets.`;
@@ -591,10 +662,22 @@ async function loadFiles(fileList) {
     return;
   }
 
-  loadedBanks.forEach((bank) => addBank(bank.name, bank.questions));
+  let totalNew = 0;
+  let totalDuplicates = 0;
+  loadedBanks.forEach((bank) => {
+    const result = addBank(bank.name, bank.questions);
+    totalNew += result.addedQuestions;
+    totalDuplicates += result.skippedDuplicates;
+  });
+
+  if (totalNew === 0) {
+    el.statusLine.textContent = "No se anadieron preguntas: todos los JSON ya estaban cargados o eran duplicados.";
+    return;
+  }
+
   state.activeBankId = "all";
-  const total = loadedBanks.reduce((sum, bank) => sum + bank.questions.length, 0);
-  el.statusLine.textContent = `Cargados ${loadedBanks.length} JSON con ${total} preguntas nuevas.`;
+  const dupText = totalDuplicates > 0 ? ` (${totalDuplicates} duplicadas omitidas)` : "";
+  el.statusLine.textContent = `Cargados ${loadedBanks.length} JSON con ${totalNew} preguntas nuevas${dupText}.`;
   recomputeQuestions();
 }
 
