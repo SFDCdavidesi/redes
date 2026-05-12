@@ -1,0 +1,698 @@
+{
+  "sourcePdf": "C:\\Users\\david\\python\\redes\\web\\examenes\\Tema 3.1.pdf",
+  "exportedAt": "2026-05-12T19:29:25.206430+00:00",
+  "totalQuestions": 30,
+  "items": [
+    {
+      "page": 1,
+      "questionNumber": 1,
+      "question": "¿Qué es el cableado estructurado?",
+      "answers": [
+        {
+          "text": "Un sistema de cableado provisional para redes pequeñas",
+          "selected": false
+        },
+        {
+          "text": "Un sistema de cableado diseñado de manera ordenada y estandarizada para transportar señales de voz, datos y otros sistemas de comunicación",
+          "selected": true
+        },
+        {
+          "text": "Un sistema exclusivo para telefonía analógica",
+          "selected": false
+        },
+        {
+          "text": "Un conjunto de cables sin necesidad de normas técnicas",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 2,
+      "question": "¿Cuál de las siguientes es una característica del cableado estructurado?",
+      "answers": [
+        {
+          "text": "Dependencia de un solo fabricante",
+          "selected": false
+        },
+        {
+          "text": "Infraestructura única y arquitectura abierta",
+          "selected": true
+        },
+        {
+          "text": "Uso exclusivo de fibra óptica",
+          "selected": false
+        },
+        {
+          "text": "Aplicación limitada a redes domésticas",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 3,
+      "question": "¿Qué porcentaje aproximado de la inversión en infraestructura de red representa el cableado estructurado?",
+      "answers": [
+        {
+          "text": "2% a 5%",
+          "selected": false
+        },
+        {
+          "text": "5% a 10%",
+          "selected": false
+        },
+        {
+          "text": "15% a 20%",
+          "selected": true
+        },
+        {
+          "text": "30% a 40%",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 4,
+      "question": "Antes de la estandarización, una de las principales consecuencias era:",
+      "answers": [
+        {
+          "text": "Mayor compatibilidad entre fabricantes",
+          "selected": false
+        },
+        {
+          "text": "Reducción de costes de mantenimiento",
+          "selected": false
+        },
+        {
+          "text": "Incompatibilidad entre sistemas propietarios",
+          "selected": true
+        },
+        {
+          "text": "Menor necesidad de documentación",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 5,
+      "question": "¿En qué periodo aparecieron los primeros intentos de estandarización del cableado?",
+      "answers": [
+        {
+          "text": "1970-1980",
+          "selected": false
+        },
+        {
+          "text": "1985-1990",
+          "selected": true
+        },
+        {
+          "text": "1995-2000",
+          "selected": false
+        },
+        {
+          "text": "2005-2010",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 6,
+      "question": "¿Qué estándar estableció en 1991 las bases del cableado estructurado?",
+      "answers": [
+        {
+          "text": "IEEE 802.11",
+          "selected": false
+        },
+        {
+          "text": "ISO 9001",
+          "selected": false
+        },
+        {
+          "text": "ANSI/TIA/EIA-568",
+          "selected": true
+        },
+        {
+          "text": "TIA-607",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 7,
+      "question": "¿Cuál de las siguientes NO es una motivación para implantar cableado estructurado?",
+      "answers": [
+        {
+          "text": "Adaptabilidad",
+          "selected": false
+        },
+        {
+          "text": "Escalabilidad",
+          "selected": false
+        },
+        {
+          "text": "Fiabilidad",
+          "selected": false
+        },
+        {
+          "text": "Dependencia del proveedor",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 8,
+      "question": "En una oficina con instalación antigua, uno de los problemas operativos más frecuentes es:",
+      "answers": [
+        {
+          "text": "Menor consumo energético",
+          "selected": false
+        },
+        {
+          "text": "Caídas frecuentes y latencia alta",
+          "selected": true
+        },
+        {
+          "text": "Certificación automática del sistema",
+          "selected": false
+        },
+        {
+          "text": "Mayor interoperabilidad garantizada",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 9,
+      "question": "¿Qué organismo desarrolla los estándares para Ethernet?",
+      "answers": [
+        {
+          "text": "ANSI",
+          "selected": false
+        },
+        {
+          "text": "IEEE",
+          "selected": true
+        },
+        {
+          "text": "IEC",
+          "selected": false
+        },
+        {
+          "text": "EIA",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 10,
+      "question": "¿Qué organización es responsable de las normas más utilizadas en cableado estructurado, como la serie ANSI/TIA-568?",
+      "answers": [
+        {
+          "text": "TIA",
+          "selected": true
+        },
+        {
+          "text": "IEEE",
+          "selected": false
+        },
+        {
+          "text": "OMS",
+          "selected": false
+        },
+        {
+          "text": "ITU exclusivamente",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 11,
+      "question": "La norma ANSI/TIA/EIA-569 se centra principalmente en:",
+      "answers": [
+        {
+          "text": "La velocidad de Ethernet",
+          "selected": false
+        },
+        {
+          "text": "La puesta a tierra",
+          "selected": false
+        },
+        {
+          "text": "Las canalizaciones y espacios",
+          "selected": true
+        },
+        {
+          "text": "El direccionamiento IP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 12,
+      "question": "¿Cuál de los siguientes es un subsistema definido en TIA-568?",
+      "answers": [
+        {
+          "text": "Centro de monitorización satelital",
+          "selected": false
+        },
+        {
+          "text": "Cableado horizontal",
+          "selected": true
+        },
+        {
+          "text": "Servidor DNS",
+          "selected": false
+        },
+        {
+          "text": "Router troncal del operador",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 13,
+      "question": "¿Qué subsistema interconecta salas de telecomunicaciones y equipos?",
+      "answers": [
+        {
+          "text": "Área de trabajo",
+          "selected": false
+        },
+        {
+          "text": "Instalación de entrada",
+          "selected": false
+        },
+        {
+          "text": "Cableado vertical o backbone",
+          "selected": true
+        },
+        {
+          "text": "Cableado perimetral doméstico",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 14,
+      "question": "Según TIA-607, ¿qué elemento forma parte del sistema de puesta a tierra de telecomunicaciones?",
+      "answers": [
+        {
+          "text": "TMGB",
+          "selected": true
+        },
+        {
+          "text": "CPU",
+          "selected": false
+        },
+        {
+          "text": "VLAN",
+          "selected": false
+        },
+        {
+          "text": "UPS lógica",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 15,
+      "question": "¿Qué norma está orientada a la infraestructura de centros de datos?",
+      "answers": [
+        {
+          "text": "TIA-570",
+          "selected": false
+        },
+        {
+          "text": "TIA-942",
+          "selected": true
+        },
+        {
+          "text": "TIA-606",
+          "selected": false
+        },
+        {
+          "text": "EN 54",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 16,
+      "question": "¿Qué versión del estándar incorporó soporte para Cat 5e y Cat 6?",
+      "answers": [
+        {
+          "text": "TIA-568-A",
+          "selected": false
+        },
+        {
+          "text": "TIA-568-B",
+          "selected": true
+        },
+        {
+          "text": "TIA-568-C",
+          "selected": false
+        },
+        {
+          "text": "TIA-568-D",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 17,
+      "question": "¿Qué beneficio aporta la documentación estandarizada?",
+      "answers": [
+        {
+          "text": "Aumenta la diafonía",
+          "selected": false
+        },
+        {
+          "text": "Dificulta el mantenimiento",
+          "selected": false
+        },
+        {
+          "text": "Facilita la administración y el mantenimiento",
+          "selected": true
+        },
+        {
+          "text": "Elimina la necesidad de pruebas",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 18,
+      "question": "Un sistema de cableado estructurado bien diseñado e instalado suele tener una vida útil de:",
+      "answers": [
+        {
+          "text": "1 a 3 años",
+          "selected": false
+        },
+        {
+          "text": "3 a 5 años",
+          "selected": false
+        },
+        {
+          "text": "8 a 10 años",
+          "selected": false
+        },
+        {
+          "text": "15 a 20 años",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 19,
+      "question": "¿Qué técnica ayuda a mitigar las interferencias electromagnéticas?",
+      "answers": [
+        {
+          "text": "Mezclar cables eléctricos y de datos",
+          "selected": false
+        },
+        {
+          "text": "Eliminar la puesta a tierra",
+          "selected": false
+        },
+        {
+          "text": "Separación adecuada de cables de datos y eléctricos",
+          "selected": true
+        },
+        {
+          "text": "Superar los radios de curvatura",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 20,
+      "question": "¿Cuál es una de las ventajas más significativas del cableado estructurado?",
+      "answers": [
+        {
+          "text": "Hace imposible la escalabilidad",
+          "selected": false
+        },
+        {
+          "text": "Facilita modificaciones, adiciones y cambios",
+          "selected": true
+        },
+        {
+          "text": "Obliga a sustituir toda la red en cada cambio",
+          "selected": false
+        },
+        {
+          "text": "Reduce la necesidad de planificación inicial a cero",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 21,
+      "question": "El backbone moderno utiliza preferentemente:",
+      "answers": [
+        {
+          "text": "Coaxial grueso",
+          "selected": false
+        },
+        {
+          "text": "Par trenzado categoría 3",
+          "selected": false
+        },
+        {
+          "text": "Fibra óptica",
+          "selected": true
+        },
+        {
+          "text": "Cable telefónico plano",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 22,
+      "question": "Según TIA-568, la topología del cableado horizontal debe ser:",
+      "answers": [
+        {
+          "text": "En bus",
+          "selected": false
+        },
+        {
+          "text": "En anillo",
+          "selected": false
+        },
+        {
+          "text": "En estrella",
+          "selected": true
+        },
+        {
+          "text": "Mallada completa",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 23,
+      "question": "¿Cuál es la distancia máxima del cableado horizontal permanente según TIA-568?",
+      "answers": [
+        {
+          "text": "30 metros",
+          "selected": false
+        },
+        {
+          "text": "60 metros",
+          "selected": false
+        },
+        {
+          "text": "90 metros",
+          "selected": true
+        },
+        {
+          "text": "150 metros",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 24,
+      "question": "¿Qué categoría soporta 10 Gbps hasta 100 metros y es muy adecuada para PoE de alta potencia?",
+      "answers": [
+        {
+          "text": "Cat 5e",
+          "selected": false
+        },
+        {
+          "text": "Cat 6",
+          "selected": false
+        },
+        {
+          "text": "Cat 6A",
+          "selected": true
+        },
+        {
+          "text": "Cat 3",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 25,
+      "question": "¿Qué tipo de fibra suele emplearse para largas distancias y mayores prestaciones?",
+      "answers": [
+        {
+          "text": "Fibra multimodo",
+          "selected": false
+        },
+        {
+          "text": "Fibra monomodo",
+          "selected": true
+        },
+        {
+          "text": "Coaxial óptico",
+          "selected": false
+        },
+        {
+          "text": "Par trenzado blindado",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 26,
+      "question": "En el área de trabajo, TIA-568 especifica como mínimo:",
+      "answers": [
+        {
+          "text": "Una toma por edificio",
+          "selected": false
+        },
+        {
+          "text": "Dos tomas por área de trabajo",
+          "selected": true
+        },
+        {
+          "text": "Una sola toma por planta",
+          "selected": false
+        },
+        {
+          "text": "Cuatro racks por usuario",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 27,
+      "question": "¿Qué prueba detecta errores como cables cruzados, invertidos o en cortocircuito?",
+      "answers": [
+        {
+          "text": "Prueba de continuidad",
+          "selected": true
+        },
+        {
+          "text": "Prueba de latencia IP",
+          "selected": false
+        },
+        {
+          "text": "Prueba de routing dinámico",
+          "selected": false
+        },
+        {
+          "text": "Prueba de compresión de datos",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 28,
+      "question": "¿Cuál de los siguientes es un parámetro de rendimiento en cobre?",
+      "answers": [
+        {
+          "text": "NEXT",
+          "selected": true
+        },
+        {
+          "text": "DHCP",
+          "selected": false
+        },
+        {
+          "text": "NAT",
+          "selected": false
+        },
+        {
+          "text": "ARP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "questionNumber": 29,
+      "question": "La norma TIA-606 está relacionada con:",
+      "answers": [
+        {
+          "text": "La administración e identificación de la infraestructura",
+          "selected": true
+        },
+        {
+          "text": "La climatización del CPD",
+          "selected": false
+        },
+        {
+          "text": "Los protocolos de enrutamiento",
+          "selected": false
+        },
+        {
+          "text": "La compresión de tráfico de voz",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "questionNumber": 30,
+      "question": "¿Qué se recomienda para resolver problemas en cableado estructurado?",
+      "answers": [
+        {
+          "text": "Sustituir todos los cables sin analizar",
+          "selected": false
+        },
+        {
+          "text": "Ignorar la documentación existente",
+          "selected": false
+        },
+        {
+          "text": "Aplicar un diagnóstico sistemático y documentar la solución",
+          "selected": true
+        },
+        {
+          "text": "Empezar siempre por cambiar el switch principal",
+          "selected": false
+        }
+      ]
+    }
+  ],
+  "warnings": []
+}

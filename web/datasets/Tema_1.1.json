@@ -1,0 +1,698 @@
+{
+  "sourcePdf": "C:\\Users\\david\\python\\redes\\web\\examenes\\Tema 1.1.pdf",
+  "exportedAt": "2026-05-12T19:29:20.892047+00:00",
+  "totalQuestions": 30,
+  "items": [
+    {
+      "page": 1,
+      "questionNumber": 1,
+      "question": "¿Cuál es el objetivo principal de una red de computadoras?",
+      "answers": [
+        {
+          "text": "Aumentar la potencia de los dispositivos",
+          "selected": false
+        },
+        {
+          "text": "Compartir información y recursos entre dispositivos",
+          "selected": true
+        },
+        {
+          "text": "Ejecutar aplicaciones más rápido",
+          "selected": false
+        },
+        {
+          "text": "Reducir el consumo energético",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 2,
+      "question": "¿Cuál de los siguientes NO es un componente básico de una red?",
+      "answers": [
+        {
+          "text": "Nodos",
+          "selected": false
+        },
+        {
+          "text": "Medios de transmisión",
+          "selected": false
+        },
+        {
+          "text": "Protocolos",
+          "selected": false
+        },
+        {
+          "text": "Sistemas operativos",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 3,
+      "question": "¿Qué dispositivo se considera un nodo dentro de una red?",
+      "answers": [
+        {
+          "text": "Solo servidores",
+          "selected": false
+        },
+        {
+          "text": "Solo ordenadores personales",
+          "selected": false
+        },
+        {
+          "text": "Cualquier dispositivo conectado a la red",
+          "selected": true
+        },
+        {
+          "text": "Únicamente routers",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 4,
+      "question": "¿Qué función cumplen los protocolos de red?",
+      "answers": [
+        {
+          "text": "Aumentar la velocidad del hardware",
+          "selected": false
+        },
+        {
+          "text": "Establecer reglas de comunicación entre dispositivos",
+          "selected": true
+        },
+        {
+          "text": "Proteger físicamente los cables",
+          "selected": false
+        },
+        {
+          "text": "Reducir el tráfico de red",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 5,
+      "question": "¿Qué tipo de red se utiliza habitualmente dentro de una empresa u oficina?",
+      "answers": [
+        {
+          "text": "WAN",
+          "selected": false
+        },
+        {
+          "text": "MAN",
+          "selected": false
+        },
+        {
+          "text": "LAN",
+          "selected": true
+        },
+        {
+          "text": "PAN",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 6,
+      "question": "¿Cuál es una ventaja clave de las redes en la transformación digital?",
+      "answers": [
+        {
+          "text": "Eliminan la necesidad de servidores",
+          "selected": false
+        },
+        {
+          "text": "Permiten servicios en la nube y trabajo remoto",
+          "selected": true
+        },
+        {
+          "text": "Reducen la complejidad informática",
+          "selected": false
+        },
+        {
+          "text": "Sustituyen a Internet",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 7,
+      "question": "¿Qué modelo se utiliza principalmente como referencia teórica?",
+      "answers": [
+        {
+          "text": "TCP/IP",
+          "selected": false
+        },
+        {
+          "text": "OSI",
+          "selected": true
+        },
+        {
+          "text": "Ethernet",
+          "selected": false
+        },
+        {
+          "text": "Wi-Fi",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 8,
+      "question": "¿Cuántas capas tiene el modelo OSI?",
+      "answers": [
+        {
+          "text": "4",
+          "selected": false
+        },
+        {
+          "text": "5",
+          "selected": false
+        },
+        {
+          "text": "6",
+          "selected": false
+        },
+        {
+          "text": "7",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 9,
+      "question": "¿Qué modelo es el utilizado realmente en Internet?",
+      "answers": [
+        {
+          "text": "OSI",
+          "selected": false
+        },
+        {
+          "text": "TCP/IP",
+          "selected": true
+        },
+        {
+          "text": "IEEE 802",
+          "selected": false
+        },
+        {
+          "text": "VLAN",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 10,
+      "question": "¿Qué elemento pertenece a la arquitectura física de una red?",
+      "answers": [
+        {
+          "text": "Direcciones IP",
+          "selected": false
+        },
+        {
+          "text": "VLANs",
+          "selected": false
+        },
+        {
+          "text": "Cables y switches",
+          "selected": true
+        },
+        {
+          "text": "Protocolos de enrutamiento",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 11,
+      "question": "¿Qué define la arquitectura lógica de una red?",
+      "answers": [
+        {
+          "text": "El tipo de cableado",
+          "selected": false
+        },
+        {
+          "text": "La organización del tráfico y direccionamiento",
+          "selected": true
+        },
+        {
+          "text": "La marca de los dispositivos",
+          "selected": false
+        },
+        {
+          "text": "El voltaje eléctrico",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 12,
+      "question": "¿Qué identifica de forma única a un dispositivo a nivel de enlace?",
+      "answers": [
+        {
+          "text": "Dirección IP",
+          "selected": false
+        },
+        {
+          "text": "Puerto TCP",
+          "selected": false
+        },
+        {
+          "text": "Dirección MAC",
+          "selected": true
+        },
+        {
+          "text": "DNS",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 13,
+      "question": "¿Qué longitud tiene una dirección IPv4?",
+      "answers": [
+        {
+          "text": "16 bits",
+          "selected": false
+        },
+        {
+          "text": "32 bits",
+          "selected": true
+        },
+        {
+          "text": "64 bits",
+          "selected": false
+        },
+        {
+          "text": "128 bits",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 14,
+      "question": "¿Qué ventaja principal ofrece IPv6 frente a IPv4?",
+      "answers": [
+        {
+          "text": "Mayor velocidad",
+          "selected": false
+        },
+        {
+          "text": "Menor latencia",
+          "selected": false
+        },
+        {
+          "text": "Más espacio de direcciones",
+          "selected": true
+        },
+        {
+          "text": "Mayor compatibilidad",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 15,
+      "question": "¿Qué capa del modelo OSI se encarga de la transmisión física de bits?",
+      "answers": [
+        {
+          "text": "Red",
+          "selected": false
+        },
+        {
+          "text": "Enlace de datos",
+          "selected": false
+        },
+        {
+          "text": "Física",
+          "selected": true
+        },
+        {
+          "text": "Transporte",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 16,
+      "question": "¿Qué medio de transmisión ofrece mayor velocidad y menor interferencia?",
+      "answers": [
+        {
+          "text": "Par trenzado",
+          "selected": false
+        },
+        {
+          "text": "Coaxial",
+          "selected": false
+        },
+        {
+          "text": "Wi-Fi",
+          "selected": false
+        },
+        {
+          "text": "Fibra óptica",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 17,
+      "question": "¿En qué capa aparece la dirección MAC?",
+      "answers": [
+        {
+          "text": "Física",
+          "selected": false
+        },
+        {
+          "text": "Enlace de datos",
+          "selected": true
+        },
+        {
+          "text": "Red",
+          "selected": false
+        },
+        {
+          "text": "Transporte",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 18,
+      "question": "¿Cuál es la función principal de la capa de red?",
+      "answers": [
+        {
+          "text": "Controlar errores",
+          "selected": false
+        },
+        {
+          "text": "Establecer sesiones",
+          "selected": false
+        },
+        {
+          "text": "Direccionar y enrutar paquetes",
+          "selected": true
+        },
+        {
+          "text": "Cifrar datos",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 19,
+      "question": "¿Qué dispositivo trabaja principalmente en la capa de red?",
+      "answers": [
+        {
+          "text": "Switch",
+          "selected": false
+        },
+        {
+          "text": "Hub",
+          "selected": false
+        },
+        {
+          "text": "Router",
+          "selected": true
+        },
+        {
+          "text": "Punto de acceso",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 20,
+      "question": "¿Qué protocolo garantiza entrega fiable y ordenada?",
+      "answers": [
+        {
+          "text": "UDP",
+          "selected": false
+        },
+        {
+          "text": "IP",
+          "selected": false
+        },
+        {
+          "text": "TCP",
+          "selected": true
+        },
+        {
+          "text": "ICMP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 21,
+      "question": "¿Qué característica define a UDP?",
+      "answers": [
+        {
+          "text": "Orientado a conexión",
+          "selected": false
+        },
+        {
+          "text": "Retransmisión de paquetes",
+          "selected": false
+        },
+        {
+          "text": "Mayor fiabilidad",
+          "selected": false
+        },
+        {
+          "text": "Mayor velocidad sin garantías",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 22,
+      "question": "¿En qué tipo de aplicaciones se suele usar UDP?",
+      "answers": [
+        {
+          "text": "Descargas de archivos",
+          "selected": false
+        },
+        {
+          "text": "Transacciones bancarias",
+          "selected": false
+        },
+        {
+          "text": "Streaming y videollamadas",
+          "selected": true
+        },
+        {
+          "text": "Correo electrónico",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 23,
+      "question": "¿Qué protocolo se encarga de traducir nombres de dominio a direcciones IP?",
+      "answers": [
+        {
+          "text": "HTTP",
+          "selected": false
+        },
+        {
+          "text": "FTP",
+          "selected": false
+        },
+        {
+          "text": "DNS",
+          "selected": true
+        },
+        {
+          "text": "SMTP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 24,
+      "question": "¿Qué capa es la más cercana al usuario?",
+      "answers": [
+        {
+          "text": "Transporte",
+          "selected": false
+        },
+        {
+          "text": "Red",
+          "selected": false
+        },
+        {
+          "text": "Aplicación",
+          "selected": true
+        },
+        {
+          "text": "Enlace",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 25,
+      "question": "¿Qué describe una topología de red?",
+      "answers": [
+        {
+          "text": "El sistema operativo utilizado",
+          "selected": false
+        },
+        {
+          "text": "La forma de interconectar los dispositivos",
+          "selected": true
+        },
+        {
+          "text": "El tipo de protocolo",
+          "selected": false
+        },
+        {
+          "text": "El direccionamiento IP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 26,
+      "question": "¿Qué topología utiliza un nodo central?",
+      "answers": [
+        {
+          "text": "Bus",
+          "selected": false
+        },
+        {
+          "text": "Anillo",
+          "selected": false
+        },
+        {
+          "text": "Estrella",
+          "selected": true
+        },
+        {
+          "text": "Malla",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "questionNumber": 27,
+      "question": "¿Cuál es el principal inconveniente de la topología en bus?",
+      "answers": [
+        {
+          "text": "Coste elevado",
+          "selected": false
+        },
+        {
+          "text": "Dependencia de un nodo central",
+          "selected": false
+        },
+        {
+          "text": "Fallo del cable afecta a toda la red",
+          "selected": true
+        },
+        {
+          "text": "Dificultad de instalación",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 28,
+      "question": "¿Qué topología se usa habitualmente en redes LAN modernas?",
+      "answers": [
+        {
+          "text": "Bus",
+          "selected": false
+        },
+        {
+          "text": "Anillo",
+          "selected": false
+        },
+        {
+          "text": "Estrella",
+          "selected": true
+        },
+        {
+          "text": "Lineal",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 29,
+      "question": "¿Qué es una red híbrida?",
+      "answers": [
+        {
+          "text": "Una red inalámbrica",
+          "selected": false
+        },
+        {
+          "text": "Una red con protocolos mixtos",
+          "selected": false
+        },
+        {
+          "text": "Una combinación de varias topologías",
+          "selected": true
+        },
+        {
+          "text": "Una red sin cableado",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "questionNumber": 30,
+      "question": "¿Qué factor NO influye en la elección de una topología?",
+      "answers": [
+        {
+          "text": "Tamaño de la red",
+          "selected": false
+        },
+        {
+          "text": "Presupuesto",
+          "selected": false
+        },
+        {
+          "text": "Nivel de seguridad",
+          "selected": false
+        },
+        {
+          "text": "Marca del navegador web",
+          "selected": true
+        }
+      ]
+    }
+  ],
+  "warnings": []
+}
