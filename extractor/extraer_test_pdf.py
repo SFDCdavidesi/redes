@@ -19,6 +19,9 @@ from typing import Dict, List, Optional, Tuple
 import pdfplumber
 
 
+DEFAULT_OUTPUT_DIR = Path(__file__).resolve().parents[1] / "web" / "datasets"
+
+
 
 # Adaptar patrones para formato "Pregunta N" y opciones "a)", "b)", ...
 QUESTION_PATTERNS = [
@@ -34,6 +37,9 @@ OPTION_PATTERNS = [
 ]
 
 ANSWER_KEY_TOKEN_RE = re.compile(r"(\d{1,4})\s*[\)\.:\-]?\s*([A-Ha-h]|[1-8])\b")
+ANSWER_KEY_ONLY_LINE_RE = re.compile(
+    r"^\s*(?:\d{1,4}\s*[\)\.:\-]?\s*(?:[A-Ha-h]|[1-8])\s*[;,\s]*){2,}\s*$"
+)
 ANSWER_KEY_HEADER_RE = re.compile(
     r"\b(respuestas?|soluciones?|answer\s*key|clave\s*de\s*respuestas?)\b",
     re.IGNORECASE,
@@ -59,7 +65,8 @@ def looks_like_answer_key_line(line: str) -> bool:
         return False
     if ANSWER_KEY_HEADER_RE.search(line):
         return True
-    return len(ANSWER_KEY_TOKEN_RE.findall(line)) >= 2
+    # Evita falsos positivos en preguntas con numeros tecnicos (p.ej. TIA-568).
+    return bool(ANSWER_KEY_ONLY_LINE_RE.match(line))
 
 
 
@@ -335,6 +342,27 @@ def make_output_path(pdf_path: Path, output_dir: Path) -> Path:
     return output_dir / f"{safe_name}.json"
 
 
+def normalize_pdf_args(raw_pdfs: List[str]) -> List[str]:
+    """Recupera el caso comun de una sola ruta con espacios sin comillas.
+
+        Ejemplo roto en shell:
+            python extraer_test_pdf.py C:\\ruta\\Examen Tipo Test.pdf
+    Se recibe como varios argumentos; intentamos recomponerlos en uno.
+    """
+    if len(raw_pdfs) <= 1:
+        return raw_pdfs
+
+    if any(Path(p).exists() for p in raw_pdfs):
+        return raw_pdfs
+
+    joined = " ".join(raw_pdfs).strip()
+    if joined and Path(joined).exists():
+        print("[INFO] Ruta con espacios detectada sin comillas; se recompuso automaticamente.")
+        return [joined]
+
+    return raw_pdfs
+
+
 def run() -> int:
     parser = argparse.ArgumentParser(
         description="Extrae preguntas y respuestas de PDFs tipo test y genera JSON."
@@ -347,16 +375,18 @@ def run() -> int:
     parser.add_argument(
         "-o",
         "--output-dir",
-        default="repaso-ingles-web/datasets",
-        help="Carpeta de salida para los JSON (por defecto: repaso-ingles-web/datasets).",
+        default=str(DEFAULT_OUTPUT_DIR),
+        help="Carpeta de salida para los JSON (por defecto: <repo>/web/datasets).",
     )
 
     args = parser.parse_args()
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    normalized_pdfs = normalize_pdf_args(args.pdfs)
+
     generated = 0
-    for raw_pdf in args.pdfs:
+    for raw_pdf in normalized_pdfs:
         pdf_path = Path(raw_pdf)
         if not pdf_path.exists() or not pdf_path.is_file():
             print(f"[ERROR] No existe el archivo: {pdf_path}")
@@ -377,6 +407,8 @@ def run() -> int:
             print(f"[ERROR] Fallo procesando {pdf_path}: {exc}")
 
     if generated == 0:
+        if len(args.pdfs) > 1 and len(normalized_pdfs) == len(args.pdfs):
+            print("Sugerencia: si una ruta tiene espacios, envuelvela entre comillas.")
         print("No se generaron JSON.")
         return 1
 
