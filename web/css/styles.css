@@ -436,6 +436,80 @@ input[type="file"] {
   .navigator-grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
+
+  body.quiz-mobile-active {
+    overflow: hidden;
+  }
+
+  body.quiz-mobile-active .hero,
+  body.quiz-mobile-active .metrics,
+  body.quiz-mobile-active .summary {
+    display: none;
+  }
+
+  .quiz.mobile-docked {
+    position: fixed;
+    inset: 8px;
+    z-index: 30;
+    margin: 0;
+    border-radius: 14px;
+    grid-template-rows: auto auto auto 1fr auto auto;
+    gap: 9px;
+    padding: 12px;
+  }
+
+  .quiz.mobile-docked .quiz-head {
+    align-items: start;
+  }
+
+  .quiz.mobile-docked .pills {
+    gap: 4px;
+  }
+
+  .quiz.mobile-docked .pill {
+    font-size: 0.74rem;
+    padding: 3px 8px;
+  }
+
+  .quiz.mobile-docked .question {
+    font-size: 1rem;
+    line-height: 1.28;
+  }
+
+  .quiz.mobile-docked .options {
+    overflow: auto;
+    align-content: start;
+    padding-right: 2px;
+  }
+
+  .quiz.mobile-docked .option {
+    padding: 8px 10px;
+    font-size: 0.94rem;
+  }
+
+  .quiz.mobile-docked .feedback {
+    font-size: 0.84rem;
+    padding: 7px 9px;
+  }
+
+  .quiz.mobile-docked .quiz-nav {
+    position: sticky;
+    bottom: 0;
+    background: linear-gradient(0deg, var(--paper) 65%, rgba(255, 253, 249, 0));
+    padding-top: 6px;
+  }
+
+  .quiz.mobile-docked .quiz-nav .btn {
+    flex: 1;
+    min-height: 38px;
+    padding: 7px 8px;
+    font-size: 0.86rem;
+  }
+
+  .quiz.mobile-docked .quiz-nav .btn.mobile-icon-btn {
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
 }
 
 @media (max-width: 520px) {
@@ -462,6 +536,14 @@ input[type="file"] {
 
   .quiz-nav {
     flex-direction: column;
+  }
+
+  .quiz.mobile-docked .quiz-nav {
+    flex-direction: row;
+  }
+
+  .quiz.mobile-docked .quiz-nav .btn {
+    width: auto;
   }
 
   .navigator {

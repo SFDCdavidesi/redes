@@ -1,5 +1,6 @@
 const DATASET_INDEX_PATH = "datasets/index.json";
 const DATASET_API_PATH = "/api/datasets";
+const BROWSER_PROGRESS_KEY = "campus-test-progress-v1";
 
 const state = {
   banks: [],
@@ -18,11 +19,16 @@ const state = {
   timerId: null
 };
 
+const mobileQuery = window.matchMedia("(max-width: 760px)");
+
 const el = {
   statusLine: document.getElementById("statusLine"),
   filesInput: document.getElementById("jsonFilesInput"),
   loadProgressInput: document.getElementById("loadProgressInput"),
   saveProgressBtn: document.getElementById("saveProgressBtn"),
+  saveBrowserProgressBtn: document.getElementById("saveBrowserProgressBtn"),
+  loadBrowserProgressBtn: document.getElementById("loadBrowserProgressBtn"),
+  clearBrowserProgressBtn: document.getElementById("clearBrowserProgressBtn"),
   serverDatasetSelect: document.getElementById("serverDatasetSelect"),
   loadServerDatasetBtn: document.getElementById("loadServerDatasetBtn"),
   refreshServerDatasetsBtn: document.getElementById("refreshServerDatasetsBtn"),
@@ -58,6 +64,28 @@ const el = {
   closeNavigator: document.getElementById("closeNavigator"),
   navigatorGrid: document.getElementById("navigatorGrid")
 };
+
+function updateMobileQuizLayout() {
+  const mobileQuizActive = mobileQuery.matches && !el.quizPanel.hidden && state.questions.length > 0;
+
+  el.quizPanel.classList.toggle("mobile-docked", mobileQuizActive);
+  document.body.classList.toggle("quiz-mobile-active", mobileQuizActive);
+
+  if (mobileQuizActive) {
+    el.prevBtn.textContent = "◀ Ant";
+    el.nextBtn.textContent = "Sig ▶";
+    el.prevBtn.classList.add("mobile-icon-btn");
+    el.nextBtn.classList.add("mobile-icon-btn");
+  } else {
+    el.prevBtn.textContent = "Anterior";
+    el.nextBtn.textContent = "Siguiente";
+    el.prevBtn.classList.remove("mobile-icon-btn");
+    el.nextBtn.classList.remove("mobile-icon-btn");
+  }
+
+  el.prevBtn.setAttribute("aria-label", "Pregunta anterior");
+  el.nextBtn.setAttribute("aria-label", "Pregunta siguiente");
+}
 
 function isSelectedValue(value) {
   return value === true || value === 1 || value === "1" || value === "true";
@@ -190,6 +218,29 @@ function stopTimer() {
   }
 }
 
+function buildProgressPayload() {
+  return {
+    kind: "campus-test-progress",
+    version: 1,
+    savedAt: new Date().toISOString(),
+    state: {
+      banks: state.banks,
+      activeBankId: state.activeBankId,
+      questions: state.questions,
+      answers: state.answers,
+      currentIndex: state.currentIndex,
+      startedAt: state.startedAt,
+      shuffle: state.shuffle,
+      examMode: state.examMode,
+      examLocked: state.examLocked,
+      durationSec: state.durationSec,
+      remainingSec: state.examMode && state.examEndsAt ? Math.max(0, Math.round((state.examEndsAt - Date.now()) / 1000)) : 0,
+      pointsCorrect: state.pointsCorrect,
+      penaltyWrong: state.penaltyWrong
+    }
+  };
+}
+
 function buildGoogleSearchUrl(questionText, correctText) {
   const query = `${questionText} ${correctText}`.trim();
   return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
@@ -266,26 +317,7 @@ function exportProgress() {
     return;
   }
 
-  const payload = {
-    kind: "campus-test-progress",
-    version: 1,
-    savedAt: new Date().toISOString(),
-    state: {
-      banks: state.banks,
-      activeBankId: state.activeBankId,
-      questions: state.questions,
-      answers: state.answers,
-      currentIndex: state.currentIndex,
-      startedAt: state.startedAt,
-      shuffle: state.shuffle,
-      examMode: state.examMode,
-      examLocked: state.examLocked,
-      durationSec: state.durationSec,
-      remainingSec: state.examMode && state.examEndsAt ? Math.max(0, Math.round((state.examEndsAt - Date.now()) / 1000)) : 0,
-      pointsCorrect: state.pointsCorrect,
-      penaltyWrong: state.penaltyWrong
-    }
-  };
+  const payload = buildProgressPayload();
 
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
@@ -299,9 +331,42 @@ function exportProgress() {
   el.statusLine.textContent = "Progreso exportado en JSON.";
 }
 
-async function importProgress(file) {
-  const text = await file.text();
-  const data = JSON.parse(text);
+function saveBrowserProgress() {
+  if (!state.questions.length && !state.banks.length) {
+    el.statusLine.textContent = "No hay progreso para guardar en el navegador.";
+    return;
+  }
+
+  const payload = buildProgressPayload();
+  try {
+    window.localStorage.setItem(BROWSER_PROGRESS_KEY, JSON.stringify(payload));
+    el.statusLine.textContent = "Progreso guardado en este navegador.";
+  } catch (_err) {
+    el.statusLine.textContent = "No se pudo guardar en el navegador (espacio insuficiente o bloqueo).";
+  }
+}
+
+function loadBrowserProgress() {
+  try {
+    const raw = window.localStorage.getItem(BROWSER_PROGRESS_KEY);
+    if (!raw) {
+      el.statusLine.textContent = "No hay progreso guardado en este navegador.";
+      return;
+    }
+    const data = JSON.parse(raw);
+    importProgressData(data);
+    el.statusLine.textContent = "Progreso cargado desde este navegador.";
+  } catch (_err) {
+    el.statusLine.textContent = "No se pudo cargar el progreso local del navegador.";
+  }
+}
+
+function clearBrowserProgress() {
+  window.localStorage.removeItem(BROWSER_PROGRESS_KEY);
+  el.statusLine.textContent = "Guardado local eliminado del navegador.";
+}
+
+function importProgressData(data) {
   if (!data || data.kind !== "campus-test-progress" || !data.state) {
     throw new Error("El archivo no es un progreso valido de Campus Test Studio.");
   }
@@ -332,8 +397,14 @@ async function importProgress(file) {
   el.scoreOk.value = String(state.pointsCorrect);
   el.scoreFail.value = String(state.penaltyWrong);
   el.shuffleBtn.textContent = `Mezclar preguntas: ${state.shuffle ? "ON" : "OFF"}`;
-  el.statusLine.textContent = "Progreso cargado correctamente.";
   renderAll();
+}
+
+async function importProgress(file) {
+  const text = await file.text();
+  const data = JSON.parse(text);
+  importProgressData(data);
+  el.statusLine.textContent = "Progreso cargado correctamente.";
 }
 
 function renderStats() {
@@ -471,6 +542,7 @@ function renderAll() {
   renderQuestion();
   renderNavigator();
   renderStats();
+  updateMobileQuizLayout();
 }
 
 function questionFingerprint(question) {
@@ -781,6 +853,15 @@ function wireEvents() {
     renderAll();
   });
   el.saveProgressBtn.addEventListener("click", exportProgress);
+  if (el.saveBrowserProgressBtn) {
+    el.saveBrowserProgressBtn.addEventListener("click", saveBrowserProgress);
+  }
+  if (el.loadBrowserProgressBtn) {
+    el.loadBrowserProgressBtn.addEventListener("click", loadBrowserProgress);
+  }
+  if (el.clearBrowserProgressBtn) {
+    el.clearBrowserProgressBtn.addEventListener("click", clearBrowserProgress);
+  }
 
   el.loadProgressInput.addEventListener("change", async (event) => {
     const file = event.target.files?.[0];
@@ -793,6 +874,12 @@ function wireEvents() {
       event.target.value = "";
     }
   });
+
+  if (typeof mobileQuery.addEventListener === "function") {
+    mobileQuery.addEventListener("change", updateMobileQuizLayout);
+  } else if (typeof mobileQuery.addListener === "function") {
+    mobileQuery.addListener(updateMobileQuizLayout);
+  }
 }
 
 async function init() {
