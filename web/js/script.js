@@ -1,4 +1,3 @@
-const DEFAULT_DATASET = "data.json";
 const DATASET_INDEX_PATH = "datasets/index.json";
 
 const state = {
@@ -541,22 +540,6 @@ async function loadSelectedServerDataset() {
   }
 }
 
-async function loadDefaultJsonIfExists() {
-  try {
-    const resp = await fetch(DEFAULT_DATASET, { cache: "no-store" });
-    if (!resp.ok) return;
-    const payload = await resp.json();
-    const questions = normalizeJson(payload, DEFAULT_DATASET);
-    if (questions.length === 0) return;
-    state.banks = [{ id: "default", name: DEFAULT_DATASET, questions }];
-    state.activeBankId = "all";
-    el.statusLine.textContent = `Cargado ${DEFAULT_DATASET} con ${questions.length} preguntas.`;
-    recomputeQuestions();
-  } catch (_err) {
-    // Si no existe data.json no bloquea la app.
-  }
-}
-
 async function loadFiles(fileList) {
   const files = Array.from(fileList || []);
   if (!files.length) return;
@@ -587,10 +570,10 @@ async function loadFiles(fileList) {
 }
 
 function wireEvents() {
-  el.filesInput.addEventListener("change", async (event) => {
-    await loadFiles(event.target.files);
-    event.target.value = "";
-  });
+  if (el.filesInput) {
+    el.filesInput.disabled = true;
+    el.filesInput.title = "Deshabilitado: la app solo carga JSON de datasets/.";
+  }
 
   el.prevBtn.addEventListener("click", () => {
     if (state.currentIndex > 0) {
@@ -671,7 +654,7 @@ async function init() {
   wireEvents();
   renderAll();
   await refreshServerDatasets();
-  await loadDefaultJsonIfExists();
+  el.statusLine.textContent = "Selecciona un JSON de datasets para empezar.";
 }
 
 init();
