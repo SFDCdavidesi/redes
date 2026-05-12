@@ -489,20 +489,49 @@ function setServerDatasetOptions(names) {
   });
 }
 
+function parseDatasetsFromDirectoryHtml(htmlText) {
+  if (typeof htmlText !== "string" || !htmlText.trim()) return [];
+  const names = [];
+  const re = /href=["']([^"']+\.json)["']/gi;
+  let m;
+  while ((m = re.exec(htmlText)) !== null) {
+    const href = decodeURIComponent(m[1]);
+    const fileName = href.split("/").pop();
+    if (!fileName) continue;
+    if (fileName.toLowerCase() === "index.json") continue;
+    if (!names.includes(fileName)) names.push(fileName);
+  }
+  return names;
+}
+
 async function refreshServerDatasets() {
   if (!el.serverDatasetSelect) return;
   try {
     const resp = await fetch(DATASET_INDEX_PATH, { cache: "no-store" });
-    if (!resp.ok) {
-      setServerDatasetOptions([]);
-      return;
+    let indexNames = [];
+    if (resp.ok) {
+      const payload = await resp.json();
+      indexNames = Array.isArray(payload?.files)
+        ? payload.files.filter((item) => typeof item === "string" && item.toLowerCase().endsWith(".json"))
+        : [];
     }
 
-    const payload = await resp.json();
-    const names = Array.isArray(payload?.files)
-      ? payload.files.filter((item) => typeof item === "string" && item.toLowerCase().endsWith(".json"))
-      : [];
-    setServerDatasetOptions(names);
+    let directoryNames = [];
+    try {
+      const dirResp = await fetch("datasets/", { cache: "no-store" });
+      if (dirResp.ok) {
+        const htmlText = await dirResp.text();
+        directoryNames = parseDatasetsFromDirectoryHtml(htmlText);
+      }
+    } catch (_err) {
+      // Sin listado de directorio en hosting estatico: se usa index.json.
+    }
+
+    const unique = [];
+    [...indexNames, ...directoryNames].forEach((name) => {
+      if (!unique.includes(name)) unique.push(name);
+    });
+    setServerDatasetOptions(unique);
   } catch (_err) {
     setServerDatasetOptions([]);
   }
