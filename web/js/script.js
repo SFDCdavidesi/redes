@@ -367,24 +367,148 @@ function buildPrintableHtml() {
 }
 
 function exportQuestionsToPdf() {
-  if (!state.questions.length) {
+  const banksToExport = Array.isArray(state.banks) && state.banks.length
+    ? state.banks.filter((bank) => Array.isArray(bank.questions) && bank.questions.length > 0)
+    : [];
+
+  if (!banksToExport.length && !state.questions.length) {
     el.statusLine.textContent = "No hay preguntas cargadas para exportar.";
     return;
   }
 
-  const printWindow = window.open("", "_blank", "noopener,noreferrer");
-  if (!printWindow) {
-    el.statusLine.textContent = "No se pudo abrir la ventana de impresion. Revisa el bloqueo de pop-ups.";
+  const jsPdfApi = window.jspdf?.jsPDF;
+  if (!jsPdfApi) {
+    el.statusLine.textContent = "No se pudo cargar el motor PDF (jsPDF). Recarga la pagina e intentalo de nuevo.";
     return;
   }
 
-  const html = buildPrintableHtml();
-  printWindow.document.open();
-  printWindow.document.write(html);
-  printWindow.document.close();
-  printWindow.focus();
-  printWindow.print();
-  el.statusLine.textContent = "Preparando PDF: en la ventana de impresion elige Guardar como PDF.";
+  const doc = new jsPdfApi({ unit: "mm", format: "a4" });
+  const pageW = doc.internal.pageSize.getWidth();
+  const pageH = doc.internal.pageSize.getHeight();
+  const margin = 12;
+  const contentW = pageW - (margin * 2);
+  const lineH = 5;
+  const colGap = 8;
+  const colW = (contentW - colGap) / 2;
+
+  const exportBanks = banksToExport.length
+    ? banksToExport
+    : [{ name: "Seleccion actual", questions: state.questions }];
+
+  let y = margin;
+
+  const ensureSpace = (needed = lineH) => {
+    if (y + needed > pageH - margin) {
+      doc.addPage();
+      y = margin;
+    }
+  };
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(16);
+  doc.text("Campus Test Studio", margin, y);
+  y += 7;
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  const generatedAt = new Date().toLocaleString("es-ES");
+  const bankLabel = exportBanks.length === 1
+    ? exportBanks[0].name
+    : `${exportBanks.length} baterias`;
+  doc.text(`Baterias: ${bankLabel}`, margin, y);
+  y += 5;
+  const totalQuestions = exportBanks.reduce((acc, bank) => acc + bank.questions.length, 0);
+  doc.text(`Preguntas: ${totalQuestions} | Generado: ${generatedAt}`, margin, y);
+  y += 8;
+
+  exportBanks.forEach((bank, bankIndex) => {
+    if (bankIndex > 0) {
+      doc.addPage();
+      y = margin;
+    }
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text(`Bateria ${bankIndex + 1}: ${bank.name}`, margin, y);
+    y += 6;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text(`Preguntas: ${bank.questions.length}`, margin, y);
+    y += 8;
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(12);
+    doc.text("Preguntas", margin, y);
+    y += 6;
+
+    bank.questions.forEach((question, qIndex) => {
+      const qLines = doc.splitTextToSize(`${qIndex + 1}. ${question.question}`, contentW);
+      ensureSpace((qLines.length * lineH) + 3);
+
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(11);
+      doc.text(qLines, margin, y);
+      y += qLines.length * lineH;
+
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
+      (question.answers || []).forEach((answer, aIndex) => {
+        const letter = String.fromCharCode(97 + aIndex);
+        const aLines = doc.splitTextToSize(`${letter}) ${answer.text}`, contentW - 3);
+        ensureSpace((aLines.length * lineH) + 1);
+        doc.text(aLines, margin + 3, y);
+        y += aLines.length * lineH;
+      });
+
+      y += 3;
+    });
+
+    doc.addPage();
+    y = margin;
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text(`Respuestas correctas - Bateria ${bankIndex + 1}: ${bank.name}`, margin, y);
+    y += 8;
+
+    const colX = [margin, margin + colW + colGap];
+    const colY = [y, y];
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+
+    bank.questions.forEach((question, idx) => {
+      const cIdx = getCorrectIndex(question);
+      const letter = cIdx >= 0 ? String.fromCharCode(65 + cIdx) : "-";
+      const answerText = cIdx >= 0 && question.answers?.[cIdx]
+        ? question.answers[cIdx].text
+        : "No definida";
+
+      const entryLines = doc.splitTextToSize(`${idx + 1}) ${letter} - ${answerText}`, colW);
+      const entryHeight = entryLines.length * lineH;
+
+      let chosenCol = colY[0] <= colY[1] ? 0 : 1;
+      if (colY[chosenCol] + entryHeight > pageH - margin) {
+        const otherCol = chosenCol === 0 ? 1 : 0;
+        if (colY[otherCol] + entryHeight <= pageH - margin) {
+          chosenCol = otherCol;
+        } else {
+          doc.addPage();
+          colY[0] = margin;
+          colY[1] = margin;
+          chosenCol = 0;
+        }
+      }
+
+      doc.text(entryLines, colX[chosenCol], colY[chosenCol]);
+      colY[chosenCol] += entryHeight + 1;
+    });
+  });
+
+  const timestamp = new Date().toISOString().replaceAll(":", "-").slice(0, 19);
+  doc.save(`test_${timestamp}.pdf`);
+  el.statusLine.textContent = `PDF exportado correctamente (${exportBanks.length} bateria(s)).`;
 }
 
 function lockExam(message) {
