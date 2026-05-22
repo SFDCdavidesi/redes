@@ -1,0 +1,237 @@
+{
+  "sourcePdf": "C:\\Users\\david\\python\\redes\\web\\examenes\\Tema 3.3.pdf",
+  "exportedAt": "2026-05-22T21:30:00+00:00",
+  "totalQuestions": 10,
+  "items": [
+    {
+      "page": 1,
+      "questionNumber": 1,
+      "question": "Los tipos de fibra óptica son:",
+      "answers": [
+        {
+          "text": "Fibra monomodo y multimodo.",
+          "selected": true
+        },
+        {
+          "text": "Fibra monomodo, multimodo y gradual.",
+          "selected": false
+        },
+        {
+          "text": "Fibra multimodo.",
+          "selected": false
+        },
+        {
+          "text": "Fibra monomodo.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 2,
+      "question": "La versión del protocolo ANSI/TIA/EIA-568.C elimina un medio de transmisión como válido, que es:",
+      "answers": [
+        {
+          "text": "El cable de fibra óptica.",
+          "selected": false
+        },
+        {
+          "text": "El cable de par trenzado.",
+          "selected": false
+        },
+        {
+          "text": "El cable corrugado.",
+          "selected": false
+        },
+        {
+          "text": "El cable coaxial.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 3,
+      "question": "Según las normas de cableado estructurado, ¿qué característica define un sistema de cableado flexible y genérico?",
+      "answers": [
+        {
+          "text": "Puede utilizar cualquier tipo de medio de transmisión sin restricción de estándares.",
+          "selected": false
+        },
+        {
+          "text": "Requiere la instalación de hubs y routers en las áreas de trabajo para aumentar la movilidad.",
+          "selected": false
+        },
+        {
+          "text": "Permite conectar dispositivos de distintos fabricantes y soportar tecnologías de voz, datos y video.",
+          "selected": true
+        },
+        {
+          "text": "Limita el uso de conexiones de fibra óptica en el cableado vertical.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 4,
+      "question": "¿Cuál es la distancia máxima permitida para el cableado horizontal según la normativa ANSI/TIA/EIA-568?",
+      "answers": [
+        {
+          "text": "80 metros",
+          "selected": false
+        },
+        {
+          "text": "90 metros",
+          "selected": true
+        },
+        {
+          "text": "100 metros",
+          "selected": false
+        },
+        {
+          "text": "70 metros",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 5,
+      "question": "El Área de trabajo (WA, Work Area):",
+      "answers": [
+        {
+          "text": "Son las ubicaciones destinadas para los equipos finales utilizados por los usuarios individuales.",
+          "selected": true
+        },
+        {
+          "text": "Es el lugar donde se realizan las conexiones de los sistemas intermedios.",
+          "selected": false
+        },
+        {
+          "text": "Es una asociación cuya misión es desarrollar normas de cableado industrial para las telecomunicaciones.",
+          "selected": false
+        },
+        {
+          "text": "Es donde se van a ubicar los servidores dentro del edificio.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 6,
+      "question": "La versión del protocolo ANSI/TIA/EIA-568.C data de:",
+      "answers": [
+        {
+          "text": "2005.",
+          "selected": false
+        },
+        {
+          "text": "2001.",
+          "selected": false
+        },
+        {
+          "text": "2014.",
+          "selected": true
+        },
+        {
+          "text": "2010.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 7,
+      "question": "Las salas de equipos son:",
+      "answers": [
+        {
+          "text": "Las ubicaciones destinadas para los equipos finales utilizados por los usuarios individuales.",
+          "selected": false
+        },
+        {
+          "text": "El lugar por donde las líneas de comunicaciones entran en el edificio.",
+          "selected": false
+        },
+        {
+          "text": "El lugar donde se realizan las conexiones de los sistemas intermedios.",
+          "selected": false
+        },
+        {
+          "text": "El lugar donde se van a ubicar los servidores dentro del edificio.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 8,
+      "question": "Los organismos que intervienen en el desarrollo de la normativa del cableado estructurado son:",
+      "answers": [
+        {
+          "text": "ANSI, EIA e IEEE.",
+          "selected": false
+        },
+        {
+          "text": "ANSI, EIA.",
+          "selected": false
+        },
+        {
+          "text": "ANSI, EIA, IEEE y TIA.",
+          "selected": false
+        },
+        {
+          "text": "ANSI, EIA, IEEE, TIA e ISO.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 9,
+      "question": "El uso del cableado estructurado se ha demostrado que:",
+      "answers": [
+        {
+          "text": "Provoca menores tasas de fallos.",
+          "selected": false
+        },
+        {
+          "text": "Todas las respuestas son correctas.",
+          "selected": true
+        },
+        {
+          "text": "La administración de la red es más sencilla.",
+          "selected": false
+        },
+        {
+          "text": "Facilita la movilidad del personal dentro de las oficinas.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 10,
+      "question": "¿Qué función principal cumple la sala de telecomunicaciones (TC) en un sistema de cableado estructurado?",
+      "answers": [
+        {
+          "text": "Centralizar el cableado horizontal y alojar los equipos de interconexión.",
+          "selected": true
+        },
+        {
+          "text": "Actuar como punto de acceso para el cableado vertical de todo el edificio.",
+          "selected": false
+        },
+        {
+          "text": "Almacenar los servidores y dispositivos de telecomunicaciones para todo el edificio.",
+          "selected": false
+        },
+        {
+          "text": "Asegurar la conexión directa entre los dispositivos finales y el servidor.",
+          "selected": false
+        }
+      ]
+    }
+  ]
+}

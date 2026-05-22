@@ -1,0 +1,237 @@
+{
+  "sourcePdf": "C:\\Users\\david\\python\\redes\\web\\examenes\\Unidad 1.1.pdf",
+  "exportedAt": "2026-05-22T21:30:00+00:00",
+  "totalQuestions": 10,
+  "items": [
+    {
+      "page": 1,
+      "questionNumber": 1,
+      "question": "Los conmutadores operan, normalmente, en el nivel:",
+      "answers": [
+        {
+          "text": "3.",
+          "selected": false
+        },
+        {
+          "text": "2.",
+          "selected": true
+        },
+        {
+          "text": "1.",
+          "selected": false
+        },
+        {
+          "text": "4.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 2,
+      "question": "Los dispositivos de nivel cinco se usan para:",
+      "answers": [
+        {
+          "text": "Convertir la señal en señales de radio.",
+          "selected": false
+        },
+        {
+          "text": "Reconstruir la señal.",
+          "selected": false
+        },
+        {
+          "text": "Permitir el trasvase de datos entre redes que no comparten formatos.",
+          "selected": true
+        },
+        {
+          "text": "Proteger al usuario.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 3,
+      "question": "Los dispositivos de nivel cinco se conocen como:",
+      "answers": [
+        {
+          "text": "Pasarela.",
+          "selected": true
+        },
+        {
+          "text": "Hubs.",
+          "selected": false
+        },
+        {
+          "text": "Switch.",
+          "selected": false
+        },
+        {
+          "text": "Routers.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 4,
+      "question": "Los conmutadores de dos niveles",
+      "answers": [
+        {
+          "text": "No pueden funcionar en modo rápido pero sí como almacenamiento y envío.",
+          "selected": false
+        },
+        {
+          "text": "Son fácilmente escalables para crear redes cada vez mas grandes. Dicha escabilidad se realiza mediante puertos especiales presentes en los conmutadores.",
+          "selected": true
+        },
+        {
+          "text": "La gestión de las tramas se hace por software exclusivamente.",
+          "selected": false
+        },
+        {
+          "text": "Se suelen conocer con el nombre de Hubs, operan en dos niveles (físico y enlace), pero no presentan función de aprendizaje.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 5,
+      "question": "Los dispositivos de nivel 1 se llaman:",
+      "answers": [
+        {
+          "text": "Router.",
+          "selected": false
+        },
+        {
+          "text": "Puentes.",
+          "selected": false
+        },
+        {
+          "text": "Repetidores.",
+          "selected": true
+        },
+        {
+          "text": "Conmutadores.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 6,
+      "question": "Los dispositivos de nivel 4 entienden:",
+      "answers": [
+        {
+          "text": "No existen dispositivos de nivel 4.",
+          "selected": true
+        },
+        {
+          "text": "De voltajes y de MAC.",
+          "selected": false
+        },
+        {
+          "text": "De voltajes, de MAC y de IP.",
+          "selected": false
+        },
+        {
+          "text": "De voltajes, de MAC, de IP y de puertos.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 7,
+      "question": "Los dispositivos de nivel tres se conocen como:",
+      "answers": [
+        {
+          "text": "Routers.",
+          "selected": true
+        },
+        {
+          "text": "Switch.",
+          "selected": false
+        },
+        {
+          "text": "Pasarela.",
+          "selected": false
+        },
+        {
+          "text": "Hubs.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 8,
+      "question": "Los dispositivos de nivel 5 entienden:",
+      "answers": [
+        {
+          "text": "De voltajes, de MAC, de IP, de puertos y de aplicaciones.",
+          "selected": true
+        },
+        {
+          "text": "De voltajes y de MAC.",
+          "selected": false
+        },
+        {
+          "text": "De voltajes, de MAC y de IP.",
+          "selected": false
+        },
+        {
+          "text": "De voltajes, de MAC, de IP y de puertos.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 9,
+      "question": "Los dispositivos de nivel 3:",
+      "answers": [
+        {
+          "text": "Pueden conectarse con los repetidores.",
+          "selected": false
+        },
+        {
+          "text": "Todas las respuestas son correctas.",
+          "selected": true
+        },
+        {
+          "text": "Pueden conectarse con los equipos finales.",
+          "selected": false
+        },
+        {
+          "text": "Pueden conectarse con los conmutadores de nivel 2.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 10,
+      "question": "Los patch panel operan en el nivel:",
+      "answers": [
+        {
+          "text": "Nivel 3.",
+          "selected": false
+        },
+        {
+          "text": "Nivel 1.",
+          "selected": false
+        },
+        {
+          "text": "Nivel 0.",
+          "selected": true
+        },
+        {
+          "text": "Nivel 2.",
+          "selected": false
+        }
+      ]
+    }
+  ]
+}

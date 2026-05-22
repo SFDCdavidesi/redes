@@ -1,0 +1,444 @@
+{
+  "sourcePdf": "C:\\Users\\david\\python\\redes\\web\\examenes\\Tema 5.1.pdf",
+  "exportedAt": "2026-05-22T00:00:00+00:00",
+  "totalQuestions": 19,
+  "items": [
+    {
+      "page": 1,
+      "questionNumber": 1,
+      "question": "Ethernet utiliza tecnología:",
+      "answers": [
+        {
+          "text": "CSMA/CD con variante persistente-1",
+          "selected": true
+        },
+        {
+          "text": "Aloha ranurado",
+          "selected": false
+        },
+        {
+          "text": "CSMA no persistente",
+          "selected": false
+        },
+        {
+          "text": "CSMA/CA",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 2,
+      "question": "El router que da acceso al AS se conoce como",
+      "answers": [
+        {
+          "text": "Router externo",
+          "selected": false
+        },
+        {
+          "text": "Router gestor",
+          "selected": false
+        },
+        {
+          "text": "Router frontera",
+          "selected": true
+        },
+        {
+          "text": "Todas son correctas",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 3,
+      "question": "Los hackers que se dedican a buscar fallos de seguridad y explotarlos en su propio beneficio se denominan",
+      "answers": [
+        {
+          "text": "Sombrero gris",
+          "selected": false
+        },
+        {
+          "text": "Sombrero negro",
+          "selected": true
+        },
+        {
+          "text": "Sombrero rojo",
+          "selected": false
+        },
+        {
+          "text": "Sombrero blanco",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 4,
+      "question": "Respecto a IPv6 señale la opción INCORRECTA",
+      "answers": [
+        {
+          "text": "Implementa un mecanismo para añadir fácilmente campos de control opcionales para permitir que desarrollos futuros puedan ser integrados sin necesidad de modificar el protocolo",
+          "selected": false
+        },
+        {
+          "text": "Implementa mecanismos de seguridad para proporcionar autenticación, integridad y confidencialidad si así lo requiere el usuario",
+          "selected": false
+        },
+        {
+          "text": "No hay control de errores",
+          "selected": false
+        },
+        {
+          "text": "IPv6 ofrece un servicio orientado a conexión",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 5,
+      "question": "El cifrado asimétrico:",
+      "answers": [
+        {
+          "text": "Usa una única clave pero algoritmos distintos para cifrar y descifrar",
+          "selected": false
+        },
+        {
+          "text": "Es un cifrado inseguro",
+          "selected": false
+        },
+        {
+          "text": "Usa dos tipos de claves",
+          "selected": true
+        },
+        {
+          "text": "Ninguna de las anteriores",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 6,
+      "question": "El protocolo BGP",
+      "answers": [
+        {
+          "text": "Determina las mejores rutas a las redes vecinas basándose en la capacidad de alcanzarlo y la política del AS",
+          "selected": true
+        },
+        {
+          "text": "Determina las mejores rutas a las redes vecinas basándose exclusivamente en la capacidad para alcanzarlo",
+          "selected": false
+        },
+        {
+          "text": "Es un protocolo ejemplo de estado de enlace",
+          "selected": false
+        },
+        {
+          "text": "Determina las mejores rutas a las redes vecinas basándose en la capacidad de alcanzarlo y en el camino más corto",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 7,
+      "question": "El receptor óptico más sensible de los expuestos a continuación es:",
+      "answers": [
+        {
+          "text": "Diodo PIN",
+          "selected": false
+        },
+        {
+          "text": "Fotodiodo",
+          "selected": false
+        },
+        {
+          "text": "LASER",
+          "selected": false
+        },
+        {
+          "text": "Diodo de Avalancha",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 8,
+      "question": "El protocolo Aloha puro en comparación con el Aloha ranurado",
+      "answers": [
+        {
+          "text": "En Aloha Puro cuando un emisor tiene una trama para transmitir empieza a hacerlo de forma automática, mientras que en el ranurado debe esperar de forma obligatoria a que empiece la siguiente ranura.",
+          "selected": true
+        },
+        {
+          "text": "Aloha Puro es más complejo de implementar que el ranurado",
+          "selected": false
+        },
+        {
+          "text": "Si se produce una colisión en el Aloha Ranurado, el emisor espera un tiempo aleatorio mientras que en el Puro el tiempo está determinado.",
+          "selected": false
+        },
+        {
+          "text": "La eficacia de Aloha ranurado es de un 18%, frente al 37% de Aloha puro.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 9,
+      "question": "El protocolo ICMP de una pila TCP/IP pertenece a la capa",
+      "answers": [
+        {
+          "text": "Red",
+          "selected": true
+        },
+        {
+          "text": "Aplicación",
+          "selected": false
+        },
+        {
+          "text": "Transporte",
+          "selected": false
+        },
+        {
+          "text": "Enlace",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 10,
+      "question": "Las salas donde se ubican los dispositivos de interconexión que permiten el cambio entre el cableado vertical y el horizontal se denomina:",
+      "answers": [
+        {
+          "text": "Sala de equipos",
+          "selected": false
+        },
+        {
+          "text": "Sala de telecomunicaciones",
+          "selected": true
+        },
+        {
+          "text": "Acometida de entrada",
+          "selected": false
+        },
+        {
+          "text": "Sala de cambio",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 11,
+      "question": "La retransmisión es un ataque:",
+      "answers": [
+        {
+          "text": "Activo de inserción",
+          "selected": true
+        },
+        {
+          "text": "Activo de modificación",
+          "selected": false
+        },
+        {
+          "text": "Activo de interrupción",
+          "selected": false
+        },
+        {
+          "text": "Pasivo",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 12,
+      "question": "El cableado que utilizaría entre los patch panel hasta los conectores de pared en un área de trabajo sería:",
+      "answers": [
+        {
+          "text": "Fibra óptica",
+          "selected": false
+        },
+        {
+          "text": "Oblicuo",
+          "selected": false
+        },
+        {
+          "text": "Horizontal",
+          "selected": true
+        },
+        {
+          "text": "Vertical",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 13,
+      "question": "OSPF se diseñó pensando en:",
+      "answers": [
+        {
+          "text": "El tiempo de adaptación ante cambios no es vital",
+          "selected": false
+        },
+        {
+          "text": "Solo pudiera usar una métrica de distancia, el retardo",
+          "selected": false
+        },
+        {
+          "text": "No permitía balanceo de carga",
+          "selected": false
+        },
+        {
+          "text": "Fuera un protocolo abierto",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 14,
+      "question": "Equipos ubicados en el mismo país de más de 100 km de distancia conforman una red",
+      "answers": [
+        {
+          "text": "Red Extensa",
+          "selected": true
+        },
+        {
+          "text": "Metropolitana",
+          "selected": false
+        },
+        {
+          "text": "Personal",
+          "selected": false
+        },
+        {
+          "text": "Local",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 15,
+      "question": "Que la información de los equipos sólo pueda ser modificada por las personas autorizadas a ello y de forma controlada es un concepto asociado a:",
+      "answers": [
+        {
+          "text": "Confiabilidad",
+          "selected": false
+        },
+        {
+          "text": "Disponibilidad",
+          "selected": false
+        },
+        {
+          "text": "No repudio",
+          "selected": false
+        },
+        {
+          "text": "Integridad",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 16,
+      "question": "La fragmentación de un datagrama en IPv6 se da:",
+      "answers": [
+        {
+          "text": "Origen y destino",
+          "selected": false
+        },
+        {
+          "text": "Origen, destino y todos los nodos intermedios",
+          "selected": false
+        },
+        {
+          "text": "Origen",
+          "selected": true
+        },
+        {
+          "text": "No se puede fragmentar",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 17,
+      "question": "La cabecera que es utilizada para incluir información que solamente puede ser procesada en el destino del paquete se le conoce como:",
+      "answers": [
+        {
+          "text": "AH",
+          "selected": false
+        },
+        {
+          "text": "Enrutamiento",
+          "selected": false
+        },
+        {
+          "text": "Fragmentación",
+          "selected": false
+        },
+        {
+          "text": "Opciones de destino",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 18,
+      "question": "Si tenemos una configuración donde cuatro emisores transmiten a la vez y un emisor escucha la señal y piensa que no puede comunicarse con otro aunque sí puede, este problema es conocido como:",
+      "answers": [
+        {
+          "text": "Estación Oculta",
+          "selected": false
+        },
+        {
+          "text": "Estación Expuesta",
+          "selected": true
+        },
+        {
+          "text": "Estación Codificada",
+          "selected": false
+        },
+        {
+          "text": "Estación Nodal",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 19,
+      "question": "Un puente transparente es un dispositivo de nivel:",
+      "answers": [
+        {
+          "text": "1",
+          "selected": false
+        },
+        {
+          "text": "2",
+          "selected": true
+        },
+        {
+          "text": "4",
+          "selected": false
+        },
+        {
+          "text": "3",
+          "selected": false
+        }
+      ]
+    }
+  ]
+}

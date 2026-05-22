@@ -1,0 +1,237 @@
+{
+  "sourcePdf": "C:\\Users\\david\\python\\redes\\web\\examenes\\Tema 2.4.pdf",
+  "exportedAt": "2026-05-22T21:30:00+00:00",
+  "totalQuestions": 10,
+  "items": [
+    {
+      "page": 1,
+      "questionNumber": 1,
+      "question": "El protocolo de las redes WiFi sigue el estándar:",
+      "answers": [
+        {
+          "text": "802.3.",
+          "selected": false
+        },
+        {
+          "text": "802.15.",
+          "selected": false
+        },
+        {
+          "text": "802.11.",
+          "selected": true
+        },
+        {
+          "text": "802.14.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 2,
+      "question": "Los problemas que presentan las comunicaciones inalámbricas son:",
+      "answers": [
+        {
+          "text": "La estación oculta, la estación saturada y la estación expuesta.",
+          "selected": false
+        },
+        {
+          "text": "La estación oculta y la estación saturada.",
+          "selected": false
+        },
+        {
+          "text": "La estación saturada y la estación expuesta.",
+          "selected": false
+        },
+        {
+          "text": "La estación expuesta y la estación oculta.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 3,
+      "question": "Antes de la existencia de VLAN la pertenencia a una red local era:",
+      "answers": [
+        {
+          "text": "Un criterio lógico.",
+          "selected": false
+        },
+        {
+          "text": "Un criterio estructural.",
+          "selected": false
+        },
+        {
+          "text": "Un criterio económico.",
+          "selected": false
+        },
+        {
+          "text": "Un criterio geográfico.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 4,
+      "question": "El protocolo CSMA/CA se usa en:",
+      "answers": [
+        {
+          "text": "Transmisiones asíncronas.",
+          "selected": false
+        },
+        {
+          "text": "Transmisiones inalámbricas.",
+          "selected": true
+        },
+        {
+          "text": "Transmisiones en banda saturada.",
+          "selected": false
+        },
+        {
+          "text": "Transmisiones cableadas.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 5,
+      "question": "El protocolo VPN se utiliza para:",
+      "answers": [
+        {
+          "text": "Conectar redes locales físicamente cercanas.",
+          "selected": false
+        },
+        {
+          "text": "Conectar redes locales físicamente alejadas.",
+          "selected": true
+        },
+        {
+          "text": "Proporcionar seguridad dentro de la red local.",
+          "selected": false
+        },
+        {
+          "text": "Segmentar las redes locales.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 6,
+      "question": "El protocolo Ethernet tambien se llama:",
+      "answers": [
+        {
+          "text": "802.3.",
+          "selected": true
+        },
+        {
+          "text": "802.1.",
+          "selected": false
+        },
+        {
+          "text": "802.2.",
+          "selected": false
+        },
+        {
+          "text": "802.11.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 7,
+      "question": "El protocolo Bluetooth usa frecuencias de radio de:",
+      "answers": [
+        {
+          "text": "2,4GHz.",
+          "selected": true
+        },
+        {
+          "text": "1GHz.",
+          "selected": false
+        },
+        {
+          "text": "10GHz.",
+          "selected": false
+        },
+        {
+          "text": "5GHz.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 8,
+      "question": "El protocolo de acceso al medio de las redes inalámbricas es:",
+      "answers": [
+        {
+          "text": "CSMA/CA.",
+          "selected": true
+        },
+        {
+          "text": "Aloha puro.",
+          "selected": false
+        },
+        {
+          "text": "MACAW.",
+          "selected": false
+        },
+        {
+          "text": "CSMA.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 9,
+      "question": "Las VLAN se configuran:",
+      "answers": [
+        {
+          "text": "Por software.",
+          "selected": true
+        },
+        {
+          "text": "Las VALN no se pueden configurar, vienen impuesta por el fabricante.",
+          "selected": false
+        },
+        {
+          "text": "Por hardware.",
+          "selected": false
+        },
+        {
+          "text": "Por hardware y software.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 10,
+      "question": "Los medios de transmisión que admite Ethernet son:",
+      "answers": [
+        {
+          "text": "Cable de fibra óptica.",
+          "selected": false
+        },
+        {
+          "text": "Todas las respuestas son correctas.",
+          "selected": true
+        },
+        {
+          "text": "Cable coaxial fino y grueso.",
+          "selected": false
+        },
+        {
+          "text": "Cable de par trenzado.",
+          "selected": false
+        }
+      ]
+    }
+  ]
+}

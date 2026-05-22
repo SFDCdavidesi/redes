@@ -1,0 +1,237 @@
+{
+  "sourcePdf": "C:\\Users\\david\\python\\redes\\web\\examenes\\Tema 6.1.pdf",
+  "exportedAt": "2026-05-22T21:30:00+00:00",
+  "totalQuestions": 10,
+  "items": [
+    {
+      "page": 1,
+      "questionNumber": 1,
+      "question": "Cuando se desea intercambiar de forma segura una clave simétrica a través de un canal inseguro, se suele emplear:",
+      "answers": [
+        {
+          "text": "Una función hash como SHA-256 para encapsular la clave.",
+          "selected": false
+        },
+        {
+          "text": "Cifrado asimétrico (ej. RSA) para enviar la clave simétrica.",
+          "selected": true
+        },
+        {
+          "text": "Un protocolo DNS para compartir la clave automáticamente.",
+          "selected": false
+        },
+        {
+          "text": "Exclusivamente un canal VPN sin cifrado.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 2,
+      "question": "¿Por qué se suele recomendar un cifrado de enlace en redes privadas dedicadas?",
+      "answers": [
+        {
+          "text": "Porque se evita por completo el uso de claves en los nodos.",
+          "selected": false
+        },
+        {
+          "text": "Porque no se permite realizar cifrado extremo a extremo en redes privadas.",
+          "selected": false
+        },
+        {
+          "text": "Porque los datos viajan siempre en texto claro y es más fácil enrutarlos.",
+          "selected": false
+        },
+        {
+          "text": "Porque cada router descifra y re-cifra, protegiendo así cada tramo de la conexión.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 3,
+      "question": "En un intercambio Diffie-Hellman (DH):",
+      "answers": [
+        {
+          "text": "Su objetivo principal es firmar digitalmente documentos largos de manera más rápida.",
+          "selected": false
+        },
+        {
+          "text": "Ambos interlocutores generan una clave pública y otra privada para cifrar grandes volúmenes de datos.",
+          "selected": false
+        },
+        {
+          "text": "Se requiere que las partes compartan previamente una clave secreta simétrica.",
+          "selected": false
+        },
+        {
+          "text": "Las partes pueden acordar una clave simétrica de sesión sin haberse comunicado antes de forma segura.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 4,
+      "question": "¿Qué tipo de ataque pretende únicamente escuchar o espiar la comunicación sin modificarla?",
+      "answers": [
+        {
+          "text": "Ataque de modificación (alterar datos).",
+          "selected": false
+        },
+        {
+          "text": "Ataque de fabricación (inyectar mensajes falsos).",
+          "selected": false
+        },
+        {
+          "text": "Ataque de interceptación (pasivo).",
+          "selected": true
+        },
+        {
+          "text": "Ataque de interrupción (DoS).",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 5,
+      "question": "Según lo visto, la principal finalidad de una función hash (ej. SHA-256) es:",
+      "answers": [
+        {
+          "text": "Generar una salida de tamaño fijo para verificar la integridad de la información.",
+          "selected": true
+        },
+        {
+          "text": "Asegurar la confidencialidad del mensaje cifrándolo de extremo a extremo.",
+          "selected": false
+        },
+        {
+          "text": "Proporcionar claves de cifrado para intercambiar mensajes de manera segura.",
+          "selected": false
+        },
+        {
+          "text": "Aumentar la velocidad de transmisión de datos en redes inalámbricas.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 6,
+      "question": "Una Autoridad de Certificación (CA) se encarga fundamentalmente de:",
+      "answers": [
+        {
+          "text": "Emitir y revocar certificados digitales que vinculan una identidad con una clave pública.",
+          "selected": true
+        },
+        {
+          "text": "Almacenar copias de seguridad de los archivos confidenciales de los usuarios.",
+          "selected": false
+        },
+        {
+          "text": "Inyectar claves privadas en los equipos para garantizar la firma digital.",
+          "selected": false
+        },
+        {
+          "text": "Bloquear todo tráfico no cifrado en la red local de una empresa.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 7,
+      "question": "¿Cuál de las siguientes afirmaciones describe mejor la diferencia entre cifrado simétrico y asimétrico?",
+      "answers": [
+        {
+          "text": "En el cifrado simétrico se emplean dos claves distintas; en el asimétrico, solo una.",
+          "selected": false
+        },
+        {
+          "text": "En el cifrado simétrico se emplean dos claves iguales y públicas; en el asimétrico, dos claves iguales y privadas.",
+          "selected": false
+        },
+        {
+          "text": "En el cifrado simétrico se usa la misma clave para cifrar y descifrar; en el asimétrico se usan claves pública y privada.",
+          "selected": true
+        },
+        {
+          "text": "En el cifrado asimétrico es obligatorio intercambiar primero la clave secreta; en el simétrico no.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 8,
+      "question": "¿Cuál de los siguientes algoritmos se considera una implementación de cifrado asimétrico?",
+      "answers": [
+        {
+          "text": "AES",
+          "selected": false
+        },
+        {
+          "text": "3DES",
+          "selected": false
+        },
+        {
+          "text": "RSA",
+          "selected": true
+        },
+        {
+          "text": "RC4",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 9,
+      "question": "¿Cuál de estos servicios NO lo aporta la firma digital por sí sola?",
+      "answers": [
+        {
+          "text": "Confidencialidad de los datos.",
+          "selected": true
+        },
+        {
+          "text": "No repudio.",
+          "selected": false
+        },
+        {
+          "text": "Integridad del documento.",
+          "selected": false
+        },
+        {
+          "text": "Autenticidad del remitente.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 10,
+      "question": "En la firma digital, el emisor aplica la clave privada sobre:",
+      "answers": [
+        {
+          "text": "La cabecera IP del paquete de datos.",
+          "selected": false
+        },
+        {
+          "text": "El mensaje cifrado con AES.",
+          "selected": false
+        },
+        {
+          "text": "El mensaje original completo.",
+          "selected": false
+        },
+        {
+          "text": "El hash (resumen) del mensaje.",
+          "selected": true
+        }
+      ]
+    }
+  ]
+}

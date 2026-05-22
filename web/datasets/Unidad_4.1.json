@@ -1,0 +1,237 @@
+{
+  "sourcePdf": "C:\\Users\\david\\python\\redes\\web\\examenes\\Tema 4.1.pdf",
+  "exportedAt": "2026-05-22T21:30:00+00:00",
+  "totalQuestions": 10,
+  "items": [
+    {
+      "page": 1,
+      "questionNumber": 1,
+      "question": "La implementación del protocolo vector de distancia para ser usado en IPv6 es:",
+      "answers": [
+        {
+          "text": "RIPng.",
+          "selected": true
+        },
+        {
+          "text": "RIPv3.",
+          "selected": false
+        },
+        {
+          "text": "RIPv6.",
+          "selected": false
+        },
+        {
+          "text": "RIPv2 for IPv6.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 2,
+      "question": "El protocolo vector de distancia:",
+      "answers": [
+        {
+          "text": "Todas las respuestas son correctas.",
+          "selected": true
+        },
+        {
+          "text": "Las tablas se construyen automáticamente.",
+          "selected": false
+        },
+        {
+          "text": "Es un protocolo intradominio.",
+          "selected": false
+        },
+        {
+          "text": "Se almacena la menor distancia a cada destino.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 3,
+      "question": "El protocolo estado del enlace, con respecto al protocolo vector de distancia, tiene como novedad:",
+      "answers": [
+        {
+          "text": "Las tablas se construyen manualmente.",
+          "selected": false
+        },
+        {
+          "text": "Se mide el retardo a cada router vecino.",
+          "selected": true
+        },
+        {
+          "text": "Se calcula la ruta más larga.",
+          "selected": false
+        },
+        {
+          "text": "La información no se comparte con los router vecinos.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 4,
+      "question": "El protocolo de encaminamiento interdominio es:",
+      "answers": [
+        {
+          "text": "Encaminamiento basado en vector camino.",
+          "selected": true
+        },
+        {
+          "text": "Encaminamiento basado en vector de distancia.",
+          "selected": false
+        },
+        {
+          "text": "Encaminamiento basado en estado del enlace.",
+          "selected": false
+        },
+        {
+          "text": "Encaminamiento basado en estado del camino.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 5,
+      "question": "Cual de las siguientes líneas de datos no admite OSPF:",
+      "answers": [
+        {
+          "text": "Líneas punto a punto..",
+          "selected": false
+        },
+        {
+          "text": "Redes multiacceso sin difusión (redes WAN..",
+          "selected": false
+        },
+        {
+          "text": "Redes monoacceso con difusión (redes PAN..",
+          "selected": true
+        },
+        {
+          "text": "Redes multiacceso con difusión (redes LAN..",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 6,
+      "question": "La novedad principal del protocolo vector camino es:",
+      "answers": [
+        {
+          "text": "La velocidad baja de convergencia.",
+          "selected": false
+        },
+        {
+          "text": "La forma de calcular la métrica.",
+          "selected": false
+        },
+        {
+          "text": "Para calcular la ruta se tienen en cuenta condicionantes políticos.",
+          "selected": true
+        },
+        {
+          "text": "La ruta se almacena parcialmente.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 7,
+      "question": "La solución para evitar los problemas intrínsecos del protocolo vector de distancia consiste en:",
+      "answers": [
+        {
+          "text": "Horizonte dividido y retorno envenenado.",
+          "selected": false
+        },
+        {
+          "text": "Definición de infinito.",
+          "selected": false
+        },
+        {
+          "text": "Horizonte dividido.",
+          "selected": false
+        },
+        {
+          "text": "Todas las respuestas son correctas.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 8,
+      "question": "Aparte de los problemas propios del protocolo vector de distancia RIP, tiene el siguiente inconveniente:",
+      "answers": [
+        {
+          "text": "Todas las respuestas son correctas.",
+          "selected": false
+        },
+        {
+          "text": "La seguridad es demasiado estricta.",
+          "selected": false
+        },
+        {
+          "text": "No funciona bien con redes pequeñas.",
+          "selected": false
+        },
+        {
+          "text": "No es capaz de usar máscaras de red ni VLSM.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 9,
+      "question": "El protocolo vector camino tiene como misión:",
+      "answers": [
+        {
+          "text": "Controlar el acceso de la red a Internet.",
+          "selected": false
+        },
+        {
+          "text": "Controlar el ancho de banda que utiliza el SA.",
+          "selected": false
+        },
+        {
+          "text": "Crear la tabla de encaminamiento interdominio.",
+          "selected": true
+        },
+        {
+          "text": "Crear la tabla de encaminamiento intradominio.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 10,
+      "question": "El router que da acceso al AS se conoce como:",
+      "answers": [
+        {
+          "text": "Todas las respuestas son correctas.",
+          "selected": false
+        },
+        {
+          "text": "Router frontera.",
+          "selected": true
+        },
+        {
+          "text": "Router externo.",
+          "selected": false
+        },
+        {
+          "text": "Router gestor.",
+          "selected": false
+        }
+      ]
+    }
+  ]
+}
