@@ -29,6 +29,7 @@ const el = {
   loadProgressInput: document.getElementById("loadProgressInput"),
   saveProgressBtn: document.getElementById("saveProgressBtn"),
   exportPdfBtn: document.getElementById("exportPdfBtn"),
+  exportExcelBtn: document.getElementById("exportExcelBtn"),
   saveBrowserProgressBtn: document.getElementById("saveBrowserProgressBtn"),
   loadBrowserProgressBtn: document.getElementById("loadBrowserProgressBtn"),
   clearBrowserProgressBtn: document.getElementById("clearBrowserProgressBtn"),
@@ -301,6 +302,112 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
+function getBanksToExport() {
+  const banksToExport = Array.isArray(state.banks) && state.banks.length
+    ? state.banks.filter((bank) => Array.isArray(bank.questions) && bank.questions.length > 0)
+    : [];
+
+  if (banksToExport.length > 0) {
+    return banksToExport;
+  }
+
+  if (state.questions.length > 0) {
+    return [{ name: "Seleccion actual", questions: state.questions }];
+  }
+
+  return [];
+}
+
+function buildUniqueSheetName(baseName, usedNames) {
+  const normalized = String(baseName || "Bateria")
+    .replace(/[\\/?*\[\]:]/g, " ")
+    .trim() || "Bateria";
+  const maxLen = 31;
+
+  let candidate = normalized.slice(0, maxLen);
+  let suffix = 2;
+
+  while (usedNames.has(candidate)) {
+    const tail = ` (${suffix})`;
+    candidate = normalized.slice(0, Math.max(1, maxLen - tail.length)) + tail;
+    suffix += 1;
+  }
+
+  usedNames.add(candidate);
+  return candidate;
+}
+
+function exportQuestionsToExcel() {
+  const banksToExport = getBanksToExport();
+  if (!banksToExport.length) {
+    el.statusLine.textContent = "No hay preguntas cargadas para exportar.";
+    return;
+  }
+
+  const xlsx = window.XLSX;
+  if (!xlsx || !xlsx.utils) {
+    el.statusLine.textContent = "No se pudo cargar el motor Excel (SheetJS). Recarga la pagina e intentalo de nuevo.";
+    return;
+  }
+
+  const workbook = xlsx.utils.book_new();
+  const usedSheetNames = new Set();
+
+  banksToExport.forEach((bank, bankIndex) => {
+    const rows = [];
+    rows.push([`Bateria ${bankIndex + 1}`, bank.name]);
+    rows.push(["Preguntas", bank.questions.length]);
+    rows.push([]);
+    rows.push(["Numero", "Pregunta", "A", "B", "C", "D", "E", "F"]);
+
+    bank.questions.forEach((question, qIndex) => {
+      const optionTexts = (question.answers || []).map((answer) => String(answer.text || ""));
+      rows.push([
+        qIndex + 1,
+        String(question.question || ""),
+        optionTexts[0] || "",
+        optionTexts[1] || "",
+        optionTexts[2] || "",
+        optionTexts[3] || "",
+        optionTexts[4] || "",
+        optionTexts[5] || ""
+      ]);
+    });
+
+    rows.push([]);
+    rows.push(["Respuestas correctas"]);
+    rows.push(["Numero", "Letra", "Respuesta"]);
+
+    bank.questions.forEach((question, qIndex) => {
+      const correctIdx = getCorrectIndex(question);
+      const correctLetter = correctIdx >= 0 ? String.fromCharCode(65 + correctIdx) : "-";
+      const correctText = correctIdx >= 0 && question.answers?.[correctIdx]
+        ? question.answers[correctIdx].text
+        : "No definida";
+      rows.push([qIndex + 1, correctLetter, correctText]);
+    });
+
+    const sheet = xlsx.utils.aoa_to_sheet(rows);
+    sheet["!cols"] = [
+      { wch: 10 },
+      { wch: 60 },
+      { wch: 30 },
+      { wch: 30 },
+      { wch: 30 },
+      { wch: 30 },
+      { wch: 30 },
+      { wch: 30 }
+    ];
+
+    const sheetName = buildUniqueSheetName(bank.name || `Bateria ${bankIndex + 1}`, usedSheetNames);
+    xlsx.utils.book_append_sheet(workbook, sheet, sheetName);
+  });
+
+  const timestamp = new Date().toISOString().replaceAll(":", "-").slice(0, 19);
+  xlsx.writeFile(workbook, `test_${timestamp}.xlsx`);
+  el.statusLine.textContent = `Excel exportado correctamente (${banksToExport.length} bateria(s)).`;
+}
+
 function buildPrintableHtml() {
   const createdAt = new Date().toLocaleString("es-ES");
   const questionsHtml = state.questions.map((question, idx) => {
@@ -367,11 +474,8 @@ function buildPrintableHtml() {
 }
 
 function exportQuestionsToPdf() {
-  const banksToExport = Array.isArray(state.banks) && state.banks.length
-    ? state.banks.filter((bank) => Array.isArray(bank.questions) && bank.questions.length > 0)
-    : [];
-
-  if (!banksToExport.length && !state.questions.length) {
+  const banksToExport = getBanksToExport();
+  if (!banksToExport.length) {
     el.statusLine.textContent = "No hay preguntas cargadas para exportar.";
     return;
   }
@@ -391,10 +495,6 @@ function exportQuestionsToPdf() {
   const colGap = 8;
   const colW = (contentW - colGap) / 2;
 
-  const exportBanks = banksToExport.length
-    ? banksToExport
-    : [{ name: "Seleccion actual", questions: state.questions }];
-
   let y = margin;
 
   const ensureSpace = (needed = lineH) => {
@@ -412,16 +512,16 @@ function exportQuestionsToPdf() {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(10);
   const generatedAt = new Date().toLocaleString("es-ES");
-  const bankLabel = exportBanks.length === 1
-    ? exportBanks[0].name
-    : `${exportBanks.length} baterias`;
+  const bankLabel = banksToExport.length === 1
+    ? banksToExport[0].name
+    : `${banksToExport.length} baterias`;
   doc.text(`Baterias: ${bankLabel}`, margin, y);
   y += 5;
-  const totalQuestions = exportBanks.reduce((acc, bank) => acc + bank.questions.length, 0);
+  const totalQuestions = banksToExport.reduce((acc, bank) => acc + bank.questions.length, 0);
   doc.text(`Preguntas: ${totalQuestions} | Generado: ${generatedAt}`, margin, y);
   y += 8;
 
-  exportBanks.forEach((bank, bankIndex) => {
+  banksToExport.forEach((bank, bankIndex) => {
     if (bankIndex > 0) {
       doc.addPage();
       y = margin;
@@ -508,7 +608,7 @@ function exportQuestionsToPdf() {
 
   const timestamp = new Date().toISOString().replaceAll(":", "-").slice(0, 19);
   doc.save(`test_${timestamp}.pdf`);
-  el.statusLine.textContent = `PDF exportado correctamente (${exportBanks.length} bateria(s)).`;
+  el.statusLine.textContent = `PDF exportado correctamente (${banksToExport.length} bateria(s)).`;
 }
 
 function lockExam(message) {
@@ -1129,6 +1229,9 @@ function wireEvents() {
   el.saveProgressBtn.addEventListener("click", exportProgress);
   if (el.exportPdfBtn) {
     el.exportPdfBtn.addEventListener("click", exportQuestionsToPdf);
+  }
+  if (el.exportExcelBtn) {
+    el.exportExcelBtn.addEventListener("click", exportQuestionsToExcel);
   }
   if (el.saveBrowserProgressBtn) {
     el.saveBrowserProgressBtn.addEventListener("click", saveBrowserProgress);
