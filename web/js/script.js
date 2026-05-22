@@ -28,6 +28,7 @@ const el = {
   filesInput: document.getElementById("jsonFilesInput"),
   loadProgressInput: document.getElementById("loadProgressInput"),
   saveProgressBtn: document.getElementById("saveProgressBtn"),
+  exportPdfBtn: document.getElementById("exportPdfBtn"),
   saveBrowserProgressBtn: document.getElementById("saveBrowserProgressBtn"),
   loadBrowserProgressBtn: document.getElementById("loadBrowserProgressBtn"),
   clearBrowserProgressBtn: document.getElementById("clearBrowserProgressBtn"),
@@ -289,6 +290,101 @@ function buildProgressPayload() {
 function buildGoogleSearchUrl(questionText, correctText) {
   const query = `${questionText} ${correctText}`.trim();
   return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function buildPrintableHtml() {
+  const createdAt = new Date().toLocaleString("es-ES");
+  const questionsHtml = state.questions.map((question, idx) => {
+    const answers = Array.isArray(question.answers)
+      ? question.answers
+      : [];
+
+    const answersHtml = answers.map((answer, answerIdx) => {
+      const letter = String.fromCharCode(97 + answerIdx);
+      return `<li><strong>${letter})</strong> ${escapeHtml(answer.text)}</li>`;
+    }).join("");
+
+    return `
+      <article class="question-block">
+        <h3>${idx + 1}. ${escapeHtml(question.question)}</h3>
+        <ul class="answers-list">${answersHtml}</ul>
+      </article>
+    `;
+  }).join("");
+
+  const keyHtml = state.questions.map((question, idx) => {
+    const correctIdx = getCorrectIndex(question);
+    const answerText = correctIdx >= 0 && question.answers?.[correctIdx]
+      ? question.answers[correctIdx].text
+      : "No definida";
+    const letter = correctIdx >= 0 ? String.fromCharCode(65 + correctIdx) : "-";
+    return `<div><strong>${idx + 1}) ${letter}</strong> - ${escapeHtml(answerText)}</div>`;
+  }).join("");
+
+  return `<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Test Studio - Exportacion</title>
+  <style>
+    @page { size: A4; margin: 14mm; }
+    * { box-sizing: border-box; }
+    body { font-family: "Segoe UI", Tahoma, sans-serif; color: #121212; line-height: 1.35; }
+    h1, h2, h3 { margin: 0 0 8px; }
+    .meta { margin: 6px 0 18px; color: #444; font-size: 12px; }
+    .question-block { break-inside: avoid; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #ddd; }
+    .question-block h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .answers-list { margin: 0; padding-left: 18px; }
+    .answers-list li { margin: 2px 0; font-size: 12px; }
+    .page-break { page-break-before: always; }
+    .answer-key { column-count: 2; column-gap: 24px; font-size: 12px; }
+    .answer-key div { break-inside: avoid; margin: 0 0 6px; }
+  </style>
+</head>
+<body>
+  <h1>Campus Test Studio</h1>
+  <div class="meta">Preguntas exportadas: ${state.questions.length} | Generado: ${escapeHtml(createdAt)}</div>
+  <section>
+    <h2>Preguntas</h2>
+    ${questionsHtml}
+  </section>
+  <section class="page-break">
+    <h2>Respuestas correctas</h2>
+    <div class="answer-key">${keyHtml}</div>
+  </section>
+</body>
+</html>`;
+}
+
+function exportQuestionsToPdf() {
+  if (!state.questions.length) {
+    el.statusLine.textContent = "No hay preguntas cargadas para exportar.";
+    return;
+  }
+
+  const printWindow = window.open("", "_blank", "noopener,noreferrer");
+  if (!printWindow) {
+    el.statusLine.textContent = "No se pudo abrir la ventana de impresion. Revisa el bloqueo de pop-ups.";
+    return;
+  }
+
+  const html = buildPrintableHtml();
+  printWindow.document.open();
+  printWindow.document.write(html);
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.print();
+  el.statusLine.textContent = "Preparando PDF: en la ventana de impresion elige Guardar como PDF.";
 }
 
 function lockExam(message) {
@@ -907,6 +1003,9 @@ function wireEvents() {
     renderAll();
   });
   el.saveProgressBtn.addEventListener("click", exportProgress);
+  if (el.exportPdfBtn) {
+    el.exportPdfBtn.addEventListener("click", exportQuestionsToPdf);
+  }
   if (el.saveBrowserProgressBtn) {
     el.saveBrowserProgressBtn.addEventListener("click", saveBrowserProgress);
   }
