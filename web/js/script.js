@@ -17,6 +17,9 @@ const state = {
   pointsCorrect: 1,
   penaltyWrong: 0.33,
   answerOrderByQuestionId: {},
+  examQuestions: [],
+  examAnswers: [],
+  examQuestionCount: 0,
   timerId: null,
   mobileControlsExpanded: false
 };
@@ -68,11 +71,18 @@ const el = {
   navigator: document.getElementById("navigator"),
   navigatorToggle: document.getElementById("navigatorToggle"),
   closeNavigator: document.getElementById("closeNavigator"),
-  navigatorGrid: document.getElementById("navigatorGrid")
+  navigatorGrid: document.getElementById("navigatorGrid"),
+  examQuestionModal: document.getElementById("examQuestionModal"),
+  examQuestionModalInfo: document.getElementById("examQuestionModalInfo"),
+  examQuestionModalValue: document.getElementById("examQuestionModalValue"),
+  examQuestionCountRange: document.getElementById("examQuestionCountRange"),
+  examQuestionCancelBtn: document.getElementById("examQuestionCancelBtn"),
+  examQuestionConfirmBtn: document.getElementById("examQuestionConfirmBtn"),
+  examQuestionCloseBtn: document.getElementById("examQuestionCloseBtn")
 };
 
 function updateMobileQuizLayout() {
-  const mobileQuizActive = mobileQuery.matches && !el.quizPanel.hidden && state.questions.length > 0;
+  const mobileQuizActive = mobileQuery.matches && !el.quizPanel.hidden && getActiveQuestions().length > 0;
 
   el.quizPanel.classList.toggle("mobile-docked", mobileQuizActive);
   document.body.classList.toggle("quiz-mobile-active", mobileQuizActive);
@@ -221,6 +231,123 @@ function getShuffledAnswers(question) {
   }));
 }
 
+function getActiveQuestions() {
+  if (state.examMode && Array.isArray(state.examQuestions)) {
+    return state.examQuestions;
+  }
+  return state.questions;
+}
+
+function getActiveAnswers() {
+  if (state.examMode && Array.isArray(state.examAnswers)) {
+    return state.examAnswers;
+  }
+  return state.answers;
+}
+
+function setActiveAnswers(nextAnswers) {
+  if (state.examMode) {
+    state.examAnswers = nextAnswers;
+    return;
+  }
+  state.answers = nextAnswers;
+}
+
+function getLoadedQuestionCount() {
+  return state.questions.length;
+}
+
+function updateExamModalUi() {
+  if (!el.examQuestionModal || !el.examQuestionCountRange || !el.examQuestionModalValue) return;
+
+  const maxQuestions = getLoadedQuestionCount();
+  const currentValue = Number(el.examQuestionCountRange.value);
+  const safeValue = Number.isFinite(currentValue) && currentValue > 0
+    ? Math.max(0, Math.min(maxQuestions, currentValue))
+    : maxQuestions;
+
+  el.examQuestionCountRange.max = String(maxQuestions);
+  el.examQuestionCountRange.min = "0";
+  el.examQuestionCountRange.value = String(safeValue);
+  el.examQuestionModalValue.textContent = String(safeValue);
+  if (el.examQuestionModalInfo) {
+    el.examQuestionModalInfo.textContent = `Selecciona entre 0 y ${maxQuestions} preguntas de las cargadas.`;
+  }
+}
+
+function openExamQuestionModal() {
+  if (!el.examQuestionModal) return;
+
+  updateExamModalUi();
+  el.examQuestionModal.hidden = false;
+  document.body.classList.add("modal-open");
+  window.setTimeout(() => {
+    el.examQuestionCountRange?.focus();
+  }, 0);
+}
+
+function closeExamQuestionModal() {
+  if (!el.examQuestionModal) return;
+
+  el.examQuestionModal.hidden = true;
+  document.body.classList.remove("modal-open");
+}
+
+function pickExamQuestions(questionCount) {
+  const total = state.questions.length;
+  const safeCount = Math.max(0, Math.min(total, Number(questionCount) || 0));
+  if (safeCount === 0) {
+    return [];
+  }
+
+  const source = state.shuffle ? shuffleArray(state.questions) : [...state.questions];
+  return source.slice(0, safeCount);
+}
+
+function beginMockExam(questionCount) {
+  const minutes = Number(el.simMinutes.value);
+  const pointsCorrect = Number(el.scoreOk.value);
+  const penaltyWrong = Number(el.scoreFail.value);
+  if (!Number.isFinite(minutes) || minutes <= 0) {
+    el.statusLine.textContent = "Los minutos del simulacro deben ser mayores que 0.";
+    return;
+  }
+  if (!Number.isFinite(pointsCorrect) || pointsCorrect <= 0) {
+    el.statusLine.textContent = "Los puntos por acierto deben ser mayores que 0.";
+    return;
+  }
+  if (!Number.isFinite(penaltyWrong) || penaltyWrong < 0) {
+    el.statusLine.textContent = "La penalizacion por fallo no puede ser negativa.";
+    return;
+  }
+
+  const selectedQuestions = pickExamQuestions(questionCount);
+
+  state.examMode = true;
+  state.examLocked = false;
+  state.durationSec = Math.round(minutes * 60);
+  state.examEndsAt = Date.now() + (state.durationSec * 1000);
+  state.pointsCorrect = pointsCorrect;
+  state.penaltyWrong = penaltyWrong;
+  state.examQuestionCount = selectedQuestions.length;
+  state.examQuestions = selectedQuestions;
+  state.examAnswers = selectedQuestions.map(() => null);
+  state.currentIndex = 0;
+  state.startedAt = Date.now();
+  closeExamQuestionModal();
+
+  if (selectedQuestions.length === 0) {
+    state.examLocked = true;
+    el.statusLine.textContent = "Simulacro iniciado con 0 preguntas.";
+    renderAll();
+    return;
+  }
+
+  el.statusLine.textContent = `Simulacro iniciado con ${selectedQuestions.length} preguntas.`;
+  startTimer();
+  renderAll();
+}
+
 function recomputeQuestions() {
   stopTimer();
   const selectedBanks = state.activeBankId === "all"
@@ -248,14 +375,16 @@ function recomputeQuestions() {
 }
 
 function getStats() {
-  const total = state.questions.length;
+  const activeQuestions = getActiveQuestions();
+  const activeAnswers = getActiveAnswers();
+  const total = activeQuestions.length;
   let answered = 0;
   let correct = 0;
 
-  state.answers.forEach((answerIndex, index) => {
+  activeAnswers.forEach((answerIndex, index) => {
     if (answerIndex === null || answerIndex === undefined) return;
     answered += 1;
-    const cIdx = getCorrectIndex(state.questions[index]);
+    const cIdx = getCorrectIndex(activeQuestions[index]);
     if (cIdx >= 0 && cIdx === answerIndex) correct += 1;
   });
 
@@ -290,6 +419,8 @@ function stopTimer() {
 }
 
 function buildProgressPayload() {
+  const activeQuestions = getActiveQuestions();
+  const activeAnswers = getActiveAnswers();
   return {
     kind: "campus-test-progress",
     version: 1,
@@ -299,6 +430,11 @@ function buildProgressPayload() {
       activeBankId: state.activeBankId,
       questions: state.questions,
       answers: state.answers,
+      examQuestions: state.examQuestions,
+      examAnswers: state.examAnswers,
+      examQuestionCount: state.examQuestionCount,
+      activeQuestions,
+      activeAnswers,
       currentIndex: state.currentIndex,
       startedAt: state.startedAt,
       shuffle: state.shuffle,
@@ -673,34 +809,12 @@ function startMockExam() {
     return;
   }
 
-  const minutes = Number(el.simMinutes.value);
-  const pointsCorrect = Number(el.scoreOk.value);
-  const penaltyWrong = Number(el.scoreFail.value);
-  if (!Number.isFinite(minutes) || minutes <= 0) {
-    el.statusLine.textContent = "Los minutos del simulacro deben ser mayores que 0.";
-    return;
-  }
-  if (!Number.isFinite(pointsCorrect) || pointsCorrect <= 0) {
-    el.statusLine.textContent = "Los puntos por acierto deben ser mayores que 0.";
-    return;
-  }
-  if (!Number.isFinite(penaltyWrong) || penaltyWrong < 0) {
-    el.statusLine.textContent = "La penalizacion por fallo no puede ser negativa.";
-    return;
-  }
+  openExamQuestionModal();
+}
 
-  state.examMode = true;
-  state.examLocked = false;
-  state.durationSec = Math.round(minutes * 60);
-  state.examEndsAt = Date.now() + (state.durationSec * 1000);
-  state.pointsCorrect = pointsCorrect;
-  state.penaltyWrong = penaltyWrong;
-  state.answers = state.questions.map(() => null);
-  state.currentIndex = 0;
-  state.startedAt = Date.now();
-  el.statusLine.textContent = "Simulacro iniciado.";
-  startTimer();
-  renderAll();
+function confirmMockExam() {
+  const count = Number(el.examQuestionCountRange?.value ?? 0);
+  beginMockExam(count);
 }
 
 function exportProgress() {
@@ -779,6 +893,11 @@ function importProgressData(data) {
   state.answerOrderByQuestionId = data.state.answerOrderByQuestionId && typeof data.state.answerOrderByQuestionId === "object"
     ? data.state.answerOrderByQuestionId
     : {};
+  state.examQuestions = Array.isArray(data.state.examQuestions) ? data.state.examQuestions : [];
+  state.examAnswers = Array.isArray(data.state.examAnswers)
+    ? data.state.examAnswers
+    : (Array.isArray(data.state.activeAnswers) ? data.state.activeAnswers : []);
+  state.examQuestionCount = Number(data.state.examQuestionCount) || state.examQuestions.length || 0;
 
   const remainingSec = Number(data.state.remainingSec) || 0;
   if (state.examMode && !state.examLocked && remainingSec > 0) {
@@ -829,7 +948,9 @@ function renderStats() {
 }
 
 function renderQuestion() {
-  const question = state.questions[state.currentIndex];
+  const activeQuestions = getActiveQuestions();
+  const activeAnswers = getActiveAnswers();
+  const question = activeQuestions[state.currentIndex];
   if (!question) {
     el.quizPanel.hidden = true;
     renderStats();
@@ -837,12 +958,12 @@ function renderQuestion() {
   }
 
   el.quizPanel.hidden = false;
-  el.questionCounter.textContent = `Pregunta ${state.currentIndex + 1} de ${state.questions.length}`;
+  el.questionCounter.textContent = `Pregunta ${state.currentIndex + 1} de ${activeQuestions.length}`;
   el.questionPage.textContent = `Pagina original: ${question.page}`;
   el.questionSource.textContent = `Fuente: ${question.source}`;
   el.questionText.textContent = question.question;
 
-  const selected = state.answers[state.currentIndex];
+  const selected = activeAnswers[state.currentIndex];
   const correct = getCorrectIndex(question);
   const hasAnswer = selected !== null && selected !== undefined;
   const shuffledAnswers = getShuffledAnswers(question);
@@ -856,7 +977,8 @@ function renderQuestion() {
     btn.disabled = state.examLocked;
     btn.addEventListener("click", () => {
       if (state.examLocked) return;
-      state.answers[state.currentIndex] = originalIndex;
+      activeAnswers[state.currentIndex] = originalIndex;
+      setActiveAnswers([...activeAnswers]);
       renderAll();
     });
 
@@ -893,7 +1015,7 @@ function renderQuestion() {
   }
 
   el.prevBtn.disabled = state.currentIndex === 0;
-  el.nextBtn.disabled = state.currentIndex === state.questions.length - 1;
+  el.nextBtn.disabled = state.currentIndex === activeQuestions.length - 1;
 }
 
 function renderDatasetTabs() {
@@ -917,13 +1039,15 @@ function renderDatasetTabs() {
 
 function renderNavigator() {
   el.navigatorGrid.innerHTML = "";
-  state.questions.forEach((_, index) => {
+  const activeQuestions = getActiveQuestions();
+  const activeAnswers = getActiveAnswers();
+  activeQuestions.forEach((_, index) => {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "nav-item";
     btn.textContent = String(index + 1);
     if (index === state.currentIndex) btn.classList.add("current");
-    if (state.answers[index] !== null && state.answers[index] !== undefined) btn.classList.add("answered");
+    if (activeAnswers[index] !== null && activeAnswers[index] !== undefined) btn.classList.add("answered");
     btn.addEventListener("click", () => {
       state.currentIndex = index;
       renderAll();
@@ -1212,9 +1336,14 @@ function wireEvents() {
   });
 
   el.resetBtn.addEventListener("click", () => {
-    if (!state.questions.length) return;
+    const activeQuestions = getActiveQuestions();
+    if (!activeQuestions.length) return;
     stopTimer();
-    state.answers = state.questions.map(() => null);
+    if (state.examMode) {
+      state.examAnswers = activeQuestions.map(() => null);
+    } else {
+      state.answers = activeQuestions.map(() => null);
+    }
     state.currentIndex = 0;
     state.startedAt = Date.now();
     state.examLocked = false;
@@ -1233,6 +1362,9 @@ function wireEvents() {
       state.activeBankId = "all";
       state.questions = [];
       state.answers = [];
+      state.examQuestions = [];
+      state.examAnswers = [];
+      state.examQuestionCount = 0;
       state.answerOrderByQuestionId = {};
       state.currentIndex = 0;
       state.startedAt = 0;
@@ -1270,6 +1402,29 @@ function wireEvents() {
   }
 
   el.startSimBtn.addEventListener("click", startMockExam);
+  if (el.examQuestionCountRange) {
+    el.examQuestionCountRange.addEventListener("input", () => {
+      if (el.examQuestionModalValue) {
+        el.examQuestionModalValue.textContent = el.examQuestionCountRange.value;
+      }
+    });
+  }
+  if (el.examQuestionConfirmBtn) {
+    el.examQuestionConfirmBtn.addEventListener("click", confirmMockExam);
+  }
+  if (el.examQuestionCancelBtn) {
+    el.examQuestionCancelBtn.addEventListener("click", closeExamQuestionModal);
+  }
+  if (el.examQuestionCloseBtn) {
+    el.examQuestionCloseBtn.addEventListener("click", closeExamQuestionModal);
+  }
+  if (el.examQuestionModal) {
+    el.examQuestionModal.addEventListener("click", (event) => {
+      if (event.target === el.examQuestionModal) {
+        closeExamQuestionModal();
+      }
+    });
+  }
   el.presetOfficialBtn.addEventListener("click", () => {
     el.scoreOk.value = "1";
     el.scoreFail.value = "0.33";

@@ -127,6 +127,24 @@
     <div id="navigatorGrid" class="navigator-grid"></div>
   </aside>
 
+  <div id="examQuestionModal" class="modal-backdrop" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="examQuestionModalTitle">
+      <div class="modal-head">
+        <h3 id="examQuestionModalTitle">Cuántas preguntas quieres responder</h3>
+        <button id="examQuestionCloseBtn" class="btn small modal-close" type="button" aria-label="Cerrar modal">✕</button>
+      </div>
+      <p id="examQuestionModalInfo" class="modal-info"></p>
+      <label class="modal-slider-label" for="examQuestionCountRange">
+        <span>Preguntas a incluir: <strong id="examQuestionModalValue">0</strong></span>
+        <input id="examQuestionCountRange" type="range" min="0" max="0" value="0" step="1">
+      </label>
+      <div class="modal-actions">
+        <button id="examQuestionCancelBtn" class="btn" type="button">Cancelar</button>
+        <button id="examQuestionConfirmBtn" class="btn primary" type="button">Iniciar simulacro</button>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="js/script.js"></script>

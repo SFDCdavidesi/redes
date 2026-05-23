@@ -419,6 +419,68 @@ input[type="file"] {
   border-color: #7fc8bd;
 }
 
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(31, 27, 23, 0.44);
+  backdrop-filter: blur(4px);
+}
+
+.modal-card {
+  width: min(560px, calc(100vw - 32px));
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(80, 56, 30, 0.24);
+  padding: 16px;
+  display: grid;
+  gap: 14px;
+  animation: rise 220ms ease;
+}
+
+.modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 10px;
+}
+
+.modal-head h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.modal-info {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.modal-slider-label {
+  display: grid;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.modal-slider-label input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent-2);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -465,6 +527,11 @@ input[type="file"] {
   .hero.mobile-collapsed .dataset-row,
   .hero.mobile-collapsed .status {
     display: none;
+  }
+
+  .modal-card {
+    width: min(100%, calc(100vw - 24px));
+    padding: 14px;
   }
 
   .hero.mobile-collapsed h1 {
