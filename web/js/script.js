@@ -16,6 +16,7 @@ const state = {
   examEndsAt: 0,
   pointsCorrect: 1,
   penaltyWrong: 0.33,
+  answerOrderByQuestionId: {},
   timerId: null,
   mobileControlsExpanded: false
 };
@@ -198,6 +199,28 @@ function shuffleArray(items) {
   return arr;
 }
 
+function getAnswerOrder(question) {
+  if (!question || !Array.isArray(question.answers)) return [];
+
+  const answerCount = question.answers.length;
+  const cached = state.answerOrderByQuestionId[question.id];
+  if (Array.isArray(cached) && cached.length === answerCount) {
+    return cached;
+  }
+
+  const order = shuffleArray(Array.from({ length: answerCount }, (_, index) => index));
+  state.answerOrderByQuestionId[question.id] = order;
+  return order;
+}
+
+function getShuffledAnswers(question) {
+  const order = getAnswerOrder(question);
+  return order.map((originalIndex) => ({
+    originalIndex,
+    answer: question.answers[originalIndex]
+  }));
+}
+
 function recomputeQuestions() {
   stopTimer();
   const selectedBanks = state.activeBankId === "all"
@@ -284,7 +307,8 @@ function buildProgressPayload() {
       durationSec: state.durationSec,
       remainingSec: state.examMode && state.examEndsAt ? Math.max(0, Math.round((state.examEndsAt - Date.now()) / 1000)) : 0,
       pointsCorrect: state.pointsCorrect,
-      penaltyWrong: state.penaltyWrong
+      penaltyWrong: state.penaltyWrong,
+      answerOrderByQuestionId: state.answerOrderByQuestionId
     }
   };
 }
@@ -362,7 +386,7 @@ function exportQuestionsToExcel() {
     rows.push(["Numero", "Pregunta", "A", "B", "C", "D", "E", "F"]);
 
     bank.questions.forEach((question, qIndex) => {
-      const optionTexts = (question.answers || []).map((answer) => String(answer.text || ""));
+      const optionTexts = getShuffledAnswers(question).map(({ answer }) => String(answer.text || ""));
       rows.push([
         qIndex + 1,
         String(question.question || ""),
@@ -381,7 +405,9 @@ function exportQuestionsToExcel() {
 
     bank.questions.forEach((question, qIndex) => {
       const correctIdx = getCorrectIndex(question);
-      const correctLetter = correctIdx >= 0 ? String.fromCharCode(65 + correctIdx) : "-";
+      const shuffledAnswers = getShuffledAnswers(question);
+      const correctDisplayIndex = shuffledAnswers.findIndex((item) => item.originalIndex === correctIdx);
+      const correctLetter = correctDisplayIndex >= 0 ? String.fromCharCode(65 + correctDisplayIndex) : "-";
       const correctText = correctIdx >= 0 && question.answers?.[correctIdx]
         ? question.answers[correctIdx].text
         : "No definida";
@@ -412,11 +438,7 @@ function exportQuestionsToExcel() {
 function buildPrintableHtml() {
   const createdAt = new Date().toLocaleString("es-ES");
   const questionsHtml = state.questions.map((question, idx) => {
-    const answers = Array.isArray(question.answers)
-      ? question.answers
-      : [];
-
-    const answersHtml = answers.map((answer, answerIdx) => {
+    const answersHtml = getShuffledAnswers(question).map(({ answer }, answerIdx) => {
       const letter = String.fromCharCode(97 + answerIdx);
       return `<li><strong>${letter})</strong> ${escapeHtml(answer.text)}</li>`;
     }).join("");
@@ -431,10 +453,12 @@ function buildPrintableHtml() {
 
   const keyHtml = state.questions.map((question, idx) => {
     const correctIdx = getCorrectIndex(question);
+    const shuffledAnswers = getShuffledAnswers(question);
+    const correctDisplayIndex = shuffledAnswers.findIndex((item) => item.originalIndex === correctIdx);
     const answerText = correctIdx >= 0 && question.answers?.[correctIdx]
       ? question.answers[correctIdx].text
       : "No definida";
-    const letter = correctIdx >= 0 ? String.fromCharCode(65 + correctIdx) : "-";
+    const letter = correctDisplayIndex >= 0 ? String.fromCharCode(65 + correctDisplayIndex) : "-";
     return `<div><strong>${idx + 1}) ${letter}</strong> - ${escapeHtml(answerText)}</div>`;
   }).join("");
 
@@ -554,7 +578,7 @@ function exportQuestionsToPdf() {
 
       doc.setFont("helvetica", "normal");
       doc.setFontSize(10);
-      (question.answers || []).forEach((answer, aIndex) => {
+      getShuffledAnswers(question).forEach(({ answer }, aIndex) => {
         const letter = String.fromCharCode(97 + aIndex);
         const aLines = doc.splitTextToSize(`${letter}) ${answer.text}`, contentW - 3);
         ensureSpace((aLines.length * lineH) + 1);
@@ -581,7 +605,9 @@ function exportQuestionsToPdf() {
 
     bank.questions.forEach((question, idx) => {
       const cIdx = getCorrectIndex(question);
-      const letter = cIdx >= 0 ? String.fromCharCode(65 + cIdx) : "-";
+      const shuffledAnswers = getShuffledAnswers(question);
+      const displayCorrectIndex = shuffledAnswers.findIndex((item) => item.originalIndex === cIdx);
+      const letter = displayCorrectIndex >= 0 ? String.fromCharCode(65 + displayCorrectIndex) : "-";
       const answerText = cIdx >= 0 && question.answers?.[cIdx]
         ? question.answers[cIdx].text
         : "No definida";
@@ -750,6 +776,9 @@ function importProgressData(data) {
   state.durationSec = Number(data.state.durationSec) || 0;
   state.pointsCorrect = Number(data.state.pointsCorrect) || 1;
   state.penaltyWrong = Number(data.state.penaltyWrong) || 0;
+  state.answerOrderByQuestionId = data.state.answerOrderByQuestionId && typeof data.state.answerOrderByQuestionId === "object"
+    ? data.state.answerOrderByQuestionId
+    : {};
 
   const remainingSec = Number(data.state.remainingSec) || 0;
   if (state.examMode && !state.examLocked && remainingSec > 0) {
@@ -816,9 +845,10 @@ function renderQuestion() {
   const selected = state.answers[state.currentIndex];
   const correct = getCorrectIndex(question);
   const hasAnswer = selected !== null && selected !== undefined;
+  const shuffledAnswers = getShuffledAnswers(question);
 
   el.optionsBox.innerHTML = "";
-  question.answers.forEach((answer, index) => {
+  shuffledAnswers.forEach(({ answer, originalIndex }, displayIndex) => {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "option";
@@ -826,14 +856,14 @@ function renderQuestion() {
     btn.disabled = state.examLocked;
     btn.addEventListener("click", () => {
       if (state.examLocked) return;
-      state.answers[state.currentIndex] = index;
+      state.answers[state.currentIndex] = originalIndex;
       renderAll();
     });
 
     if (hasAnswer) {
-      if (index === selected) btn.classList.add("selected");
-      if (index === correct) btn.classList.add("correct");
-      if (index === selected && selected !== correct) btn.classList.add("wrong");
+      if (originalIndex === selected) btn.classList.add("selected");
+      if (originalIndex === correct) btn.classList.add("correct");
+      if (originalIndex === selected && selected !== correct) btn.classList.add("wrong");
     }
 
     el.optionsBox.appendChild(btn);
@@ -1203,6 +1233,7 @@ function wireEvents() {
       state.activeBankId = "all";
       state.questions = [];
       state.answers = [];
+      state.answerOrderByQuestionId = {};
       state.currentIndex = 0;
       state.startedAt = 0;
       state.examMode = false;
