@@ -37,6 +37,7 @@ const el = {
   loadServerDatasetBtn: document.getElementById("loadServerDatasetBtn"),
   refreshServerDatasetsBtn: document.getElementById("refreshServerDatasetsBtn"),
   resetBtn: document.getElementById("resetBtn"),
+  clearAllBtn: document.getElementById("clearAllBtn"),
   shuffleBtn: document.getElementById("shuffleBtn"),
   simMinutes: document.getElementById("simMinutes"),
   scoreOk: document.getElementById("scoreOk"),
@@ -1194,6 +1195,26 @@ function wireEvents() {
     el.statusLine.textContent = "Progreso reiniciado.";
     renderAll();
   });
+
+  if (el.clearAllBtn) {
+    el.clearAllBtn.addEventListener("click", () => {
+      stopTimer();
+      state.banks = [];
+      state.activeBankId = "all";
+      state.questions = [];
+      state.answers = [];
+      state.currentIndex = 0;
+      state.startedAt = 0;
+      state.examMode = false;
+      state.examLocked = false;
+      state.durationSec = 0;
+      state.examEndsAt = 0;
+      el.timerChip.textContent = "Sin simulacro";
+      el.timerChip.className = "timer-chip";
+      el.statusLine.textContent = "Todo borrado. Carga un JSON para empezar.";
+      renderAll();
+    });
+  }
 
   el.shuffleBtn.addEventListener("click", () => {
     state.shuffle = !state.shuffle;
