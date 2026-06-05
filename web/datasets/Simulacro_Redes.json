@@ -1,0 +1,582 @@
+{
+  "sourcePdf": "Simulacro_Redes.pdf",
+  "exportedAt": "2026-06-05T00:00:00.000000+00:00",
+  "totalQuestions": 25,
+  "items": [
+    {
+      "page": 1,
+      "questionNumber": 1,
+      "question": "La arquitectura de red define:",
+      "answers": [
+        {
+          "text": "La estructura, diseño y funcionamiento de una red de computadoras, estableciendo reglas para la comunicación eficiente entre dispositivos.",
+          "selected": true
+        },
+        {
+          "text": "Únicamente el tipo de cable que se utiliza en una instalación.",
+          "selected": false
+        },
+        {
+          "text": "Solo la contraseña de acceso a los routers de una red.",
+          "selected": false
+        },
+        {
+          "text": "La velocidad máxima de una conexión inalámbrica.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 2,
+      "question": "La arquitectura física se refiere a:",
+      "answers": [
+        {
+          "text": "La forma en que se organizan y gestionan los datos en la red.",
+          "selected": false
+        },
+        {
+          "text": "La infraestructura de hardware de la red, incluyendo cables, routers, switches y puntos de acceso WiFi.",
+          "selected": true
+        },
+        {
+          "text": "El conjunto de direcciones IP, VLANs y rutas lógicas.",
+          "selected": false
+        },
+        {
+          "text": "Los protocolos de aplicación utilizados por los usuarios.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 3,
+      "question": "La capa de enlace de datos tiene entre sus funciones principales:",
+      "answers": [
+        {
+          "text": "Asignar nombres de dominio a direcciones IP.",
+          "selected": false
+        },
+        {
+          "text": "Determinar la mejor ruta entre redes remotas.",
+          "selected": false
+        },
+        {
+          "text": "Controlar el acceso al medio, corregir errores y definir direcciones MAC.",
+          "selected": true
+        },
+        {
+          "text": "Cifrar todas las comunicaciones mediante certificados digitales.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 4,
+      "question": "La capa de transporte:",
+      "answers": [
+        {
+          "text": "Define las características eléctricas del cableado.",
+          "selected": false
+        },
+        {
+          "text": "Traduce nombres de dominio a direcciones IP.",
+          "selected": false
+        },
+        {
+          "text": "Establece la disposición física de los dispositivos.",
+          "selected": false
+        },
+        {
+          "text": "Asegura que los datos lleguen completos y en orden, y proporciona multiplexación para manejar múltiples conexiones simultáneas.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 5,
+      "question": "En la topología en anillo:",
+      "answers": [
+        {
+          "text": "Los dispositivos están conectados en un bucle cerrado y cada nodo retransmite los datos hasta llegar al destino.",
+          "selected": true
+        },
+        {
+          "text": "Todos los dispositivos comparten un único cable central sin retransmisión entre nodos.",
+          "selected": false
+        },
+        {
+          "text": "Cada equipo se conecta únicamente a Internet mediante una VPN.",
+          "selected": false
+        },
+        {
+          "text": "Los datos se almacenan siempre en un servidor central antes de circular.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 6,
+      "question": "Una topología híbrida es:",
+      "answers": [
+        {
+          "text": "Una red que solo utiliza conexiones inalámbricas.",
+          "selected": false
+        },
+        {
+          "text": "Una combinación de diferentes topologías para optimizar el rendimiento y la confiabilidad.",
+          "selected": true
+        },
+        {
+          "text": "Una red sin switches ni routers.",
+          "selected": false
+        },
+        {
+          "text": "Un sistema exclusivo de redes personales PAN.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 7,
+      "question": "En las consideraciones de seguridad de las topologías, la topología en bus presenta:",
+      "answers": [
+        {
+          "text": "Protección en el nodo central con firewalls.",
+          "selected": false
+        },
+        {
+          "text": "Mayor control de acceso, pero vulnerabilidad ante fallos.",
+          "selected": false
+        },
+        {
+          "text": "Mayor riesgo de sniffing de tráfico.",
+          "selected": true
+        },
+        {
+          "text": "Segmentación automática mediante VLANs.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 8,
+      "question": "Los componentes de nivel 0 en la clasificación de dispositivos son:",
+      "answers": [
+        {
+          "text": "Routers que enrutan tráfico entre redes basadas en direcciones IP.",
+          "selected": false
+        },
+        {
+          "text": "Puentes y switches que filtran tráfico basado en direcciones MAC.",
+          "selected": false
+        },
+        {
+          "text": "Repetidores y hubs que amplifican y retransmiten señales.",
+          "selected": false
+        },
+        {
+          "text": "Componentes pasivos como patch panels y guías de cables que organizan y conectan físicamente los cables de la red.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 9,
+      "question": "Los puentes de red:",
+      "answers": [
+        {
+          "text": "Dividen la red en segmentos más pequeños y aprenden las direcciones MAC de los dispositivos en cada segmento.",
+          "selected": true
+        },
+        {
+          "text": "Funcionan exclusivamente como servidores de nombres de dominio.",
+          "selected": false
+        },
+        {
+          "text": "Sustituyen el cableado estructurado por enlaces inalámbricos.",
+          "selected": false
+        },
+        {
+          "text": "Cifran todas las comunicaciones de una red empresarial.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 10,
+      "question": "Los switches realizan conmutación eficiente porque:",
+      "answers": [
+        {
+          "text": "No utilizan direcciones MAC para reenviar paquetes.",
+          "selected": false
+        },
+        {
+          "text": "Cada puerto comparte siempre el mismo ancho de banda con todos los demás.",
+          "selected": false
+        },
+        {
+          "text": "Reenvían paquetes de datos basados en direcciones MAC y cada puerto tiene su propio ancho de banda.",
+          "selected": true
+        },
+        {
+          "text": "Solo pueden utilizarse con cable coaxial.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 11,
+      "question": "Una diferencia clave entre puentes y switches es que:",
+      "answers": [
+        {
+          "text": "Los switches tienen pocos puertos, generalmente dos.",
+          "selected": false
+        },
+        {
+          "text": "Los puentes operan siempre a mayor velocidad que los switches.",
+          "selected": false
+        },
+        {
+          "text": "Los puentes ofrecen funciones avanzadas como VLANs y QoS.",
+          "selected": false
+        },
+        {
+          "text": "Los switches tienen muchos puertos, operan a alta velocidad y ofrecen funciones avanzadas como VLANs y QoS.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 12,
+      "question": "Los routers utilizan tablas de enrutamiento para:",
+      "answers": [
+        {
+          "text": "Determinar la mejor ruta.",
+          "selected": true
+        },
+        {
+          "text": "Asignar colores a los cables de par trenzado.",
+          "selected": false
+        },
+        {
+          "text": "Crear direcciones MAC en cada dispositivo.",
+          "selected": false
+        },
+        {
+          "text": "Eliminar el uso de protocolos IP.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 13,
+      "question": "La traducción de direcciones de red NAT permite:",
+      "answers": [
+        {
+          "text": "Eliminar todos los servidores DNS de una red.",
+          "selected": false
+        },
+        {
+          "text": "Que múltiples dispositivos en una red privada compartan una única dirección IP pública.",
+          "selected": true
+        },
+        {
+          "text": "Convertir un cable UTP en fibra óptica.",
+          "selected": false
+        },
+        {
+          "text": "Sustituir la capa de transporte por la capa física.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 14,
+      "question": "Una alta latencia puede provocar:",
+      "answers": [
+        {
+          "text": "Mayor número de direcciones IPv6 disponibles.",
+          "selected": false
+        },
+        {
+          "text": "Reducción automática del número de saltos.",
+          "selected": false
+        },
+        {
+          "text": "Retrasos en el audio y el video, haciendo que la comunicación sea difícil.",
+          "selected": true
+        },
+        {
+          "text": "Conversión automática de TCP/IP a IPX/SPX.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "questionNumber": 15,
+      "question": "La optimización de redes incluye:",
+      "answers": [
+        {
+          "text": "Eliminar todos los protocolos de enrutamiento dinámico.",
+          "selected": false
+        },
+        {
+          "text": "Usar únicamente topologías en bus.",
+          "selected": false
+        },
+        {
+          "text": "Desactivar QoS para evitar priorización de aplicaciones.",
+          "selected": false
+        },
+        {
+          "text": "Identificar cuellos de botella, implementar QoS y considerar la actualización de hardware.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 16,
+      "question": "RIP es:",
+      "answers": [
+        {
+          "text": "Un protocolo de enrutamiento de vector de distancia, simple de configurar, pero con limitaciones en cuanto a la escalabilidad.",
+          "selected": true
+        },
+        {
+          "text": "Un conector de fibra óptica de pequeño formato.",
+          "selected": false
+        },
+        {
+          "text": "Un estándar de cableado estructurado para rosetas de pared.",
+          "selected": false
+        },
+        {
+          "text": "Un mecanismo de autenticación mediante certificados X.509.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 17,
+      "question": "Durante los años 80 se produjo:",
+      "answers": [
+        {
+          "text": "La desaparición completa de Ethernet.",
+          "selected": false
+        },
+        {
+          "text": "La estandarización de Ethernet (IEEE 802.3) y Token Ring (IEEE 802.5).",
+          "selected": true
+        },
+        {
+          "text": "El abandono definitivo de las redes LAN cableadas.",
+          "selected": false
+        },
+        {
+          "text": "La sustitución de todos los switches por hubs.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 18,
+      "question": "Las redes cableadas frente a las inalámbricas se caracterizan por:",
+      "answers": [
+        {
+          "text": "Mayor latencia y mayor susceptibilidad a interferencias.",
+          "selected": false
+        },
+        {
+          "text": "Menor seguridad por necesidad de acceso físico.",
+          "selected": false
+        },
+        {
+          "text": "Mayor ancho de banda, menor latencia y jitter reducido.",
+          "selected": true
+        },
+        {
+          "text": "No permitir tecnologías como Ethernet o fibra óptica.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 19,
+      "question": "Zigbee implementa:",
+      "answers": [
+        {
+          "text": "Una topología en bus con cable coaxial grueso.",
+          "selected": false
+        },
+        {
+          "text": "Un sistema de direccionamiento exclusivo para WAN globales.",
+          "selected": false
+        },
+        {
+          "text": "Un protocolo de transporte orientado a conexión para banca online.",
+          "selected": false
+        },
+        {
+          "text": "Una topología en malla con tres tipos de nodos: coordinador, routers y dispositivos finales.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 20,
+      "question": "Los Internet Exchange Points son instalaciones donde:",
+      "answers": [
+        {
+          "text": "Múltiples ISPs interconectan sus redes para intercambiar tráfico localmente.",
+          "selected": true
+        },
+        {
+          "text": "Los usuarios finales conectan directamente sus ordenadores por Bluetooth.",
+          "selected": false
+        },
+        {
+          "text": "Se sustituyen los cables de fibra óptica por cable coaxial RG-58.",
+          "selected": false
+        },
+        {
+          "text": "Se generan claves privadas para firmas digitales.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 21,
+      "question": "En el cableado horizontal, TIA-568 especifica:",
+      "answers": [
+        {
+          "text": "Una topología en anillo con dos niveles de distribución obligatorios.",
+          "selected": false
+        },
+        {
+          "text": "Una topología en estrella, donde cada toma de usuario se conecta directamente a la sala de telecomunicaciones.",
+          "selected": true
+        },
+        {
+          "text": "Una red inalámbrica sin tomas de usuario.",
+          "selected": false
+        },
+        {
+          "text": "Una conexión directa entre sistemas autónomos de Internet.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 22,
+      "question": "La seguridad física se define como:",
+      "answers": [
+        {
+          "text": "La traducción de cabeceras IPv6 a IPv4 en routers frontera.",
+          "selected": false
+        },
+        {
+          "text": "La creación de túneles automáticos 6to4 sobre redes IPv4.",
+          "selected": false
+        },
+        {
+          "text": "La aplicación de barreras físicas y procedimientos de control como mecanismos de prevención contra las amenazas a los recursos e información confidencial.",
+          "selected": true
+        },
+        {
+          "text": "El uso de direcciones multicast para sustituir el broadcast.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "questionNumber": 23,
+      "question": "El protocolo AH de IPSec:",
+      "answers": [
+        {
+          "text": "Proporciona confidencialidad, pero no autenticación ni integridad.",
+          "selected": false
+        },
+        {
+          "text": "Se utiliza únicamente para asignar direcciones IPv6 mediante DHCPv6.",
+          "selected": false
+        },
+        {
+          "text": "Sustituye a ARP y permite descubrir direcciones MAC.",
+          "selected": false
+        },
+        {
+          "text": "Proporciona autenticación e integridad, pero no confidencialidad.",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 24,
+      "question": "La cabecera IPv6:",
+      "answers": [
+        {
+          "text": "Tiene siempre 40 octetos.",
+          "selected": true
+        },
+        {
+          "text": "Tiene siempre 20 octetos y nunca usa cabeceras de extensión.",
+          "selected": false
+        },
+        {
+          "text": "Es variable entre 20 y 60 bytes como en IPv4.",
+          "selected": false
+        },
+        {
+          "text": "Solo aparece en redes WiFi y Bluetooth.",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "questionNumber": 25,
+      "question": "En IPv6, la fragmentación:",
+      "answers": [
+        {
+          "text": "La realizan todos los routers intermedios.",
+          "selected": false
+        },
+        {
+          "text": "Solo puede realizarla el nodo origen; ningún nodo intermedio puede fragmentar.",
+          "selected": true
+        },
+        {
+          "text": "Ha desaparecido completamente y nunca existe reensamblaje.",
+          "selected": false
+        },
+        {
+          "text": "Se sustituye siempre por broadcast.",
+          "selected": false
+        }
+      ]
+    }
+  ]
+}
