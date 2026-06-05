@@ -39,6 +39,7 @@ const el = {
   clearBrowserProgressBtn: document.getElementById("clearBrowserProgressBtn"),
   serverDatasetSelect: document.getElementById("serverDatasetSelect"),
   loadServerDatasetBtn: document.getElementById("loadServerDatasetBtn"),
+  loadAllServerDatasetsBtn: document.getElementById("loadAllServerDatasetsBtn"),
   refreshServerDatasetsBtn: document.getElementById("refreshServerDatasetsBtn"),
   resetBtn: document.getElementById("resetBtn"),
   clearAllBtn: document.getElementById("clearAllBtn"),
@@ -1267,6 +1268,43 @@ async function loadSelectedServerDataset() {
   }
 }
 
+async function loadAllServerDatasets() {
+  if (!el.serverDatasetSelect) return;
+  const names = Array.from(el.serverDatasetSelect.options).map((o) => o.value).filter(Boolean);
+  if (!names.length) {
+    el.statusLine.textContent = "No hay JSON disponibles en datasets.";
+    return;
+  }
+
+  let totalAdded = 0;
+  let totalDup = 0;
+  for (const name of names) {
+    try {
+      const resp = await fetch(`datasets/${name}`, { cache: "no-store" });
+      if (!resp.ok) continue;
+      const payload = await resp.json();
+      const questions = normalizeJson(payload, name);
+      if (!questions.length) continue;
+      const result = addBank(name, questions);
+      if (result.addedBank) {
+        totalAdded += result.addedQuestions;
+        totalDup += result.skippedDuplicates;
+      }
+    } catch (_err) {
+      // ignorar errores individuales y continuar con el resto
+    }
+  }
+
+  if (totalAdded === 0) {
+    el.statusLine.textContent = "Todos los JSON ya estaban cargados o no contienen preguntas validas.";
+    return;
+  }
+  state.activeBankId = "all";
+  const dupText = totalDup > 0 ? ` (${totalDup} duplicadas omitidas)` : "";
+  el.statusLine.textContent = `Cargados ${names.length} JSON con ${totalAdded} preguntas nuevas en total${dupText}.`;
+  recomputeQuestions();
+}
+
 async function loadFiles(fileList) {
   const files = Array.from(fileList || []);
   if (!files.length) return;
@@ -1399,6 +1437,10 @@ function wireEvents() {
 
   if (el.loadServerDatasetBtn) {
     el.loadServerDatasetBtn.addEventListener("click", loadSelectedServerDataset);
+  }
+
+  if (el.loadAllServerDatasetsBtn) {
+    el.loadAllServerDatasetsBtn.addEventListener("click", loadAllServerDatasets);
   }
 
   el.startSimBtn.addEventListener("click", startMockExam);
