@@ -1,0 +1,582 @@
+{
+  "sourcePdf": "simulacro_examen_revisado_v2.docx",
+  "exportedAt": "2026-06-06T08:07:10.202753+00:00",
+  "totalQuestions": 25,
+  "items": [
+    {
+      "page": 1,
+      "questionNumber": 1,
+      "question": "¿Cuál es una de las funciones de la capa de transporte en el modelo OSI?",
+      "answers": [
+        {
+          "text": "Encapsulación de tramas",
+          "selected": false
+        },
+        {
+          "text": "Control de flujo y segmentación",
+          "selected": true
+        },
+        {
+          "text": "Control de acceso al medio",
+          "selected": false
+        },
+        {
+          "text": "Enrutamiento de paquetes",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 2,
+      "question": "¿Qué técnica de control de acceso al medio usa Token Ring?",
+      "answers": [
+        {
+          "text": "CSMA/CA",
+          "selected": false
+        },
+        {
+          "text": "Token Passing",
+          "selected": true
+        },
+        {
+          "text": "TDMA",
+          "selected": false
+        },
+        {
+          "text": "CDMA",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 3,
+      "question": "En OSPF, ¿cómo se calcula habitualmente el coste de un enlace?",
+      "answers": [
+        {
+          "text": "En función del ancho de banda",
+          "selected": true
+        },
+        {
+          "text": "Solo por distancia en saltos",
+          "selected": false
+        },
+        {
+          "text": "Por la dirección MAC del router",
+          "selected": false
+        },
+        {
+          "text": "Por el tamaño de la tabla ARP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 4,
+      "question": "¿Cuál es la dirección MAC de broadcast en una red Ethernet?",
+      "answers": [
+        {
+          "text": "FF:FF:FF:FF:FF:FF",
+          "selected": true
+        },
+        {
+          "text": "00:00:00:00:00:00",
+          "selected": false
+        },
+        {
+          "text": "FF:00:FF:00:FF:00",
+          "selected": false
+        },
+        {
+          "text": "01:00:5E:00:00:00",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 5,
+      "question": "¿Qué mejora introduce RSTP respecto a STP?",
+      "answers": [
+        {
+          "text": "Una convergencia más rápida",
+          "selected": true
+        },
+        {
+          "text": "Cifrado de las tramas",
+          "selected": false
+        },
+        {
+          "text": "Sustitución completa de Ethernet",
+          "selected": false
+        },
+        {
+          "text": "Asignación automática de direcciones IP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 6,
+      "question": "¿Cuál es la velocidad máxima teórica asociada a 802.11n en configuración 4x4 MIMO?",
+      "answers": [
+        {
+          "text": "150 Mbps",
+          "selected": false
+        },
+        {
+          "text": "300 Mbps",
+          "selected": false
+        },
+        {
+          "text": "600 Mbps",
+          "selected": true
+        },
+        {
+          "text": "1,3 Gbps",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 7,
+      "question": "Según RFC 1918, ¿cuál de estos rangos corresponde a direcciones IPv4 privadas?",
+      "answers": [
+        {
+          "text": "172.16.0.0/12",
+          "selected": true
+        },
+        {
+          "text": "169.254.0.0/16",
+          "selected": false
+        },
+        {
+          "text": "224.0.0.0/4",
+          "selected": false
+        },
+        {
+          "text": "192.0.2.0/24",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 8,
+      "question": "¿Qué protocolo se utiliza habitualmente para proporcionar seguridad a nivel de IP?",
+      "answers": [
+        {
+          "text": "GRE",
+          "selected": false
+        },
+        {
+          "text": "IPsec",
+          "selected": true
+        },
+        {
+          "text": "MPLS",
+          "selected": false
+        },
+        {
+          "text": "NAT66",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 9,
+      "question": "¿Para qué se usa el campo DSCP en cabeceras IP?",
+      "answers": [
+        {
+          "text": "Para direccionamiento multicast",
+          "selected": false
+        },
+        {
+          "text": "Para calidad de servicio",
+          "selected": true
+        },
+        {
+          "text": "Para resolver direcciones MAC",
+          "selected": false
+        },
+        {
+          "text": "Para sustituir a TCP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 10,
+      "question": "¿Cuál es una distancia máxima habitual para fibra multimodo OM3 a 10 Gbps?",
+      "answers": [
+        {
+          "text": "150 m",
+          "selected": false
+        },
+        {
+          "text": "300 m",
+          "selected": true
+        },
+        {
+          "text": "550 m",
+          "selected": false
+        },
+        {
+          "text": "1000 m",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 11,
+      "question": "El estándar IEEE 802.3af está relacionado con:",
+      "answers": [
+        {
+          "text": "Wi-Fi 6",
+          "selected": false
+        },
+        {
+          "text": "Power over Ethernet",
+          "selected": true
+        },
+        {
+          "text": "Direccionamiento IPv6",
+          "selected": false
+        },
+        {
+          "text": "Cifrado simétrico",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 12,
+      "question": "¿Qué tipo de conector óptico es pequeño y común en switches modernos?",
+      "answers": [
+        {
+          "text": "SC",
+          "selected": false
+        },
+        {
+          "text": "ST",
+          "selected": false
+        },
+        {
+          "text": "LC",
+          "selected": true
+        },
+        {
+          "text": "FC",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 13,
+      "question": "¿Qué característica aporta SNMPv3 respecto a versiones anteriores?",
+      "answers": [
+        {
+          "text": "Eliminación de todos los agentes",
+          "selected": false
+        },
+        {
+          "text": "Autenticación y cifrado",
+          "selected": true
+        },
+        {
+          "text": "Uso exclusivo de TCP",
+          "selected": false
+        },
+        {
+          "text": "Sustitución del modelo OSI",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 14,
+      "question": "¿Qué parte de una PDU de red contiene la dirección IP de origen?",
+      "answers": [
+        {
+          "text": "La cabecera Ethernet",
+          "selected": false
+        },
+        {
+          "text": "La cabecera IP",
+          "selected": true
+        },
+        {
+          "text": "La cabecera TCP/UDP",
+          "selected": false
+        },
+        {
+          "text": "El campo de datos de aplicación",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 15,
+      "question": "¿Cuál es la función principal de ARP en redes IPv4?",
+      "answers": [
+        {
+          "text": "Configurar direcciones IP automáticamente",
+          "selected": false
+        },
+        {
+          "text": "Resolver nombres de dominio",
+          "selected": false
+        },
+        {
+          "text": "Asociar direcciones IP con direcciones MAC",
+          "selected": true
+        },
+        {
+          "text": "Cifrar tramas Ethernet",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 16,
+      "question": "Una VLAN basada en protocolo clasifica el tráfico según:",
+      "answers": [
+        {
+          "text": "La velocidad del cable",
+          "selected": false
+        },
+        {
+          "text": "El puerto físico únicamente",
+          "selected": false
+        },
+        {
+          "text": "El tipo de protocolo transportado",
+          "selected": true
+        },
+        {
+          "text": "La longitud del paquete",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 17,
+      "question": "En OSPF, ¿qué router suele estar relacionado con la conexión entre áreas?",
+      "answers": [
+        {
+          "text": "Router interno",
+          "selected": false
+        },
+        {
+          "text": "ABR",
+          "selected": true
+        },
+        {
+          "text": "Host final",
+          "selected": false
+        },
+        {
+          "text": "Switch de acceso",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 18,
+      "question": "¿Cuál es el prefijo de las direcciones IPv6 de enlace local?",
+      "answers": [
+        {
+          "text": "FE80::/10",
+          "selected": true
+        },
+        {
+          "text": "FF00::/8",
+          "selected": false
+        },
+        {
+          "text": "2000::/3",
+          "selected": false
+        },
+        {
+          "text": "FD00::/8",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 19,
+      "question": "En STP, la prioridad de puente se utiliza para:",
+      "answers": [
+        {
+          "text": "Asignar direcciones IP",
+          "selected": false
+        },
+        {
+          "text": "Elegir el puente raíz",
+          "selected": true
+        },
+        {
+          "text": "Cifrar el tráfico",
+          "selected": false
+        },
+        {
+          "text": "Configurar DHCP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 20,
+      "question": "Kerberos es un protocolo de autenticación basado en:",
+      "answers": [
+        {
+          "text": "Certificados autofirmados",
+          "selected": false
+        },
+        {
+          "text": "Tickets",
+          "selected": true
+        },
+        {
+          "text": "Direcciones MAC",
+          "selected": false
+        },
+        {
+          "text": "Tramas Ethernet",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 21,
+      "question": "En SNMP, una MIB define:",
+      "answers": [
+        {
+          "text": "La contraseña de administrador",
+          "selected": false
+        },
+        {
+          "text": "Los objetos gestionables",
+          "selected": true
+        },
+        {
+          "text": "El cableado de planta",
+          "selected": false
+        },
+        {
+          "text": "El algoritmo de cifrado de disco",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 22,
+      "question": "En TLS moderno, el intercambio de claves puede realizarse mediante:",
+      "answers": [
+        {
+          "text": "RSA sin cifrado",
+          "selected": false
+        },
+        {
+          "text": "ECDHE",
+          "selected": true
+        },
+        {
+          "text": "ARP",
+          "selected": false
+        },
+        {
+          "text": "STP",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 23,
+      "question": "¿Cuál es el alcance típico de una red PAN?",
+      "answers": [
+        {
+          "text": "Un país completo",
+          "selected": false
+        },
+        {
+          "text": "Una ciudad",
+          "selected": false
+        },
+        {
+          "text": "El entorno personal de un usuario",
+          "selected": true
+        },
+        {
+          "text": "Una red troncal internacional",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 24,
+      "question": "¿Para qué se utiliza LACP en agregación de enlaces?",
+      "answers": [
+        {
+          "text": "Para filtrar malware",
+          "selected": false
+        },
+        {
+          "text": "Para negociar y agrupar enlaces de forma dinámica",
+          "selected": true
+        },
+        {
+          "text": "Para sustituir a IPv6",
+          "selected": false
+        },
+        {
+          "text": "Para crear certificados digitales",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "questionNumber": 25,
+      "question": "¿Qué rango IP está reservado para loopback en IPv4?",
+      "answers": [
+        {
+          "text": "127.0.0.0/8",
+          "selected": true
+        },
+        {
+          "text": "192.168.0.0/16",
+          "selected": false
+        },
+        {
+          "text": "224.0.0.0/4",
+          "selected": false
+        },
+        {
+          "text": "10.0.0.0/8",
+          "selected": false
+        }
+      ]
+    }
+  ]
+}
