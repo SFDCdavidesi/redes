@@ -493,24 +493,25 @@ function wildcardFromMask(mask) {
 function broadcastFromNetwork(net, cidr) {
   const parts = net.split('.').map(Number);
   const hostBits = 32 - cidr;
-  let ip = (parts[0]<<24)|(parts[1]<<16)|(parts[2]<<8)|parts[3];
-  const hostMask = (1<<hostBits)-1;
-  ip = ip | hostMask;
+  // use unsigned right shift to avoid sign issues
+  let ip = ((parts[0]<<24)|(parts[1]<<16)|(parts[2]<<8)|parts[3]) >>> 0;
+  const hostMask = (hostBits === 32) ? 0xFFFFFFFF : ((1 << hostBits) - 1);
+  ip = (ip | hostMask) >>> 0;
   return [(ip>>>24)&255,(ip>>>16)&255,(ip>>>8)&255,ip&255].join('.');
 }
 
-function firstSubnet(baseNet, baseCidr, bitsStolen) {
-  // first subnet = base network (all subnet bits = 0)
-  return baseNet;
-}
-
 function jumpFromCidr(cidr) {
-  // jump = value of last 1-bit in mask = 256 - last non-255 byte
+  // 256 - value of the last non-255 byte in the mask
   const mask = maskFromCidr(cidr);
   const parts = mask.split('.').map(Number);
   for(let i=3;i>=0;i--) {
-    if(parts[i]!==255 && parts[i]!==0) return 256-parts[i];
-    if(parts[i]===0 && (i===3||parts[i+1]===255)) return 256; // whole byte
+    if(parts[i] !== 255 && parts[i] !== 0) return 256 - parts[i];
+    if(parts[i] === 0) {
+      // whole byte is 0, so jump is 256 in that byte
+      // but we want the meaningful jump — find first non-255 going right
+      if(i > 0 && parts[i-1] !== 255) return 256 - parts[i-1];
+      return 256;
+    }
   }
   return 1;
 }
@@ -546,14 +547,8 @@ function generateSubnetting() {
   const hostBits = 32 - newCidr;
   const hosts = Math.pow(2, hostBits) - 2;
 
-  // jump: 256 - value of the subnet byte
-  const maskParts = mask.split('.').map(Number);
-  let jumpByte = 0;
-  let jumpVal = 0;
-  for(let i=0;i<4;i++) {
-    if(maskParts[i]!==255 && maskParts[i]!==0) { jumpByte=i; jumpVal=256-maskParts[i]; break; }
-    if(maskParts[i]===0) { jumpByte=i; jumpVal=256; break; }
-  }
+  // jump: 256 - value of the last non-255 byte in mask
+  const jumpVal = jumpFromCidr(newCidr);
 
   // broadcast of first subnet
   const broadcast = broadcastFromNetwork(net, newCidr);
