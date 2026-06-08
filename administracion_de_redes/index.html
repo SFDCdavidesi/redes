@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NetDrill — Subnetting & Wildcards</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: #1e2d45;
+    --accent: #00d4aa;
+    --accent2: #ff6b35;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 20% 20%, rgba(0,212,170,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(255,107,53,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  header {
+    text-align: center;
+    padding: 3rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+  }
+
+  .logo {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.4rem;
+  }
+
+  .tagline {
+    color: var(--muted);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    background: var(--surface);
+    padding: 0.4rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .tab {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .tab.active {
+    background: var(--surface2);
+    color: var(--accent);
+    border: 1px solid var(--border);
+  }
+
+  .tab:hover:not(.active) { color: var(--text); }
+
+  .panel { display: none; }
+  .panel.active { display: block; animation: fadeIn 0.3s ease; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .exercise-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .exercise-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+
+  .exercise-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .exercise-question {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .ip-display {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--surface2);
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    display: inline-block;
+  }
+
+  .fields-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .field-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .field-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .field-input {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.65rem 1rem;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    outline: none;
+    width: 100%;
+  }
+
+  .field-input:focus { border-color: var(--accent); }
+  .field-input.correct { border-color: var(--green); background: rgba(34,197,94,0.07); }
+  .field-input.wrong { border-color: var(--red); background: rgba(239,68,68,0.07); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0a0e1a;
+  }
+  .btn-primary:hover { background: #00bfa0; transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: var(--surface2);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  .btn-danger {
+    background: rgba(239,68,68,0.1);
+    color: var(--red);
+    border: 1px solid rgba(239,68,68,0.2);
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .feedback-block {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    border-radius: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    display: none;
+  }
+
+  .feedback-block.show { display: block; animation: fadeIn 0.3s ease; }
+  .feedback-block.success { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25); color: var(--green); }
+  .feedback-block.partial { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.25); color: var(--yellow); }
+  .feedback-block.error { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); color: var(--red); }
+
+  .feedback-row { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .feedback-item { display: flex; flex-direction: column; gap: 0.2rem; }
+  .feedback-key { color: var(--muted); font-size: 0.7rem; text-transform: uppercase; }
+  .feedback-val { font-weight: 700; }
+  .feedback-val.ok { color: var(--green); }
+  .feedback-val.bad { color: var(--red); }
+
+  .stats-bar {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .stat { display: flex; flex-direction: column; gap: 0.2rem; }
+  .stat-val { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+  .stat-label { font-size: 0.7rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .hint-toggle {
+    font-size: 0.8rem;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: auto;
+  }
+  .hint-toggle:hover { color: var(--accent); }
+
+  .hint-box {
+    background: rgba(0,212,170,0.05);
+    border: 1px solid rgba(0,212,170,0.15);
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 1rem;
+    line-height: 1.8;
+    display: none;
+  }
+  .hint-box.show { display: block; animation: fadeIn 0.2s ease; }
+  .hint-box span { color: var(--accent); }
+
+  .difficulty-select {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .diff-btn {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .diff-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(0,212,170,0.07); }
+
+  .section-title {
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  @media (max-width: 600px) {
+    .fields-grid { grid-template-columns: 1fr; }
+    .logo { font-size: 2rem; }
+    .ip-display { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">NetDrill</div>
+    <div class="tagline">Subnetting &amp; Wildcard Masks · Práctica para el examen</div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('subnetting')">Subnetting</button>
+    <button class="tab" onclick="switchTab('wildcard')">Wildcard Masks</button>
+  </div>
+
+  <!-- SUBNETTING PANEL -->
+  <div class="panel active" id="panel-subnetting">
+    <div class="stats-bar">
+      <div class="stat"><div class="stat-val" id="sn-correct">0</div><div class="stat-label">Correctos</div></div>
+      <div class="stat"><div class="stat-val" id="sn-total">0</div><div class="stat-label">Intentos</div></div>
+      <div class="stat"><div class="stat-val" id="sn-pct">—</div><div class="stat-label">Acierto</div></div>
+    </div>
+
+    <div class="section-title">Dificultad</div>
+    <div class="difficulty-select">
+      <button class="diff-btn active" onclick="setDiff('sn','easy',this)">Fácil (Clase C)</button>
+      <button class="diff-btn" onclick="setDiff('sn','medium',this)">Medio (B y C)</button>
+      <button class="diff-btn" onclick="setDiff('sn','hard',this)">Difícil (A, B y C)</button>
+    </div>
+
+    <div class="exercise-card" id="sn-card">
+      <div class="exercise-label">Ejercicio de subnetting</div>
+      <div class="exercise-question" id="sn-question">Cargando ejercicio...</div>
+      <div class="ip-display" id="sn-ip"></div>
+
+      <div class="fields-grid">
+        <div class="field-group">
+          <div class="field-label">Máscara decimal</div>
+          <input class="field-input" id="sn-mask" placeholder="255.255.255.0" autocomplete="off">
+        </div>
+        <div class="field-group">
+          <div class="field-label">CIDR (/xx)</div>
+          <input class="field-input" id="sn-cidr" placeholder="/24" autocomplete="off">
+        </div>
+        <div class="field-group">
+          <div class="field-label">Nº subredes</div>
+          <input class="field-input" id="sn-subnets" placeholder="8" autocomplete="off">
+        </div>
+        <div class="field-group">
+          <div class="field-label">Hosts útiles/subred</div>
+          <input class="field-input" id="sn-hosts" placeholder="30" autocomplete="off">
+        </div>
+        <div class="field-group">
+          <div class="field-label">Salto entre subredes</div>
+          <input class="field-input" id="sn-jump" placeholder="32" autocomplete="off">
+        </div>
+        <div class="field-group">
+          <div class="field-label">Broadcast 1ª subred</div>
+          <input class="field-input" id="sn-broadcast" placeholder="192.168.1.31" autocomplete="off">
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;margin-bottom:0.5rem;">
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="checkSubnetting()">Corregir</button>
+          <button class="btn btn-secondary" onclick="newSubnetting()">Nuevo ejercicio</button>
+        </div>
+        <button class="hint-toggle" onclick="toggleHint('sn')">¿Pista?</button>
+      </div>
+
+      <div class="hint-box" id="hint-sn"></div>
+      <div class="feedback-block" id="sn-feedback"></div>
+    </div>
+  </div>
+
+  <!-- WILDCARD PANEL -->
+  <div class="panel" id="panel-wildcard">
+    <div class="stats-bar">
+      <div class="stat"><div class="stat-val" id="wc-correct">0</div><div class="stat-label">Correctos</div></div>
+      <div class="stat"><div class="stat-val" id="wc-total">0</div><div class="stat-label">Intentos</div></div>
+      <div class="stat"><div class="stat-val" id="wc-pct">—</div><div class="stat-label">Acierto</div></div>
+    </div>
+
+    <div class="section-title">Dificultad</div>
+    <div class="difficulty-select">
+      <button class="diff-btn active" onclick="setDiff('wc','easy',this)">Fácil (solo /8,/16,/24)</button>
+      <button class="diff-btn" onclick="setDiff('wc','medium',this)">Medio (cualquier /prefix)</button>
+      <button class="diff-btn" onclick="setDiff('wc','hard',this)">Difícil + host/any</button>
+    </div>
+
+    <div class="exercise-card" id="wc-card">
+      <div class="exercise-label">Ejercicio de Wildcard Mask</div>
+      <div class="exercise-question" id="wc-question">Cargando ejercicio...</div>
+      <div class="ip-display" id="wc-ip"></div>
+
+      <div class="fields-grid" style="grid-template-columns:1fr;">
+        <div class="field-group">
+          <div class="field-label">Wildcard mask</div>
+          <input class="field-input" id="wc-answer" placeholder="0.0.0.255" autocomplete="off" onkeydown="if(event.key==='Enter')checkWildcard()">
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;margin-bottom:0.5rem;">
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="checkWildcard()">Corregir</button>
+          <button class="btn btn-secondary" onclick="newWildcard()">Nuevo ejercicio</button>
+        </div>
+        <button class="hint-toggle" onclick="toggleHint('wc')">¿Pista?</button>
+      </div>
+
+      <div class="hint-box" id="hint-wc"></div>
+      <div class="feedback-block" id="wc-feedback"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── STATE ───────────────────────────────────────────────
+const state = {
+  sn: { correct: 0, total: 0, diff: 'easy', current: null },
+  wc: { correct: 0, total: 0, diff: 'easy', current: null }
+};
+
+// ─── TABS ────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', ['subnetting','wildcard'][i]===name));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+}
+
+// ─── DIFFICULTY ──────────────────────────────────────────
+function setDiff(type, diff, btn) {
+  state[type].diff = diff;
+  btn.closest('.difficulty-select').querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  type === 'sn' ? newSubnetting() : newWildcard();
+}
+
+// ─── UTILS ───────────────────────────────────────────────
+function rnd(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+function maskFromCidr(cidr) {
+  const bits = cidr;
+  let mask = [0,0,0,0];
+  for(let i=0;i<32;i++) { if(i<bits) mask[Math.floor(i/8)] |= (1<<(7-(i%8))); }
+  return mask.join('.');
+}
+
+function wildcardFromMask(mask) {
+  return mask.split('.').map(b => 255 - parseInt(b)).join('.');
+}
+
+function broadcastFromNetwork(net, cidr) {
+  const parts = net.split('.').map(Number);
+  const hostBits = 32 - cidr;
+  let ip = (parts[0]<<24)|(parts[1]<<16)|(parts[2]<<8)|parts[3];
+  const hostMask = (1<<hostBits)-1;
+  ip = ip | hostMask;
+  return [(ip>>>24)&255,(ip>>>16)&255,(ip>>>8)&255,ip&255].join('.');
+}
+
+function firstSubnet(baseNet, baseCidr, bitsStolen) {
+  // first subnet = base network (all subnet bits = 0)
+  return baseNet;
+}
+
+function jumpFromCidr(cidr) {
+  // jump = value of last 1-bit in mask = 256 - last non-255 byte
+  const mask = maskFromCidr(cidr);
+  const parts = mask.split('.').map(Number);
+  for(let i=3;i>=0;i--) {
+    if(parts[i]!==255 && parts[i]!==0) return 256-parts[i];
+    if(parts[i]===0 && (i===3||parts[i+1]===255)) return 256; // whole byte
+  }
+  return 1;
+}
+
+// ─── SUBNETTING ──────────────────────────────────────────
+function generateSubnetting() {
+  const diff = state.sn.diff;
+  let baseClass, baseCidr, bitsToSteal;
+
+  if(diff==='easy') {
+    baseClass = 'C'; baseCidr = 24; bitsToSteal = rnd(1,5);
+  } else if(diff==='medium') {
+    baseClass = rnd(0,1)===0?'B':'C';
+    baseCidr = baseClass==='B'?16:24;
+    bitsToSteal = rnd(1,6);
+  } else {
+    const r = rnd(0,2);
+    baseClass = ['A','B','C'][r];
+    baseCidr = [8,16,24][r];
+    bitsToSteal = rnd(1,7);
+  }
+
+  const newCidr = baseCidr + bitsToSteal;
+
+  // generate base network
+  let net;
+  if(baseClass==='A') net = `${rnd(1,126)}.0.0.0`;
+  else if(baseClass==='B') net = `${rnd(128,191)}.${rnd(0,255)}.0.0`;
+  else net = `${rnd(192,223)}.${rnd(0,255)}.${rnd(0,255)}.0`;
+
+  const mask = maskFromCidr(newCidr);
+  const subnets = Math.pow(2, bitsToSteal);
+  const hostBits = 32 - newCidr;
+  const hosts = Math.pow(2, hostBits) - 2;
+
+  // jump: 256 - value of the subnet byte
+  const maskParts = mask.split('.').map(Number);
+  let jumpByte = 0;
+  let jumpVal = 0;
+  for(let i=0;i<4;i++) {
+    if(maskParts[i]!==255 && maskParts[i]!==0) { jumpByte=i; jumpVal=256-maskParts[i]; break; }
+    if(maskParts[i]===0) { jumpByte=i; jumpVal=256; break; }
+  }
+
+  // broadcast of first subnet
+  const broadcast = broadcastFromNetwork(net, newCidr);
+
+  return { net, baseCidr, bitsToSteal, newCidr, mask, subnets, hosts, jumpVal, broadcast, baseClass };
+}
+
+function newSubnetting() {
+  clearInputs('sn');
+  const ex = generateSubnetting();
+  state.sn.current = ex;
+  document.getElementById('sn-question').textContent =
+    `Red ${ex.baseClass === 'A' ? 'Clase A' : ex.baseClass === 'B' ? 'Clase B' : 'Clase C'} con ${ex.bitsToSteal} bit${ex.bitsToSteal>1?'s':''} robado${ex.bitsToSteal>1?'s':''} al host ID. Rellena todos los campos.`;
+  document.getElementById('sn-ip').textContent = `${ex.net} /${ex.baseCidr}`;
+  document.getElementById('sn-feedback').classList.remove('show');
+  document.getElementById('hint-sn').classList.remove('show');
+}
+
+function checkSubnetting() {
+  const ex = state.sn.current;
+  if(!ex) return;
+
+  const fields = [
+    { id:'sn-mask', val: ex.mask, label:'Máscara' },
+    { id:'sn-cidr', val: '/'+ex.newCidr, label:'CIDR' },
+    { id:'sn-subnets', val: String(ex.subnets), label:'Subredes' },
+    { id:'sn-hosts', val: String(ex.hosts), label:'Hosts útiles' },
+    { id:'sn-jump', val: String(ex.jumpVal), label:'Salto' },
+    { id:'sn-broadcast', val: ex.broadcast, label:'Broadcast' },
+  ];
+
+  let correct = 0;
+  fields.forEach(f => {
+    const input = document.getElementById(f.id);
+    const userVal = input.value.trim().replace(/\s/g,'');
+    const isOk = userVal === f.val || userVal === f.val.replace('/','');
+    input.classList.toggle('correct', isOk);
+    input.classList.toggle('wrong', !isOk);
+    if(isOk) correct++;
+  });
+
+  state.sn.total++;
+  const allCorrect = correct === fields.length;
+  if(allCorrect) state.sn.correct++;
+  updateStats('sn');
+
+  const fb = document.getElementById('sn-feedback');
+  fb.innerHTML = `<div style="font-weight:700;margin-bottom:0.75rem;">${allCorrect?'✓ Todo correcto':'✗ Hay errores — respuestas correctas:'}</div><div class="feedback-row">` +
+    fields.map(f => `<div class="feedback-item"><span class="feedback-key">${f.label}</span><span class="feedback-val ${document.getElementById(f.id).classList.contains('correct')?'ok':'bad'}">${f.val}</span></div>`).join('') +
+    '</div>';
+  fb.className = `feedback-block show ${allCorrect?'success':'error'}`;
+}
+
+// ─── WILDCARD ────────────────────────────────────────────
+function generateWildcard() {
+  const diff = state.wc.diff;
+  let cidr, ip, questionType;
+
+  const classRanges = { A:[1,126], B:[128,191], C:[192,223] };
+
+  if(diff==='easy') {
+    cidr = [8,16,24][rnd(0,2)];
+  } else {
+    cidr = rnd(8,30);
+  }
+
+  if(diff==='hard') {
+    // sometimes ask for host or any
+    const r = rnd(0,4);
+    if(r===0) { return { type:'host', ip: `${rnd(10,200)}.${rnd(0,255)}.${rnd(0,255)}.${rnd(1,254)}`, wildcard:'0.0.0.0', cidr:32 }; }
+    if(r===1) { return { type:'any', ip:'0.0.0.0', wildcard:'255.255.255.255', cidr:0 }; }
+  }
+
+  const mask = maskFromCidr(cidr);
+  const wildcard = wildcardFromMask(mask);
+  const cls = cidr<=8?'A':cidr<=16?'B':'C';
+  const r = classRanges[cls];
+  const first = rnd(r[0],r[1]);
+  let netParts;
+  if(cidr<=8) netParts=[first,0,0,0];
+  else if(cidr<=16) netParts=[first,rnd(0,255),0,0];
+  else if(cidr<=24) netParts=[first,rnd(0,255),rnd(0,255),0];
+  else netParts=[first,rnd(0,255),rnd(0,255),rnd(0,255)&(255<<(32-cidr)&255)];
+
+  ip = netParts.join('.');
+  return { type:'network', ip, mask, wildcard, cidr };
+}
+
+function newWildcard() {
+  clearInputs('wc');
+  const ex = generateWildcard();
+  state.wc.current = ex;
+
+  let q, displayIp;
+  if(ex.type==='host') {
+    q = `¿Cuál es la wildcard mask para filtrar EXACTAMENTE el host ${ex.ip}?`;
+    displayIp = `host ${ex.ip}`;
+  } else if(ex.type==='any') {
+    q = `¿Cuál es la wildcard mask para referirse a CUALQUIER dirección IP (any)?`;
+    displayIp = `any`;
+  } else {
+    q = `Calcula la wildcard mask para la red ${ex.ip}/${ex.cidr}`;
+    displayIp = `${ex.ip} /${ex.cidr}`;
+  }
+
+  document.getElementById('wc-question').textContent = q;
+  document.getElementById('wc-ip').textContent = displayIp;
+  document.getElementById('wc-feedback').classList.remove('show');
+  document.getElementById('hint-wc').classList.remove('show');
+  document.getElementById('wc-answer').value = '';
+  document.getElementById('wc-answer').className = 'field-input';
+}
+
+function checkWildcard() {
+  const ex = state.wc.current;
+  if(!ex) return;
+  const input = document.getElementById('wc-answer');
+  const userVal = input.value.trim();
+  const isOk = userVal === ex.wildcard;
+
+  input.classList.toggle('correct', isOk);
+  input.classList.toggle('wrong', !isOk);
+
+  state.wc.total++;
+  if(isOk) state.wc.correct++;
+  updateStats('wc');
+
+  const fb = document.getElementById('wc-feedback');
+  if(isOk) {
+    fb.innerHTML = `✓ Correcto — la wildcard es <strong>${ex.wildcard}</strong>`;
+    fb.className = 'feedback-block show success';
+  } else {
+    let hint = '';
+    if(ex.type==='network') hint = `<br>Fórmula: 255.255.255.255 − ${ex.mask} = ${ex.wildcard}`;
+    fb.innerHTML = `✗ Incorrecto — la respuesta correcta es <strong>${ex.wildcard}</strong>${hint}`;
+    fb.className = 'feedback-block show error';
+  }
+}
+
+// ─── HINTS ───────────────────────────────────────────────
+function toggleHint(type) {
+  const box = document.getElementById('hint-'+type);
+  if(box.classList.contains('show')) { box.classList.remove('show'); return; }
+
+  if(type==='sn') {
+    const ex = state.sn.current;
+    if(!ex) return;
+    box.innerHTML = `
+      <span>Bits robados:</span> ${ex.bitsToSteal} → Subredes: 2^${ex.bitsToSteal} = ${ex.subnets}<br>
+      <span>Bits host restantes:</span> ${32-ex.newCidr} → Hosts: 2^${32-ex.newCidr} − 2 = ${ex.hosts}<br>
+      <span>CIDR:</span> /${ex.baseCidr} + ${ex.bitsToSteal} bits = /${ex.newCidr}<br>
+      <span>Salto:</span> 256 − valor del byte de la máscara = ${ex.jumpVal}<br>
+      <span>Broadcast:</span> siguiente subred − 1 = ${ex.broadcast}
+    `;
+  } else {
+    const ex = state.wc.current;
+    if(!ex) return;
+    if(ex.type==='host') {
+      box.innerHTML = `<span>Host exacto</span> → wildcard = 0.0.0.0 (todos los bits importan)`;
+    } else if(ex.type==='any') {
+      box.innerHTML = `<span>Any</span> → wildcard = 255.255.255.255 (ningún bit importa)`;
+    } else {
+      box.innerHTML = `<span>Fórmula:</span> 255.255.255.255 − máscara normal = wildcard<br>255.255.255.255 − <span>${ex.mask}</span> = <span>${ex.wildcard}</span>`;
+    }
+  }
+  box.classList.add('show');
+}
+
+// ─── STATS ───────────────────────────────────────────────
+function updateStats(type) {
+  const s = state[type];
+  document.getElementById(type+'-correct').textContent = s.correct;
+  document.getElementById(type+'-total').textContent = s.total;
+  document.getElementById(type+'-pct').textContent = s.total>0 ? Math.round(s.correct/s.total*100)+'%' : '—';
+}
+
+// ─── CLEAR ───────────────────────────────────────────────
+function clearInputs(type) {
+  const ids = type==='sn'
+    ? ['sn-mask','sn-cidr','sn-subnets','sn-hosts','sn-jump','sn-broadcast']
+    : ['wc-answer'];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    el.value = '';
+    el.className = 'field-input';
+  });
+}
+
+// ─── INIT ────────────────────────────────────────────────
+newSubnetting();
+newWildcard();
+</script>
+</body>
+</html>
