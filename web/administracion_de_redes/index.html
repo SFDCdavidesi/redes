@@ -463,9 +463,9 @@ const state = {
 
 // ─── TABS ────────────────────────────────────────────────
 function switchTab(name) {
-  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', ['subnetting','wildcard'][i]===name));
+  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', ['subnetting', 'wildcard'][i] === name));
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-'+name).classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
 }
 
 // ─── DIFFICULTY ──────────────────────────────────────────
@@ -477,43 +477,59 @@ function setDiff(type, diff, btn) {
 }
 
 // ─── UTILS ───────────────────────────────────────────────
-function rnd(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+function rnd(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 function maskFromCidr(cidr) {
   const bits = cidr;
-  let mask = [0,0,0,0];
-  for(let i=0;i<32;i++) { if(i<bits) mask[Math.floor(i/8)] |= (1<<(7-(i%8))); }
+  const mask = [0, 0, 0, 0];
+  for (let i = 0; i < 32; i++) {
+    if (i < bits) mask[Math.floor(i / 8)] |= (1 << (7 - (i % 8)));
+  }
   return mask.join('.');
 }
 
 function wildcardFromMask(mask) {
-  return mask.split('.').map(b => 255 - parseInt(b)).join('.');
+  return mask.split('.').map(b => 255 - parseInt(b, 10)).join('.');
 }
 
 function broadcastFromNetwork(net, cidr) {
   const parts = net.split('.').map(Number);
   const hostBits = 32 - cidr;
-  // use unsigned right shift to avoid sign issues
-  let ip = ((parts[0]<<24)|(parts[1]<<16)|(parts[2]<<8)|parts[3]) >>> 0;
-  const hostMask = (hostBits === 32) ? 0xFFFFFFFF : ((1 << hostBits) - 1);
-  ip = (ip | hostMask) >>> 0;
-  return [(ip>>>24)&255,(ip>>>16)&255,(ip>>>8)&255,ip&255].join('.');
+  const ip = (((parts[0] << 24) | (parts[1] << 16) | (parts[2] << 8) | parts[3]) >>> 0);
+  const hostMask = hostBits === 0 ? 0 : (0xFFFFFFFF >>> cidr);
+  const broadcastIp = (ip | hostMask) >>> 0;
+  return [
+    (broadcastIp >>> 24) & 255,
+    (broadcastIp >>> 16) & 255,
+    (broadcastIp >>> 8) & 255,
+    broadcastIp & 255
+  ].join('.');
+}
+
+function calcularSalto(mascaraDecimal) {
+  const octetos = mascaraDecimal.split('.').map(Number);
+
+  if (octetos.length !== 4 || octetos.some(n => Number.isNaN(n) || n < 0 || n > 255)) {
+    throw new Error('Máscara decimal no válida');
+  }
+
+  for (const octeto of octetos) {
+    if (octeto > 0 && octeto < 255) {
+      return 256 - octeto;
+    }
+  }
+
+  return 1;
 }
 
 function jumpFromCidr(cidr) {
-  // 256 - value of the last non-255 byte in the mask
-  const mask = maskFromCidr(cidr);
-  const parts = mask.split('.').map(Number);
-  for(let i=3;i>=0;i--) {
-    if(parts[i] !== 255 && parts[i] !== 0) return 256 - parts[i];
-    if(parts[i] === 0) {
-      // whole byte is 0, so jump is 256 in that byte
-      // but we want the meaningful jump — find first non-255 going right
-      if(i > 0 && parts[i-1] !== 255) return 256 - parts[i-1];
-      return 256;
-    }
-  }
-  return 1;
+  return calcularSalto(maskFromCidr(cidr));
+}
+
+function formatFeedbackValue(value) {
+  return String(value);
 }
 
 // ─── SUBNETTING ──────────────────────────────────────────
@@ -521,36 +537,33 @@ function generateSubnetting() {
   const diff = state.sn.diff;
   let baseClass, baseCidr, bitsToSteal;
 
-  if(diff==='easy') {
-    baseClass = 'C'; baseCidr = 24; bitsToSteal = rnd(1,5);
-  } else if(diff==='medium') {
-    baseClass = rnd(0,1)===0?'B':'C';
-    baseCidr = baseClass==='B'?16:24;
-    bitsToSteal = rnd(1,6);
+  if (diff === 'easy') {
+    baseClass = 'C';
+    baseCidr = 24;
+    bitsToSteal = rnd(1, 5);
+  } else if (diff === 'medium') {
+    baseClass = rnd(0, 1) === 0 ? 'B' : 'C';
+    baseCidr = baseClass === 'B' ? 16 : 24;
+    bitsToSteal = rnd(1, 6);
   } else {
-    const r = rnd(0,2);
-    baseClass = ['A','B','C'][r];
-    baseCidr = [8,16,24][r];
-    bitsToSteal = rnd(1,7);
+    const r = rnd(0, 2);
+    baseClass = ['A', 'B', 'C'][r];
+    baseCidr = [8, 16, 24][r];
+    bitsToSteal = rnd(1, 7);
   }
 
   const newCidr = baseCidr + bitsToSteal;
 
-  // generate base network
   let net;
-  if(baseClass==='A') net = `${rnd(1,126)}.0.0.0`;
-  else if(baseClass==='B') net = `${rnd(128,191)}.${rnd(0,255)}.0.0`;
-  else net = `${rnd(192,223)}.${rnd(0,255)}.${rnd(0,255)}.0`;
+  if (baseClass === 'A') net = `${rnd(1, 126)}.0.0.0`;
+  else if (baseClass === 'B') net = `${rnd(128, 191)}.${rnd(0, 255)}.0.0`;
+  else net = `${rnd(192, 223)}.${rnd(0, 255)}.${rnd(0, 255)}.0`;
 
   const mask = maskFromCidr(newCidr);
   const subnets = Math.pow(2, bitsToSteal);
   const hostBits = 32 - newCidr;
-  const hosts = Math.pow(2, hostBits) - 2;
-
-  // jump: 256 - value of the last non-255 byte in mask
-  const jumpVal = jumpFromCidr(newCidr);
-
-  // broadcast of first subnet
+  const hosts = hostBits > 1 ? Math.pow(2, hostBits) - 2 : 0;
+  const jumpVal = calcularSalto(mask);
   const broadcast = broadcastFromNetwork(net, newCidr);
 
   return { net, baseCidr, bitsToSteal, newCidr, mask, subnets, hosts, jumpVal, broadcast, baseClass };
@@ -561,80 +574,105 @@ function newSubnetting() {
   const ex = generateSubnetting();
   state.sn.current = ex;
   document.getElementById('sn-question').textContent =
-    `Red ${ex.baseClass === 'A' ? 'Clase A' : ex.baseClass === 'B' ? 'Clase B' : 'Clase C'} con ${ex.bitsToSteal} bit${ex.bitsToSteal>1?'s':''} robado${ex.bitsToSteal>1?'s':''} al host ID. Rellena todos los campos.`;
+    `Red ${ex.baseClass === 'A' ? 'Clase A' : ex.baseClass === 'B' ? 'Clase B' : 'Clase C'} con ${ex.bitsToSteal} bit${ex.bitsToSteal > 1 ? 's' : ''} robado${ex.bitsToSteal > 1 ? 's' : ''} al host ID. Rellena todos los campos.`;
   document.getElementById('sn-ip').textContent = `${ex.net} /${ex.baseCidr}`;
-  document.getElementById('sn-feedback').classList.remove('show');
+  document.getElementById('sn-feedback').className = 'feedback-block';
+  document.getElementById('sn-feedback').innerHTML = '';
   document.getElementById('hint-sn').classList.remove('show');
+  document.getElementById('hint-sn').innerHTML = '';
 }
 
 function checkSubnetting() {
   const ex = state.sn.current;
-  if(!ex) return;
+  if (!ex) return;
 
   const fields = [
-    { id:'sn-mask', val: ex.mask, label:'Máscara' },
-    { id:'sn-cidr', val: '/'+ex.newCidr, label:'CIDR' },
-    { id:'sn-subnets', val: String(ex.subnets), label:'Subredes' },
-    { id:'sn-hosts', val: String(ex.hosts), label:'Hosts útiles' },
-    { id:'sn-jump', val: String(ex.jumpVal), label:'Salto' },
-    { id:'sn-broadcast', val: ex.broadcast, label:'Broadcast' },
+    { id: 'sn-mask', val: ex.mask, label: 'Máscara' },
+    { id: 'sn-cidr', val: '/' + ex.newCidr, label: 'CIDR' },
+    { id: 'sn-subnets', val: String(ex.subnets), label: 'Subredes' },
+    { id: 'sn-hosts', val: String(ex.hosts), label: 'Hosts útiles' },
+    { id: 'sn-jump', val: String(ex.jumpVal), label: 'Salto' },
+    { id: 'sn-broadcast', val: ex.broadcast, label: 'Broadcast' }
   ];
 
   let correct = 0;
+
   fields.forEach(f => {
     const input = document.getElementById(f.id);
-    const userVal = input.value.trim().replace(/\s/g,'');
-    const isOk = userVal === f.val || userVal === f.val.replace('/','');
+    const userVal = input.value.trim().replace(/\s/g, '');
+    const expectedVal = String(f.val);
+    const normalizedExpected = expectedVal.replace('/', '');
+    const isOk = userVal === expectedVal || userVal === normalizedExpected;
+
     input.classList.toggle('correct', isOk);
     input.classList.toggle('wrong', !isOk);
-    if(isOk) correct++;
+
+    if (isOk) correct++;
   });
 
   state.sn.total++;
   const allCorrect = correct === fields.length;
-  if(allCorrect) state.sn.correct++;
+  if (allCorrect) state.sn.correct++;
   updateStats('sn');
 
   const fb = document.getElementById('sn-feedback');
-  fb.innerHTML = `<div style="font-weight:700;margin-bottom:0.75rem;">${allCorrect?'✓ Todo correcto':'✗ Hay errores — respuestas correctas:'}</div><div class="feedback-row">` +
-    fields.map(f => `<div class="feedback-item"><span class="feedback-key">${f.label}</span><span class="feedback-val ${document.getElementById(f.id).classList.contains('correct')?'ok':'bad'}">${f.val}</span></div>`).join('') +
-    '</div>';
-  fb.className = `feedback-block show ${allCorrect?'success':'error'}`;
+  const feedbackItems = fields.map(f => {
+    const isFieldCorrect = document.getElementById(f.id).classList.contains('correct');
+    return `<div class="feedback-item"><span class="feedback-key">${f.label}</span><span class="feedback-val ${isFieldCorrect ? 'ok' : 'bad'}">${formatFeedbackValue(f.val)}</span></div>`;
+  }).join('');
+
+  fb.innerHTML = `
+    <div style="font-weight:700;margin-bottom:0.75rem;">${allCorrect ? '✓ Todo correcto' : '✗ Hay errores — respuestas correctas:'}</div>
+    <div class="feedback-row">${feedbackItems}</div>
+  `;
+  fb.className = `feedback-block show ${allCorrect ? 'success' : 'error'}`;
 }
 
 // ─── WILDCARD ────────────────────────────────────────────
 function generateWildcard() {
   const diff = state.wc.diff;
-  let cidr, ip, questionType;
+  let cidr;
 
-  const classRanges = { A:[1,126], B:[128,191], C:[192,223] };
+  const classRanges = { A: [1, 126], B: [128, 191], C: [192, 223] };
 
-  if(diff==='easy') {
-    cidr = [8,16,24][rnd(0,2)];
+  if (diff === 'easy') {
+    cidr = [8, 16, 24][rnd(0, 2)];
   } else {
-    cidr = rnd(8,30);
+    cidr = rnd(8, 30);
   }
 
-  if(diff==='hard') {
-    // sometimes ask for host or any
-    const r = rnd(0,4);
-    if(r===0) { return { type:'host', ip: `${rnd(10,200)}.${rnd(0,255)}.${rnd(0,255)}.${rnd(1,254)}`, wildcard:'0.0.0.0', cidr:32 }; }
-    if(r===1) { return { type:'any', ip:'0.0.0.0', wildcard:'255.255.255.255', cidr:0 }; }
+  if (diff === 'hard') {
+    const r = rnd(0, 4);
+    if (r === 0) {
+      return {
+        type: 'host',
+        ip: `${rnd(10, 200)}.${rnd(0, 255)}.${rnd(0, 255)}.${rnd(1, 254)}`,
+        wildcard: '0.0.0.0',
+        cidr: 32
+      };
+    }
+    if (r === 1) {
+      return { type: 'any', ip: '0.0.0.0', wildcard: '255.255.255.255', cidr: 0 };
+    }
   }
 
   const mask = maskFromCidr(cidr);
   const wildcard = wildcardFromMask(mask);
-  const cls = cidr<=8?'A':cidr<=16?'B':'C';
-  const r = classRanges[cls];
-  const first = rnd(r[0],r[1]);
+  const cls = cidr <= 8 ? 'A' : cidr <= 16 ? 'B' : 'C';
+  const range = classRanges[cls];
+  const first = rnd(range[0], range[1]);
   let netParts;
-  if(cidr<=8) netParts=[first,0,0,0];
-  else if(cidr<=16) netParts=[first,rnd(0,255),0,0];
-  else if(cidr<=24) netParts=[first,rnd(0,255),rnd(0,255),0];
-  else netParts=[first,rnd(0,255),rnd(0,255),rnd(0,255)&(255<<(32-cidr)&255)];
 
-  ip = netParts.join('.');
-  return { type:'network', ip, mask, wildcard, cidr };
+  if (cidr <= 8) netParts = [first, 0, 0, 0];
+  else if (cidr <= 16) netParts = [first, rnd(0, 255), 0, 0];
+  else if (cidr <= 24) netParts = [first, rnd(0, 255), rnd(0, 255), 0];
+  else {
+    const lastOctetMask = 256 - Math.pow(2, 32 - cidr);
+    netParts = [first, rnd(0, 255), rnd(0, 255), rnd(0, 255) & lastOctetMask];
+  }
+
+  const ip = netParts.join('.');
+  return { type: 'network', ip, mask, wildcard, cidr };
 }
 
 function newWildcard() {
@@ -642,13 +680,15 @@ function newWildcard() {
   const ex = generateWildcard();
   state.wc.current = ex;
 
-  let q, displayIp;
-  if(ex.type==='host') {
+  let q;
+  let displayIp;
+
+  if (ex.type === 'host') {
     q = `¿Cuál es la wildcard mask para filtrar EXACTAMENTE el host ${ex.ip}?`;
     displayIp = `host ${ex.ip}`;
-  } else if(ex.type==='any') {
-    q = `¿Cuál es la wildcard mask para referirse a CUALQUIER dirección IP (any)?`;
-    displayIp = `any`;
+  } else if (ex.type === 'any') {
+    q = '¿Cuál es la wildcard mask para referirse a CUALQUIER dirección IP (any)?';
+    displayIp = 'any';
   } else {
     q = `Calcula la wildcard mask para la red ${ex.ip}/${ex.cidr}`;
     displayIp = `${ex.ip} /${ex.cidr}`;
@@ -656,15 +696,18 @@ function newWildcard() {
 
   document.getElementById('wc-question').textContent = q;
   document.getElementById('wc-ip').textContent = displayIp;
-  document.getElementById('wc-feedback').classList.remove('show');
+  document.getElementById('wc-feedback').className = 'feedback-block';
+  document.getElementById('wc-feedback').innerHTML = '';
   document.getElementById('hint-wc').classList.remove('show');
+  document.getElementById('hint-wc').innerHTML = '';
   document.getElementById('wc-answer').value = '';
   document.getElementById('wc-answer').className = 'field-input';
 }
 
 function checkWildcard() {
   const ex = state.wc.current;
-  if(!ex) return;
+  if (!ex) return;
+
   const input = document.getElementById('wc-answer');
   const userVal = input.value.trim();
   const isOk = userVal === ex.wildcard;
@@ -673,16 +716,17 @@ function checkWildcard() {
   input.classList.toggle('wrong', !isOk);
 
   state.wc.total++;
-  if(isOk) state.wc.correct++;
+  if (isOk) state.wc.correct++;
   updateStats('wc');
 
   const fb = document.getElementById('wc-feedback');
-  if(isOk) {
+  if (isOk) {
     fb.innerHTML = `✓ Correcto — la wildcard es <strong>${ex.wildcard}</strong>`;
     fb.className = 'feedback-block show success';
   } else {
-    let hint = '';
-    if(ex.type==='network') hint = `<br>Fórmula: 255.255.255.255 − ${ex.mask} = ${ex.wildcard}`;
+    const hint = ex.type === 'network'
+      ? `<br>Fórmula: 255.255.255.255 − ${ex.mask} = ${ex.wildcard}`
+      : '';
     fb.innerHTML = `✗ Incorrecto — la respuesta correcta es <strong>${ex.wildcard}</strong>${hint}`;
     fb.className = 'feedback-block show error';
   }
@@ -690,46 +734,53 @@ function checkWildcard() {
 
 // ─── HINTS ───────────────────────────────────────────────
 function toggleHint(type) {
-  const box = document.getElementById('hint-'+type);
-  if(box.classList.contains('show')) { box.classList.remove('show'); return; }
+  const box = document.getElementById('hint-' + type);
+  if (box.classList.contains('show')) {
+    box.classList.remove('show');
+    return;
+  }
 
-  if(type==='sn') {
+  if (type === 'sn') {
     const ex = state.sn.current;
-    if(!ex) return;
+    if (!ex) return;
+
     box.innerHTML = `
       <span>Bits robados:</span> ${ex.bitsToSteal} → Subredes: 2^${ex.bitsToSteal} = ${ex.subnets}<br>
-      <span>Bits host restantes:</span> ${32-ex.newCidr} → Hosts: 2^${32-ex.newCidr} − 2 = ${ex.hosts}<br>
+      <span>Bits host restantes:</span> ${32 - ex.newCidr} → Hosts: ${32 - ex.newCidr > 1 ? `2^${32 - ex.newCidr} − 2 = ${ex.hosts}` : ex.hosts}<br>
       <span>CIDR:</span> /${ex.baseCidr} + ${ex.bitsToSteal} bits = /${ex.newCidr}<br>
-      <span>Salto:</span> 256 − valor del byte de la máscara = ${ex.jumpVal}<br>
+      <span>Salto:</span> ${ex.jumpVal === 1 ? 'máscara exacta → salto base 1' : `256 − octeto interesante de ${ex.mask} = ${ex.jumpVal}`}<br>
       <span>Broadcast:</span> siguiente subred − 1 = ${ex.broadcast}
     `;
   } else {
     const ex = state.wc.current;
-    if(!ex) return;
-    if(ex.type==='host') {
-      box.innerHTML = `<span>Host exacto</span> → wildcard = 0.0.0.0 (todos los bits importan)`;
-    } else if(ex.type==='any') {
-      box.innerHTML = `<span>Any</span> → wildcard = 255.255.255.255 (ningún bit importa)`;
+    if (!ex) return;
+
+    if (ex.type === 'host') {
+      box.innerHTML = '<span>Host exacto</span> → wildcard = 0.0.0.0 (todos los bits importan)';
+    } else if (ex.type === 'any') {
+      box.innerHTML = '<span>Any</span> → wildcard = 255.255.255.255 (ningún bit importa)';
     } else {
       box.innerHTML = `<span>Fórmula:</span> 255.255.255.255 − máscara normal = wildcard<br>255.255.255.255 − <span>${ex.mask}</span> = <span>${ex.wildcard}</span>`;
     }
   }
+
   box.classList.add('show');
 }
 
 // ─── STATS ───────────────────────────────────────────────
 function updateStats(type) {
   const s = state[type];
-  document.getElementById(type+'-correct').textContent = s.correct;
-  document.getElementById(type+'-total').textContent = s.total;
-  document.getElementById(type+'-pct').textContent = s.total>0 ? Math.round(s.correct/s.total*100)+'%' : '—';
+  document.getElementById(type + '-correct').textContent = s.correct;
+  document.getElementById(type + '-total').textContent = s.total;
+  document.getElementById(type + '-pct').textContent = s.total > 0 ? Math.round((s.correct / s.total) * 100) + '%' : '—';
 }
 
 // ─── CLEAR ───────────────────────────────────────────────
 function clearInputs(type) {
-  const ids = type==='sn'
-    ? ['sn-mask','sn-cidr','sn-subnets','sn-hosts','sn-jump','sn-broadcast']
+  const ids = type === 'sn'
+    ? ['sn-mask', 'sn-cidr', 'sn-subnets', 'sn-hosts', 'sn-jump', 'sn-broadcast']
     : ['wc-answer'];
+
   ids.forEach(id => {
     const el = document.getElementById(id);
     el.value = '';
